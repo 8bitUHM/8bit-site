@@ -193,3 +193,7 @@ except ImportError:
     }
     
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+LOGIN_REDIRECT_URL = '/admin/'
+LOGOUT_REDIRECT_URL = '/'

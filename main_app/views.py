@@ -1,16 +1,13 @@
 # example/views.py
 from datetime import datetime
-
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
+from .forms import LoginForm
 
-def index(request):
-    now = datetime.now()
-    html = f'''
-    <html>
-        <body>
-            <h1>Hello from Vercel!</h1>
-            <p>The current time is { now }.</p>
-        </body>
-    </html>
-    '''
-    return HttpResponse(html)
+class CustomLoginView(LoginView):
+    template_name = "index.html"
+    authentication_form = LoginForm  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
