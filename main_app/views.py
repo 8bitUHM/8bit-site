@@ -3,11 +3,18 @@ from datetime import datetime
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from .forms import LoginForm
+from django.shortcuts import render
 
-class CustomLoginView(LoginView):
-    template_name = "index.html"
-    authentication_form = LoginForm  
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+
+def index(request):
+  return render(request,'index.html')
+
+def about(request):
+  return render(request,'about.html')
+
+def members(request):
+  return render(request,'members.html')
+
+def services(request):
+  return render(request,'services.html')
 
