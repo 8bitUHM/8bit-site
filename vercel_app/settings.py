@@ -167,13 +167,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DEFAULT_FILE_STORAGE = 'db_file_storage.storage.DatabaseFileStorage'
 
-STATIC_URL = 'static/'  
-STATIC_ROOT = BASE_DIR / 'static'
-STATICFILES_DIR = [
-  BASE_DIR / 'static',
-  BASE_DIR / 'static/icon',
-] 
-
 try:
     from .local_settings import * 
     print('Local settings imported')
