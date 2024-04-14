@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'db_file_storage',
     'corsheaders',
     'rest_framework',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -172,13 +173,14 @@ try:
     print('Local settings imported')
 except ImportError:
     print('Local settings were not imported')
-    
     REST_FRAMEWORK = {
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
         ),
         'DEFAULT_AUTHENTICATION_CLASSES': [
             'rest_framework.authentication.BasicAuthentication',
+            "rest_framework.authentication.TokenAuthentication",
+            "rest_framework.authentication.SessionAuthentication",
         ],
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAuthenticated',
