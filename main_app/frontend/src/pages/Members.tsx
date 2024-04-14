@@ -40,7 +40,7 @@ const Members = () => {
         });
         if (res.ok) {
           const data = await res.json();
-          console.log(data);
+          // console.log(data);
           data.forEach((member: Member) => {
             switch (member.team) {
               case "design":
@@ -56,7 +56,6 @@ const Members = () => {
                 ]);
                 break;
               case "software":
-                console.log(member.image == null);
                 setSoftwareMemberData((prevSoftwareMemberData) => [
                   ...prevSoftwareMemberData,
                   member,
@@ -76,11 +75,16 @@ const Members = () => {
     fetchData();
   }, []);
 
-  const renderSocialMedia = (socialMedia: string, socialMediaLink: string) => {
+  const renderSocialMedia = (
+    socialMedia: string,
+    socialMediaLink: string,
+    key: number
+  ) => {
     switch (socialMedia) {
       case "mail":
         return (
           <a
+            key={key}
             className="text-reset me-2"
             href={`mailto:${socialMediaLink}`}
             target="_blank"
@@ -100,6 +104,7 @@ const Members = () => {
       case "linkedin":
         return (
           <a
+            key={key}
             className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
@@ -119,6 +124,7 @@ const Members = () => {
       case "instagram":
         return (
           <a
+            key={key}
             className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
@@ -138,6 +144,7 @@ const Members = () => {
       case "linkedin":
         return (
           <a
+            key={key}
             className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
@@ -157,6 +164,7 @@ const Members = () => {
       case "github":
         return (
           <a
+            key={key}
             className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
@@ -197,11 +205,13 @@ const Members = () => {
                 <h5 className="title mb-0">{member.name}</h5>
                 <small className="text-muted">{member.role}</small>
                 <div>
-                  {member.social_medias.map((socialMedia: SocialMedia) =>
-                    renderSocialMedia(
-                      socialMedia.social_media,
-                      socialMedia.social_media_link
-                    )
+                  {member.social_medias.map(
+                    (socialMedia: SocialMedia, index: number) =>
+                      renderSocialMedia(
+                        socialMedia.social_media,
+                        socialMedia.social_media_link,
+                        index
+                      )
                   )}
                 </div>
               </div>
@@ -227,11 +237,13 @@ const Members = () => {
                 <h5 className="title mb-0">{member.name}</h5>
                 <small className="text-muted">{member.role}</small>
                 <div>
-                  {member.social_medias.map((socialMedia: SocialMedia) =>
-                    renderSocialMedia(
-                      socialMedia.social_media,
-                      socialMedia.social_media_link
-                    )
+                  {member.social_medias.map(
+                    (socialMedia: SocialMedia, index: number) =>
+                      renderSocialMedia(
+                        socialMedia.social_media,
+                        socialMedia.social_media_link,
+                        index
+                      )
                   )}
                 </div>
               </div>
@@ -257,11 +269,13 @@ const Members = () => {
                 <h5 className="title mb-0">{member.name}</h5>
                 <small className="text-muted">{member.role}</small>
                 <div>
-                  {member.social_medias.map((socialMedia: SocialMedia) =>
-                    renderSocialMedia(
-                      socialMedia.social_media,
-                      socialMedia.social_media_link
-                    )
+                  {member.social_medias.map(
+                    (socialMedia: SocialMedia, index: number) =>
+                      renderSocialMedia(
+                        socialMedia.social_media,
+                        socialMedia.social_media_link,
+                        index
+                      )
                   )}
                 </div>
               </div>
