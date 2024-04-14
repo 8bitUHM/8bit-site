@@ -296,7 +296,11 @@ const Members = () => {
           <>
             {canMap ? (
               <>
-                <div className="mb-4">
+                <div
+                  className="mb-4"
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                >
                   <div className="row">
                     <div className="col-12 text-center">
                       <div className="section-title">
@@ -314,7 +318,11 @@ const Members = () => {
                   <div className="row">{mapTeam("software")}</div>
                 </div>
                 <hr></hr>
-                <div className="mb-4">
+                <div
+                  className="mb-4"
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                >
                   <div className="row">
                     <div className="col-12 text-center">
                       <div className="section-title">
@@ -332,7 +340,11 @@ const Members = () => {
                   <div className="row">{mapTeam("business")}</div>
                 </div>
                 <hr></hr>
-                <div className="mb-4">
+                <div
+                  className="mb-4"
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                >
                   <div className="row">
                     <div className="col-12 text-center">
                       <div className="section-title">

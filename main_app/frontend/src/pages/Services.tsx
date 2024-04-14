@@ -8,6 +8,8 @@ const Services = () => {
       <div
         className="container text-left my-5 my-md-1"
         style={{ paddingTop: 125 }}
+        data-aos="fade-up"
+        data-aos-duration="1500"
       >
         <>
           <section className="bsb-service-7 py-5 py-xl-8">

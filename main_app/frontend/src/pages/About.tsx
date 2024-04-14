@@ -9,6 +9,8 @@ const About = () => {
       <div
         className="container text-left my-5 my-md-1"
         style={{ paddingTop: 150 }}
+        data-aos="fade-up"
+        data-aos-duration="1500"
       >
         <>
           <section className="py-3 py-md-5 py-xl-8">
@@ -56,7 +58,8 @@ const About = () => {
                             <div>
                               <h4 className="mb-3">Unique Experience</h4>
                               <p className="text-secondary mb-0">
-                                We believe in teaching real life career experience.
+                                We believe in teaching real life career
+                                experience.
                               </p>
                             </div>
                           </div>
