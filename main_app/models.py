@@ -35,6 +35,7 @@ class Member(models.Model):
     )
     name = models.CharField(max_length=255,help_text="Member full name")
     team = models.CharField(max_length=255,choices=TEAM_CHOICES)
+    is_leader = models.BooleanField(default=False)
     role = models.CharField(max_length=255,help_text="'Member' or 'Leader' or 'Member, 'Full Stack Developer'")
     social_medias = models.ManyToManyField(SocialMedia,blank=True)
     image = models.ImageField(upload_to='main_app.File/bytes/filename/mimetype', null=True, blank=True,help_text="Please compress image, convert type to webp and change size to 500x500 px before uploading. https://imagecompressor.com/, https://cloudconvert.com/webp-converter, https://imageresizer.com/")
