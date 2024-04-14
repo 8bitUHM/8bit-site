@@ -193,9 +193,17 @@ const Members = () => {
                   className="img-fluid float-left"
                 />
               )}
-              <div className="content float-right p-4">
+              <div className="content float-right p-3">
                 <h5 className="title mb-0">{member.name}</h5>
                 <small className="text-muted">{member.role}</small>
+                <div>
+                  {member.social_medias.map((socialMedia: SocialMedia) =>
+                    renderSocialMedia(
+                      socialMedia.social_media,
+                      socialMedia.social_media_link
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -215,9 +223,17 @@ const Members = () => {
                   className="img-fluid float-left"
                 />
               )}
-              <div className="content float-right p-4">
+              <div className="content float-right p-3">
                 <h5 className="title mb-0">{member.name}</h5>
                 <small className="text-muted">{member.role}</small>
+                <div>
+                  {member.social_medias.map((socialMedia: SocialMedia) =>
+                    renderSocialMedia(
+                      socialMedia.social_media,
+                      socialMedia.social_media_link
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -237,7 +253,7 @@ const Members = () => {
                   className="img-fluid float-left"
                 />
               )}
-              <div className="content float-right p-4">
+              <div className="content float-right p-3">
                 <h5 className="title mb-0">{member.name}</h5>
                 <small className="text-muted">{member.role}</small>
                 <div>
