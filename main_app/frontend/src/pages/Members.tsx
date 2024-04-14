@@ -81,14 +81,14 @@ const Members = () => {
       case "mail":
         return (
           <a
-            className="text-reset mx-1"
+            className="text-reset me-2"
             href={`mailto:${socialMediaLink}`}
             target="_blank"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               fill="currentColor"
               className="bi bi-envelope-fill"
               viewBox="0 0 16 16"
@@ -100,14 +100,14 @@ const Members = () => {
       case "linkedin":
         return (
           <a
-            className="text-reset mx-1"
+            className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               fill="currentColor"
               className="bi bi-linkedin"
               viewBox="0 0 16 16"
@@ -119,14 +119,14 @@ const Members = () => {
       case "instagram":
         return (
           <a
-            className="text-reset mx-1"
+            className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               fill="currentColor"
               className="bi bi-instagram"
               viewBox="0 0 16 16"
@@ -138,14 +138,14 @@ const Members = () => {
       case "linkedin":
         return (
           <a
-            className="text-reset mx-1"
+            className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               fill="currentColor"
               className="bi bi-linkedin"
               viewBox="0 0 16 16"
@@ -157,14 +157,14 @@ const Members = () => {
       case "github":
         return (
           <a
-            className="text-reset mx-1"
+            className="text-reset me-2"
             href={`${socialMediaLink}`}
             target="_blank"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               fill="currentColor"
               className="bi bi-github"
               viewBox="0 0 16 16"
