@@ -8,6 +8,7 @@ interface Props {
 
 const LoadingImage: FC<Props> = (props) => {
   const [loadingStyle, changeLoadingStyle] = useState({});
+  const [imageStyle, changeImageStyle] = useState({ display: "none" });
 
   return (
     <>
@@ -20,7 +21,9 @@ const LoadingImage: FC<Props> = (props) => {
         className={props.className}
         onLoad={() => {
           changeLoadingStyle({ display: "none" });
+          changeImageStyle({ display: "" });
         }}
+        style={imageStyle}
       ></img>
     </>
   );
