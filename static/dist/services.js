@@ -96,7 +96,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar 
   \********************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar Navbar_1 = __webpack_require__(/*! ../components/Navbar */ \"./src/components/Navbar.tsx\");\nvar Services = function () {\n    return (React.createElement(React.Fragment, null,\n        React.createElement(Navbar_1.default, null),\n        React.createElement(\"div\", { className: \"container text-left my-5 my-md-1\", style: { paddingTop: 150 } }, \"This site is still under construction.\")));\n};\nexports[\"default\"] = Services;\n\n\n//# sourceURL=webpack://webpack-typescript-react/./src/pages/Services.tsx?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar Navbar_1 = __webpack_require__(/*! ../components/Navbar */ \"./src/components/Navbar.tsx\");\nvar Services = function () {\n    return (React.createElement(React.Fragment, null,\n        React.createElement(Navbar_1.default, null),\n        React.createElement(\"div\", { className: \"container text-left my-5 my-md-1\", style: { paddingTop: 150 } }, \"This page is still under construction.\")));\n};\nexports[\"default\"] = Services;\n\n\n//# sourceURL=webpack://webpack-typescript-react/./src/pages/Services.tsx?");
 
 /***/ }),
 
