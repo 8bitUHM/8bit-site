@@ -19,11 +19,16 @@ class SocialMedia(models.Model):
         ('instagram', 'Instagram'),
     )
     name = models.CharField(max_length=255, help_text="Phat's LinkedIn or Adam's Email")
-    social_media = models.CharField(max_length=255,choices=SOCIAL_MEDIA_CHOICES)
+    social_media = models.CharField(max_length=255, choices=SOCIAL_MEDIA_CHOICES)
     social_media_link = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = [
+            'social_media'
+        ]
     
 
 
