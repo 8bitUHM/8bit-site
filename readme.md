@@ -1,4 +1,4 @@
-# Learning Emporium Portal
+# 8bit Website
 
 Django 4.2.8 with Supabase PostgreSQL database and Django Rest Framework
 
