@@ -74,22 +74,8 @@ const Navbar: FC = () => {
             <div className="collapse navbar-collapse" id="nav">
               <ul className="navbar-nav navbar-right">
                 <li className="nav-item">
-                  <a
-                    href="/"
-                    className="nav-link"
-                    style={{ color: "#3d8581" }}
-                  >
+                  <a href="/" className="nav-link" style={{ color: "#3d8581" }}>
                     Home
-                  </a>
-                </li>
-
-                <li className="nav-item">
-                  <a
-                    href="/about"
-                    className="nav-link"
-                    style={{ color: "#3d8581" }}
-                  >
-                    About Us
                   </a>
                 </li>
 
