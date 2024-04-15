@@ -106,16 +106,16 @@ const Services = () => {
                               <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8" />
                             </svg>
                             <h4 className="fw-bold text-uppercase mb-4">
-                              Domain Management
+                              Infrastructure
                             </h4>
                             <p className="mb-4 text-secondary">
-                              From setup to ongoing maintenance, we handle all
-                              aspects of domain management, ensuring that your
-                              website remains accessible and secure. Whether
-                              you're launching a new static webpage or upgrading
-                              to a dynamic web application, we will take care of
-                              your domain, allowing you to focus on what matters
-                              most.
+                              Along with the rest of our services, we handle
+                              site deployment and hosting on platforms like
+                              Vercel or AWS. Whether you're launching a new
+                              static webpage or upgrading to a dynamic web
+                              application, we take care of the infrastructure
+                              from deployment to domain management, allowing you
+                              to focus on what matters most.
                             </p>
                           </div>
                         </div>

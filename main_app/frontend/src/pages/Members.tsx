@@ -306,7 +306,7 @@ const Members = () => {
                       <div className="section-title">
                         <h4 className="title ">Software Team</h4>
                         <p className="text-muted para-desc mx-auto mb-0">
-                          Our Software Team pioneers innovation, transforming
+                          Our software team pioneers innovation, transforming
                           ideas into robust digital solutions. With expertise in
                           coding and problem-solving, they craft seamless
                           experiences that propel our organization forward.
