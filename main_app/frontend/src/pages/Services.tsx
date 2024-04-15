@@ -20,7 +20,7 @@ const Services = () => {
                     Services
                   </h3>
                   <h2 className="display-5 mb-5 mb-xl-9 text-center">
-                    Our services are 100% free.
+                    We charge nothing.
                   </h2>
                 </div>
               </div>
