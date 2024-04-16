@@ -2,6 +2,7 @@ import * as React from "react";
 import Navbar from "../components/Navbar";
 import LoadingImage from "../components/LoadingImage";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 interface SocialMedia {
   social_media: string;
@@ -363,18 +364,22 @@ const Members = () => {
                 </div>
               </>
             ) : (
-              <div>
+              <div style={{ marginBottom: 700 }}>
                 Uh oh! Something went wrong with our request for data. Please
                 refresh and try again!
               </div>
             )}
           </>
         ) : (
-          <div className="d-flex justify-content-center">
+          <div
+            className="d-flex justify-content-center"
+            style={{ marginBottom: 585 }}
+          >
             <div className="spinner-border my-5"></div>
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import * as React from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Services = () => {
   return (
@@ -142,6 +143,7 @@ const Services = () => {
           </section>
         </>
       </div>
+      <Footer />
     </>
   );
 };
