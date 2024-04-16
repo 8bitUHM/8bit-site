@@ -70,7 +70,7 @@ const Index = () => {
           </div>
         </section>
       </div>
-      <div style={{ marginTop: 200 }}>
+      <div style={{ marginTop: 300 }}>
         <Footer />
       </div>
     </>

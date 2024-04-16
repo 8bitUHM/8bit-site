@@ -373,7 +373,7 @@ const Members = () => {
         ) : (
           <div
             className="d-flex justify-content-center"
-            style={{ marginBottom: 585 }}
+            style={{ marginBottom: 700 }}
           >
             <div className="spinner-border my-5"></div>
           </div>
