@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from .forms import LoginForm
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 
 def index(request):
@@ -18,3 +19,8 @@ def members(request):
 def services(request):
   return render(request,'services.html')
 
+class MemberLoginView(LoginView):
+  template_name = "member-login.html"
+  authentication_form = LoginForm
+  def get_success_url(self):
+    return reverse_lazy('admin:index') 
