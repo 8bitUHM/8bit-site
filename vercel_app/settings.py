@@ -36,6 +36,8 @@ ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'www.8bituhm.org','8bituhm.org']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'adminlte3',
+    # 'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +48,8 @@ INSTALLED_APPS = [
     'db_file_storage',
     'corsheaders',
     'rest_framework',
-    'api'
+    'api',
+   
 ]
 
 MIDDLEWARE = [
