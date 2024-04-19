@@ -1,6 +1,6 @@
 # example/views.py
 from datetime import datetime
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from .forms import LoginForm
 from django.shortcuts import render
@@ -40,4 +40,7 @@ class MemberLoginView(LoginView):
   template_name = "member-login.html"
   authentication_form = LoginForm
   def get_success_url(self):
-    return reverse_lazy('admin:index') 
+    return reverse_lazy('admin:index')
+  
+class MemberLogoutView(LogoutView):
+  next_page = '/'
