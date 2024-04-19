@@ -5,7 +5,11 @@ from django.http import HttpResponse
 from .forms import LoginForm
 from django.shortcuts import render
 from django.urls import reverse_lazy
-
+from .serializers import MemberSerializer
+from .models import *
+from django.db.models import Case, When, Value, IntegerField
+from rest_framework.renderers import JSONRenderer
+import json
 
 def index(request):
   return render(request,'index.html')
@@ -14,7 +18,20 @@ def index(request):
 #   return render(request,'about.html')
 
 def members(request):
-  return render(request,'members.html')
+  queryset = Member.objects.annotate(
+    custom_order=Case(
+      When(is_leader=True, then=Value(1)),
+      When(role="Member, Trainee Developer", then=Value(3)),
+      default=Value(2),
+      output_field=IntegerField(),
+    )
+  ).order_by('custom_order', 'name')
+
+  serializer = MemberSerializer(queryset, many=True)
+  serialized_data = serializer.data
+  serialized_json_data = json.dumps(serialized_data)
+
+  return render(request, 'members.html', {'members': serialized_json_data})
 
 def services(request):
   return render(request,'services.html')

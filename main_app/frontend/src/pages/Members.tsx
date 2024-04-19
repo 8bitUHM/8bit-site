@@ -18,6 +18,11 @@ interface Member {
   image: string;
 }
 
+interface InitialData {
+  name: string;
+  age: number;
+}
+
 const Members = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
@@ -26,54 +31,35 @@ const Members = () => {
   const [softwareMemberData, setSoftwareMemberData] = useState<Member[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const username = "apiUser";
-        const password = "apiPassword";
-        const encodedCredentials = btoa(`${username}:${password}`);
-
-        const headers = new Headers();
-        headers.append("Authorization", `Basic ${encodedCredentials}`);
-
-        const res = await fetch(`/api/members`, {
-          method: "GET",
-          headers: headers,
-        });
-        if (res.ok) {
-          const data = await res.json();
-          // console.log(data);
-          data.forEach((member: Member) => {
-            switch (member.team) {
-              case "design":
-                setDesignMemberData((prevDesignMemberData) => [
-                  ...prevDesignMemberData,
-                  member,
-                ]);
-                break;
-              case "business":
-                setBusinessMemberData((prevBusinessMemberData) => [
-                  ...prevBusinessMemberData,
-                  member,
-                ]);
-                break;
-              case "software":
-                setSoftwareMemberData((prevSoftwareMemberData) => [
-                  ...prevSoftwareMemberData,
-                  member,
-                ]);
-                break;
-            }
-          });
-          setCanMap(true);
+    try {
+      const memberData = (window as any).data as any;
+      memberData.forEach((member: Member) => {
+        switch (member.team) {
+          case "design":
+            setDesignMemberData((prevDesignMemberData) => [
+              ...prevDesignMemberData,
+              member,
+            ]);
+            break;
+          case "business":
+            setBusinessMemberData((prevBusinessMemberData) => [
+              ...prevBusinessMemberData,
+              member,
+            ]);
+            break;
+          case "software":
+            setSoftwareMemberData((prevSoftwareMemberData) => [
+              ...prevSoftwareMemberData,
+              member,
+            ]);
+            break;
         }
-      } catch (e: any) {
-        console.log(e);
-      } finally {
-        setPageReady(true);
-      }
-    };
-
-    fetchData();
+      });
+      setCanMap(true);
+      setPageReady(true);
+    } catch (e: any) {
+      setPageReady(true);
+    }
   }, []);
 
   const renderSocialMedia = (
