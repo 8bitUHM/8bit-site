@@ -28,8 +28,7 @@ def members(request):
   ).order_by('custom_order', 'name')
 
   serializer = MemberSerializer(queryset, many=True)
-  serialized_data = serializer.data
-  serialized_json_data = json.dumps(serialized_data)
+  serialized_json_data = json.dumps(serializer.data)
 
   return render(request, 'members.html', {'members': serialized_json_data})
 
