@@ -18,11 +18,6 @@ interface Member {
   image: string;
 }
 
-interface InitialData {
-  name: string;
-  age: number;
-}
-
 const Members = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
