@@ -7,9 +7,12 @@ class ProjectUpdateInline(admin.StackedInline):
 
 class ContactPersonInline(admin.StackedInline):
   model = ContactPerson
+  
+class ProjectAccountInline(admin.StackedInline):
+  model = ProjectAccount
 
 class ProjectAdmin(admin.ModelAdmin):
-  inlines=[ContactPersonInline,ProjectUpdateInline]
+  inlines=[ProjectUpdateInline, ContactPersonInline,ProjectAccountInline]
 
 admin.site.register(Client)
 admin.site.register(Project,ProjectAdmin)

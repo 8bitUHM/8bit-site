@@ -24,7 +24,7 @@ class Project(models.Model):
 class ContactPerson(models.Model):
   name = models.CharField(max_length=255, help_text="Name of contact person")
   email = models.CharField(max_length=255,blank=True,null=True, help_text="Email of contact person")
-  phone_number = models.CharField(max_length=255,blank=True,null=True, help_text="phone_number of contact person")
+  phone_number = models.CharField(max_length=255,blank=True,null=True, help_text="Phone number of contact person")
   client = models.ForeignKey(Project,on_delete=models.CASCADE,null=True)
   
   def __str__(self):
@@ -37,3 +37,13 @@ class ProjectUpdate(models.Model):
   
   def __str__(self):
     return self.description
+  
+class ProjectAccount(models.Model):
+  account = models.CharField(max_length=255,help_text="eg. GitHub or G-Mail or Vercel etc")
+  email = models.CharField(max_length=255, null=True,blank=True)
+  username = models.CharField(max_length=255, null=True,blank=True)
+  password = models.CharField(max_length=255, null=True,blank=True)
+  client = models.ForeignKey(Project,on_delete=models.CASCADE,null=True)
+  
+  def __str__(self):
+    return self.account
