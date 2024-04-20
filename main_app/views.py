@@ -1,14 +1,11 @@
 # example/views.py
-from datetime import datetime
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponse
 from .forms import LoginForm
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .serializers import MemberSerializer
 from .models import *
 from django.db.models import Case, When, Value, IntegerField
-from rest_framework.renderers import JSONRenderer
 import json
 
 def index(request):
