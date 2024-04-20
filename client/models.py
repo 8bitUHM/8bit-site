@@ -29,3 +29,11 @@ class ContactPerson(models.Model):
   
   def __str__(self):
     return self.name
+  
+class ProjectUpdate(models.Model):
+  description = models.TextField(max_length=2000,help_text="Project update description eg. Started development or Finished project backend")
+  date = models.DateTimeField(help_text="When the project update happened")
+  client = models.ForeignKey(Project,on_delete=models.CASCADE,null=True)
+  
+  def __str__(self):
+    return self.description
