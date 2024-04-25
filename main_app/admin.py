@@ -2,8 +2,11 @@ from django.contrib import admin
 
 from .models import *
 
+class SocialMediaStackedInline(admin.StackedInline):
+    model=SocialMedia
+
 class MemberAdmin(admin.ModelAdmin):
-    filter_horizontal = ["social_medias"]
+    inlines=[SocialMediaStackedInline]
     def get_actions(self, request):
         actions = super().get_actions(request)
         if request.user.username[0].upper() != "J":
