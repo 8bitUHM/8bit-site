@@ -102,7 +102,7 @@ const Navbar: FC = () => {
             </div>
 
             <span className="navbar-text fw-bold d-md-block">
-              <a href="/join" target="_blank">
+              <a href="/join">
                 <button className="btn btn-outline-success" type="submit">
                   Join 8bit!
                 </button>
