@@ -56,7 +56,7 @@ const Join = () => {
             </p>
             <p>
               Additionally, make sure to join our
-              <a href="https://discord.gg/T7Eu75fpAf"> Discord </a>
+              <a href="https://discord.gg/T7Eu75fpAf" target="_blank"> Discord </a>
               for updates, discussions, and to connect with other
               members of the 8bit community.
             </p>
