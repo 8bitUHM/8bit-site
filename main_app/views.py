@@ -40,3 +40,6 @@ class MemberLoginView(LoginView):
   
 class MemberLogoutView(LogoutView):
   next_page = '/'
+
+def join(request):
+  return render(request,'join.html')
