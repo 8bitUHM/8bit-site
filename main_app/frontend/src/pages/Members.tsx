@@ -306,7 +306,7 @@ const Members = () => {
                     </div>
                   </div>
 
-                  <div className="row px-sm-0 px-5">{mapTeam("software")}</div>
+                  <div className="row px-sm-0 px-4">{mapTeam("software")}</div>
                 </div>
                 <hr></hr>
                 <div
@@ -328,7 +328,7 @@ const Members = () => {
                     </div>
                   </div>
 
-                  <div className="row px-sm-0 px-5">{mapTeam("business")}</div>
+                  <div className="row px-sm-0 px-4">{mapTeam("business")}</div>
                 </div>
                 <hr></hr>
                 <div
@@ -350,7 +350,7 @@ const Members = () => {
                     </div>
                   </div>
 
-                  <div className="row px-sm-0 px-5">{mapTeam("design")}</div>
+                  <div className="row px-sm-0 px-4">{mapTeam("design")}</div>
                 </div>
               </>
             ) : (
