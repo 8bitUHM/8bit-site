@@ -170,7 +170,10 @@ const Members = () => {
     switch (team) {
       case "business":
         return businessMemberData.map((member: Member, index: number) => (
-          <div key={index} className="col-lg-3 col-md-4 col-6 mt-4 pt-2">
+          <div
+            key={index}
+            className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mt-4 pt-2"
+          >
             <div className="team-list position-relative overflow-hidden shadow rounded">
               {member.image != null ? (
                 <LoadingImage
@@ -202,7 +205,10 @@ const Members = () => {
         ));
       case "design":
         return designMemberData.map((member: Member, index: number) => (
-          <div key={index} className="col-lg-3 col-md-4 col-6 mt-4 pt-2">
+          <div
+            key={index}
+            className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mt-4 pt-2"
+          >
             <div className="team-list position-relative overflow-hidden shadow rounded">
               {member.image != null ? (
                 <LoadingImage
@@ -234,7 +240,10 @@ const Members = () => {
         ));
       case "software":
         return softwareMemberData.map((member: Member, index: number) => (
-          <div key={index} className="col-lg-3 col-md-4 col-6 mt-4 pt-2">
+          <div
+            key={index}
+            className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mt-4 pt-2"
+          >
             <div className="team-list position-relative overflow-hidden shadow rounded">
               {member.image != null ? (
                 <LoadingImage
@@ -297,7 +306,7 @@ const Members = () => {
                     </div>
                   </div>
 
-                  <div className="row">{mapTeam("software")}</div>
+                  <div className="row px-sm-0 px-5">{mapTeam("software")}</div>
                 </div>
                 <hr></hr>
                 <div
@@ -319,7 +328,7 @@ const Members = () => {
                     </div>
                   </div>
 
-                  <div className="row">{mapTeam("business")}</div>
+                  <div className="row px-sm-0 px-5">{mapTeam("business")}</div>
                 </div>
                 <hr></hr>
                 <div
@@ -341,7 +350,7 @@ const Members = () => {
                     </div>
                   </div>
 
-                  <div className="row">{mapTeam("design")}</div>
+                  <div className="row px-sm-0 px-5">{mapTeam("design")}</div>
                 </div>
               </>
             ) : (
