@@ -1,7 +1,19 @@
 import * as React from "react";
 import { FC } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar: FC = () => {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    try {
+      const username = (window as any).username as any;
+      setUsername(username);
+    } catch (e: any) {
+      console.error(e);
+    }
+  }, []);
+
   return (
     <>
       <nav
@@ -40,29 +52,16 @@ const Navbar: FC = () => {
           <span className="navbar-text fw-bold d-md-block">
             <div className="dropdown">
               <button
-                className="btn  btn-outline-light"
+                className="btn dropdown-toggle btn-outline-light d-inline"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="bi bi-person-circle btn-outline-light "
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                  <path
-                    fillRule="evenodd"
-                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                  />
-                </svg>
+                {username}
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/learning/logout">
                     Logout
                   </a>
                 </li>

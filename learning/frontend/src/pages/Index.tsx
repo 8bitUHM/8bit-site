@@ -42,7 +42,11 @@ const Index = () => {
           <>
             {canMap ? (
               <>
-                <div className="row">
+                <div
+                  className="row"
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                >
                   {lessonData.map((lesson, key) => (
                     <div key={key} className="col-md-6 my-3">
                       <div className="rounded shadow">

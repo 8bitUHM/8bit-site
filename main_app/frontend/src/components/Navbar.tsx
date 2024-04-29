@@ -101,6 +101,16 @@ const Navbar: FC = () => {
                     Services
                   </a>
                 </li>
+
+                <li className="nav-item">
+                  <a
+                    href="/learning"
+                    className="nav-link"
+                    style={{ color: "#3d8581" }}
+                  >
+                    Learning
+                  </a>
+                </li>
               </ul>
             </div>
 
