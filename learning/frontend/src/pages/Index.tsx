@@ -9,6 +9,7 @@ interface Lesson {
   name: string;
   skills: string;
   image: string;
+  description: string;
   slug: string;
 }
 
@@ -66,8 +67,10 @@ const Index = () => {
                           >
                             {lesson.name}
                           </a>
-                          <p className="card-text ">
+                          <p className="card-text">
                             <b>Skills:</b> {lesson.skills}
+                            <br></br>
+                            {lesson.description}
                           </p>
                         </div>
                       </div>
