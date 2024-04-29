@@ -7,6 +7,7 @@ from .serializers import MemberSerializer
 from .models import *
 from django.db.models import Case, When, Value, IntegerField
 import json
+from django.contrib import messages
 
 def index(request):
   return render(request,'index.html')
@@ -35,6 +36,14 @@ def services(request):
 class MemberLoginView(LoginView):
   template_name = "member-login.html"
   authentication_form = LoginForm
+
+  def form_valid(self, form):
+    user = form.get_user()
+    if not user.is_staff:
+      messages.error(self.request, "Only staff members can login.")
+      return self.form_invalid(form)
+    return super().form_valid(form)
+
   def get_success_url(self):
     return reverse_lazy('admin:index')
   
