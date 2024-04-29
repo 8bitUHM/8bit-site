@@ -36,7 +36,7 @@ const Navbar: FC = () => {
           <div className="collapse navbar-collapse" id="nav">
             <ul className="navbar-nav navbar-right">
               <li className="nav-item">
-                <a href="./" className="nav-link text-white">
+                <a href="/learning/lessons" className="nav-link text-white">
                   Lessons
                 </a>
               </li>

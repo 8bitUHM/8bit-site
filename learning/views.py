@@ -32,8 +32,10 @@ def index(request):
 @staff_or_group_required('Learning')
 def lesson(request,slug):
   username = request.user.username
-  lesson = get_object_or_404(Lesson, slug=slug)
-  return render(request, 'lesson.html', {"lesson" : lesson,"username":username })
+  queryset = Lesson.objects.filter(slug=slug)
+  serializer = LessonSerializer(queryset, many=True)
+  serialized_json_data = json.dumps(serializer.data)
+  return render(request, 'lesson.html', {"lesson" : serialized_json_data,"username":username })
 
 class LearningLoginView(LoginView):
   template_name = "login.html"
