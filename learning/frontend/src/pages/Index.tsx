@@ -34,14 +34,17 @@ const Index = () => {
   return (
     <>
       <Navbar />
-      <div className="container text-left" style={{ marginTop: 80 }}>
+      <div
+        className="container text-left"
+        style={{ marginTop: 80, marginBottom: 80 }}
+      >
         {pageReady ? (
           <>
             {canMap ? (
               <>
                 <div className="row">
                   {lessonData.map((lesson, key) => (
-                    <div key={key} className="col-md-6 col-lg-4 my-3">
+                    <div key={key} className="col-md-6 my-3">
                       <div className="rounded shadow">
                         <div>
                           <a href={`/learning/lessons/${lesson.slug}`}>
@@ -52,7 +55,7 @@ const Index = () => {
                           </a>
                         </div>
 
-                        <div className="py-2 px-3">
+                        <div className="p-3">
                           <a
                             href={`/learning/lessons/${lesson.slug}`}
                             className="card-title title-link fw-bold"
