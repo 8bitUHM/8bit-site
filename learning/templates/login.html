@@ -32,13 +32,15 @@
                     </div>
                     <form method="post" action=".">
                       {% csrf_token %}
-                      <h5
-                        class="fw-normal mb-3 pb-3"
-                        style="letter-spacing: 1px"
-                      >
-                        Login to your 8bit account
+                      <h5 class="fw-normal" style="letter-spacing: 1px">
+                        Login to your 8bit Learning Account
                       </h5>
-
+                      <div class="pb-3">
+                        <small class=""
+                          >Don't have an 8bit learning account? Create one
+                          here</small
+                        >
+                      </div>
                       <div class="form-outline mb-4">
                         {{ form.username}}
                         <label class="form-label" for="form2Example17"
