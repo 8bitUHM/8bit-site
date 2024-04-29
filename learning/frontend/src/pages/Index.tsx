@@ -3,14 +3,24 @@ import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import LoadingImage from "../components/LoadingImage";
+
+interface Lesson {
+  name: string;
+  skills: string;
+  image: string;
+  slug: string;
+}
 
 const Index = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
+  const [lessonData, setLessonData] = useState<Lesson[]>([]);
 
   useEffect(() => {
     try {
       const lessons = (window as any).data as any;
+      setLessonData(lessons);
       lessons.forEach((lesson: any) => {
         console.log(lesson);
       });
@@ -29,7 +39,34 @@ const Index = () => {
           <>
             {canMap ? (
               <>
-                <div>Leanring page haha</div>
+                <div className="row">
+                  {lessonData.map((lesson, key) => (
+                    <div key={key} className="col-md-6 col-lg-4 my-3">
+                      <div className="rounded shadow">
+                        <div>
+                          <a href={`/learning/lessons/${lesson.slug}`}>
+                            <LoadingImage
+                              imageUri={lesson.image}
+                              className="img-fluid float-left rounded-top"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="py-2 px-3">
+                          <a
+                            href={`/learning/lessons/${lesson.slug}`}
+                            className="card-title title-link fw-bold"
+                          >
+                            {lesson.name}
+                          </a>
+                          <p className="card-text ">
+                            <b>Skills:</b> {lesson.skills}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </>
             ) : (
               <div style={{ marginBottom: 700 }}>
