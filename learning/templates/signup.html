@@ -16,7 +16,7 @@
       type="image/png"
       href="{% static 'favicon.ico' %}"
     />
-    <title>Login</title>
+    <title>Sign Up</title>
   </head>
   <body>
     <section class="vh-100" style="background-color: #3d8581">
@@ -30,55 +30,56 @@
                     <div class="pb-1">
                       <a class="text-black" href="/">Back to site</a>
                     </div>
-                    <form method="post" action=".">
+                    <form method="post">
                       {% csrf_token %}
                       <h5 class="fw-normal" style="letter-spacing: 1px">
-                        Login to your 8bit Learning Account
+                        Create Your 8bit Learning Account
                       </h5>
                       <div class="pb-3">
-                        <small class=""
-                          >Don't have an 8bit learning account? Create one
-                          <a href="/learning/signup"> here</a></small
+                        <small
+                          >Already have an 8bit learning account? Login
+                          <a href="/learning/login/">here</a></small
                         >
                       </div>
                       <div class="form-outline mb-4">
-                        {{ form.username}}
-                        <label class="form-label" for="form2Example17"
+                        {{ form.username }}
+                        <label class="form-label" for="id_username"
                           >Username</label
                         >
                       </div>
 
                       <div class="form-outline mb-4">
-                        {{ form.password}}
-                        <label class="form-label" for="form2Example27"
+                        {{ form.password1 }}
+                        <label class="form-label" for="id_password1"
                           >Password</label
                         >
                       </div>
 
+                      <div class="form-outline mb-4">
+                        {{ form.password2 }}
+                        <label class="form-label" for="id_password2"
+                          >Confirm Password</label
+                        >
+                      </div>
+
                       <div class="pt-1 mb-4">
-                        <button class="btn btn-dark btn-lg btn-block">
-                          Login
+                        <button
+                          class="btn btn-dark btn-lg btn-block"
+                          type="submit"
+                        >
+                          Sign Up
                         </button>
                       </div>
                       {% if form.errors %}
-                      <p><strong>Error:</strong> {{ form.non_field_errors }}</p>
-                      {% endif %} {% if messages %}
-                      <ul class="messages">
-                        {% for message in messages %}
-                        <li
-                          {%
-                          if
-                          message.tags
-                          %}
-                          class="{{ message.tags }}"
-                          {%
-                          endif
-                          %}
-                        >
-                          {{ message }}
-                        </li>
-                        {% endfor %}
-                      </ul>
+                      <div class="alert alert-danger">
+                        <strong>Error:</strong> Please correct the following
+                        errors.
+                        <ul>
+                          {% for field, error in form.errors.items %}
+                          <li>{{ field }}: {{ error }}</li>
+                          {% endfor %}
+                        </ul>
+                      </div>
                       {% endif %}
                     </form>
                   </div>

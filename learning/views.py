@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 import json
 from .serializers import LessonSerializer
@@ -7,6 +7,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .forms import LoginForm
 from django.urls import reverse_lazy
 from django.contrib import messages
+from .forms import CustomUserCreationForm
 
 def staff_or_group_required(group_name=None):
   def check_user(user):
@@ -50,3 +51,14 @@ class LearningLoginView(LoginView):
   
 class LearningLogoutView(LogoutView):
   next_page = '/'
+
+
+def signup(request):
+  if request.method == 'POST':
+    form = CustomUserCreationForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('learning_login')  
+  else:
+    form = CustomUserCreationForm()
+  return render(request, 'signup.html', {'form': form})
