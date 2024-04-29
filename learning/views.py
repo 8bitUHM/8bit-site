@@ -6,11 +6,9 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import LoginForm
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 def staff_or_group_required(group_name=None):
-  """
-  Decorator for views that checks whether the user is staff or belongs to a certain group.
-  """
   def check_user(user):
     if user.is_staff:
       return True
@@ -39,6 +37,14 @@ def lesson(request,slug):
 class LearningLoginView(LoginView):
   template_name = "login.html"
   authentication_form = LoginForm
+  
+  def form_valid(self, form):
+    user = form.get_user()
+    if not user.is_staff and not user.groups.filter(name='Learning').exists():
+      messages.error(self.request, "Please enter a correct username and password. Note that both fields may be case-sensitive.")
+      return self.form_invalid(form)
+    return super().form_valid(form)
+
   def get_success_url(self):
     return reverse_lazy('lessons_view')
   
