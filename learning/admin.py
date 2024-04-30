@@ -8,3 +8,4 @@ class LessonAdmin(admin.ModelAdmin):
   
   
 admin.site.register(Lesson,LessonAdmin)
+admin.site.register(Section)

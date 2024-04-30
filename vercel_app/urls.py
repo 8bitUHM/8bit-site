@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^download/', db_views.get_file, {'add_attachment_headers': True},
     name='db_file_storage.download_file'),
   url(r'^get/', db_views.get_file, {'add_attachment_headers': False},
-     name='db_file_storage.get_file')
+     name='db_file_storage.get_file'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

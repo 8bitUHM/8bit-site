@@ -337,4 +337,13 @@ JAZZMIN_UI_TWEAKS = {
     }
 }
 
-CKEDITOR_UPLOAD_PATH = 'learning.File/bytes/filename/mimetype'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+    },
+}
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+

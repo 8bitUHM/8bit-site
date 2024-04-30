@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class File(models.Model):
@@ -23,5 +24,9 @@ class Lesson(models.Model):
   def __str__(self):
     return self.name
   
-# class Section(models.Model):
-#   name = models.CharField(max_length=256)
+class Section(models.Model):
+  title = models.CharField(max_length=256)
+  content = RichTextField(max_length=3000)
+  
+  def __str__(self):
+    return self.title
