@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 import json
-from .serializers import LessonSerializer
+from .serializers import LessonSerializer, SectionSerializer
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import LoginForm
@@ -30,12 +30,20 @@ def index(request):
   return render(request,'home.html',{"lessons":serialized_json_data,"username":username})
 
 @staff_or_group_required('Learning')
-def lesson(request,slug):
+def lesson(request,slug,page):
   username = request.user.username
-  queryset = Lesson.objects.filter(slug=slug)
-  serializer = LessonSerializer(queryset, many=True)
-  serialized_json_data = json.dumps(serializer.data)
-  return render(request, 'lesson.html', {"lesson" : serialized_json_data,"username":username })
+  lesson = get_object_or_404(Lesson, slug=slug)
+  section = get_object_or_404(Section,lesson=lesson,page=page)
+  
+  lesson_data = [lesson]
+  lesson_serializer = LessonSerializer(lesson_data, many=True)
+  serialized_lesson_data = json.dumps(lesson_serializer.data)
+  
+  section_data = [section]
+  section_serializer = SectionSerializer(section_data,many=True)
+  serialized_section_data = json.dumps(section_serializer.data)
+  
+  return render(request, 'lesson.html', {"lesson" : serialized_lesson_data,"section":serialized_section_data,"username":username })
 
 class LearningLoginView(LoginView):
   template_name = "login.html"

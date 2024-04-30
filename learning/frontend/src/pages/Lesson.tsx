@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import LoadingImage from "../components/LoadingImage";
 
 interface Section {
   page: number;
@@ -23,10 +22,13 @@ const Lesson = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
   const [lesson, setLessonData] = useState<Lesson>();
+  const [section, setSectionData] = useState<Section>();
 
   useEffect(() => {
     try {
-      const lessons = (window as any).data as any;
+      const lessons = (window as any).lesson_data as any;
+      const sections = (window as any).section_data as any;
+      setSectionData(sections[0]);
       setLessonData(lessons[0]);
 
       setCanMap(true);
@@ -49,18 +51,97 @@ const Lesson = () => {
                 <div
                   className="row"
                   data-aos="fade-up"
-                  data-aos-duration="2000"
+                  data-aos-duration="1000"
                 >
-                  {lesson.name}
-                  {lesson.sections.map((section, key) => (
-                    <div key={key}>
-                      <h1>{section.title}</h1>
-                      <div
-                        dangerouslySetInnerHTML={{ __html: section.content }}
-                      />
-                    </div>
-                  ))}
+                  <h1>{lesson.name}</h1>
+                  <nav aria-label="Page navigation example">
+                    <ul className="pagination">
+                      {section.page == 1 ? null : (
+                        <li className="page-item">
+                          <a
+                            className="page-link"
+                            href={`/learning/lessons/${lesson.name}/${
+                              section.page - 1
+                            }`}
+                          >
+                            Previous
+                          </a>
+                        </li>
+                      )}
+
+                      {lesson.sections.map((section, key) => (
+                        <li key={key} className="page-item">
+                          <a
+                            className="page-link"
+                            href={`/learning/lessons/${lesson.name}/${section.page}`}
+                          >
+                            {`${section.page}`}
+                          </a>
+                        </li>
+                      ))}
+                      {section.page == lesson.sections.length ? null : (
+                        <li className="page-item">
+                          <a
+                            className="page-link"
+                            href={`/learning/lessons/${lesson.name}/${
+                              section.page + 1
+                            }`}
+                          >
+                            Next
+                          </a>
+                        </li>
+                      )}
+                    </ul>
+                  </nav>
+                  <div>
+                    <h3>
+                      {`Section ${section.page} : `}
+                      {section.title}
+                    </h3>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: section.content }}
+                    />
+                  </div>
                 </div>
+                <nav aria-label="Page navigation example">
+                  <ul className="pagination">
+                    {section.page == 1 ? null : (
+                      <li className="page-item">
+                        <a
+                          className="page-link"
+                          href={`/learning/lessons/${lesson.name}/${
+                            section.page - 1
+                          }`}
+                        >
+                          Previous
+                        </a>
+                      </li>
+                    )}
+
+                    {lesson.sections.map((section, key) => (
+                      <li key={key} className="page-item">
+                        <a
+                          className="page-link"
+                          href={`/learning/lessons/${lesson.name}/${section.page}`}
+                        >
+                          {`${section.page}`}
+                        </a>
+                      </li>
+                    ))}
+                    {section.page == lesson.sections.length ? null : (
+                      <li className="page-item">
+                        <a
+                          className="page-link"
+                          href={`/learning/lessons/${lesson.name}/${
+                            section.page + 1
+                          }`}
+                        >
+                          Next
+                        </a>
+                      </li>
+                    )}
+                  </ul>
+                </nav>
               </>
             ) : (
               <div style={{ marginBottom: 700 }}>
