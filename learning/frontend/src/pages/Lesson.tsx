@@ -48,7 +48,11 @@ const Lesson = () => {
           <>
             {canMap ? (
               <>
-                <div className="row">
+                <div
+                  className="row"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                >
                   <nav aria-label="Page navigation example" className="pt-2">
                     <ul className="pagination">
                       {section.page == 1 ? null : (
@@ -89,7 +93,7 @@ const Lesson = () => {
                     </ul>
                   </nav>
 
-                  <div data-aos="fade-up" data-aos-duration="1000">
+                  <div>
                     <h1>{lesson.name}</h1>
                     <h3>
                       {`Section ${section.page} : `}
@@ -99,46 +103,46 @@ const Lesson = () => {
                       dangerouslySetInnerHTML={{ __html: section.content }}
                     />
                   </div>
-                </div>
-                <nav aria-label="Page navigation example" className="pt-2">
-                  <ul className="pagination">
-                    {section.page == 1 ? null : (
-                      <li className="page-item">
-                        <a
-                          className="page-link"
-                          href={`/learning/lessons/${lesson.name}/${
-                            section.page - 1
-                          }`}
-                        >
-                          Previous
-                        </a>
-                      </li>
-                    )}
+                  <nav aria-label="Page navigation example" className="pt-2">
+                    <ul className="pagination">
+                      {section.page == 1 ? null : (
+                        <li className="page-item">
+                          <a
+                            className="page-link"
+                            href={`/learning/lessons/${lesson.name}/${
+                              section.page - 1
+                            }`}
+                          >
+                            Previous
+                          </a>
+                        </li>
+                      )}
 
-                    {lesson.sections.map((section, key) => (
-                      <li key={key} className="page-item">
-                        <a
-                          className="page-link"
-                          href={`/learning/lessons/${lesson.name}/${section.page}`}
-                        >
-                          {`${section.page}`}
-                        </a>
-                      </li>
-                    ))}
-                    {section.page == lesson.sections.length ? null : (
-                      <li className="page-item">
-                        <a
-                          className="page-link"
-                          href={`/learning/lessons/${lesson.name}/${
-                            section.page + 1
-                          }`}
-                        >
-                          Next
-                        </a>
-                      </li>
-                    )}
-                  </ul>
-                </nav>
+                      {lesson.sections.map((section, key) => (
+                        <li key={key} className="page-item">
+                          <a
+                            className="page-link"
+                            href={`/learning/lessons/${lesson.name}/${section.page}`}
+                          >
+                            {`${section.page}`}
+                          </a>
+                        </li>
+                      ))}
+                      {section.page == lesson.sections.length ? null : (
+                        <li className="page-item">
+                          <a
+                            className="page-link"
+                            href={`/learning/lessons/${lesson.name}/${
+                              section.page + 1
+                            }`}
+                          >
+                            Next
+                          </a>
+                        </li>
+                      )}
+                    </ul>
+                  </nav>
+                </div>
               </>
             ) : (
               <div style={{ marginBottom: 700 }}>
