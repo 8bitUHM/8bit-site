@@ -26,7 +26,8 @@ class Lesson(models.Model):
   
 class Section(models.Model):
   title = models.CharField(max_length=256)
-  content = RichTextField(max_length=3000)
+  content = RichTextField(max_length=20000)
+  lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE, related_name="sections")
   
   def __str__(self):
     return self.title
