@@ -5,22 +5,29 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LoadingImage from "../components/LoadingImage";
 
+interface Section {
+  page: number;
+  title: string;
+  content: string;
+}
+
 interface Lesson {
   name: string;
   skills: string;
   image: string;
   slug: string;
+  sections: Section[];
 }
 
 const Lesson = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
-  const [lessonData, setLessonData] = useState<Lesson[]>();
+  const [lesson, setLessonData] = useState<Lesson>();
 
   useEffect(() => {
     try {
       const lessons = (window as any).data as any;
-      setLessonData(lessons);
+      setLessonData(lessons[0]);
 
       setCanMap(true);
       setPageReady(true);
@@ -44,8 +51,14 @@ const Lesson = () => {
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
-                  {lessonData.map((lesson, key) => (
-                    <div key={key}>{lesson.name}</div>
+                  {lesson.name}
+                  {lesson.sections.map((section, key) => (
+                    <div key={key}>
+                      <h1>{section.title}</h1>
+                      <div
+                        dangerouslySetInnerHTML={{ __html: section.content }}
+                      />
+                    </div>
                   ))}
                 </div>
               </>
