@@ -55,7 +55,7 @@ const Lesson = () => {
                 >
                   <p>
                     <a className="text-black " href="/learning/lessons">
-                      <button type="button" className="btn btn-primary">
+                      <button type="button" className="btn btn-outline-success">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
