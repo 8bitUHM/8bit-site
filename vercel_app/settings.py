@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'client',
-    'learning'
+    'learning',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -334,3 +336,5 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success"
     }
 }
+
+CKEDITOR_UPLOAD_PATH = 'learning.File/bytes/filename/mimetype'

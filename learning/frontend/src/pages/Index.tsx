@@ -49,7 +49,7 @@ const Index = () => {
                   data-aos-duration="2000"
                 >
                   {lessonData.map((lesson, key) => (
-                    <div key={key} className="col-md-6 my-3">
+                    <div key={key} className="col-lg-6 my-3">
                       <div className="rounded shadow">
                         <div>
                           <a href={`/learning/lessons/${lesson.slug}`}>
