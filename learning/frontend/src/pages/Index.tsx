@@ -52,7 +52,7 @@ const Index = () => {
                     <div key={key} className="col-lg-6 my-3">
                       <div className="rounded shadow">
                         <div>
-                          <a href={`/learning/lessons/${lesson.slug}`}>
+                          <a href={`/learning/lessons/${lesson.slug}/1`}>
                             <LoadingImage
                               imageUri={lesson.image}
                               className="img-fluid float-left rounded-top"
@@ -62,7 +62,7 @@ const Index = () => {
 
                         <div className="p-3">
                           <a
-                            href={`/learning/lessons/${lesson.slug}`}
+                            href={`/learning/lessons/${lesson.slug}/1`}
                             className="card-title title-link fw-bold"
                           >
                             {lesson.name}
