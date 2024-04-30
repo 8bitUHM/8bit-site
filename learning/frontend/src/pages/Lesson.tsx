@@ -68,16 +68,31 @@ const Lesson = () => {
                         </li>
                       )}
 
-                      {lesson.sections.map((section, key) => (
-                        <li key={key} className="page-item">
-                          <a
-                            className="page-link"
-                            href={`/learning/lessons/${lesson.name}/${section.page}`}
-                          >
-                            {`${section.page}`}
-                          </a>
-                        </li>
-                      ))}
+                      {lesson.sections.map((sectionx, key) => {
+                        if (sectionx.page == section.page) {
+                          return (
+                            <li key={key} className="page-item active">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                              >
+                                {`${sectionx.page}`}
+                              </a>
+                            </li>
+                          );
+                        } else {
+                          return (
+                            <li key={key} className="page-item">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                              >
+                                {`${sectionx.page}`}
+                              </a>
+                            </li>
+                          );
+                        }
+                      })}
                       {section.page == lesson.sections.length ? null : (
                         <li className="page-item">
                           <a
@@ -118,16 +133,31 @@ const Lesson = () => {
                         </li>
                       )}
 
-                      {lesson.sections.map((section, key) => (
-                        <li key={key} className="page-item">
-                          <a
-                            className="page-link"
-                            href={`/learning/lessons/${lesson.name}/${section.page}`}
-                          >
-                            {`${section.page}`}
-                          </a>
-                        </li>
-                      ))}
+                      {lesson.sections.map((sectionx, key) => {
+                        if (sectionx.page == section.page) {
+                          return (
+                            <li key={key} className="page-item active">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                              >
+                                {`${sectionx.page}`}
+                              </a>
+                            </li>
+                          );
+                        } else {
+                          return (
+                            <li key={key} className="page-item">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                              >
+                                {`${sectionx.page}`}
+                              </a>
+                            </li>
+                          );
+                        }
+                      })}
                       {section.page == lesson.sections.length ? null : (
                         <li className="page-item">
                           <a
