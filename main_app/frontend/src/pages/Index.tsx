@@ -13,8 +13,19 @@ const Index = () => {
         data-aos="fade-up"
         data-aos-duration="1500"
       >
-        
-
+        <div className="row mt-5 justify-content-center">
+          <div className="col-lg-10 col-md-12 col-sm-12  text-center">
+            <h1 style={{ fontSize: 50, fontWeight: 100 }}>
+              Elevating Your Online Presence
+            </h1>
+            <h4 className="mt-4" style={{ fontWeight: 100 }}>
+              Expand your online reach effortlessly with 8bit's comprehensive
+              web development solutions, tailored for departments and local
+              businesses alike.
+            </h4>
+          </div>
+        </div>
+       
       </div>
       <div style={{ marginTop: 300 }}>
         <Footer />
