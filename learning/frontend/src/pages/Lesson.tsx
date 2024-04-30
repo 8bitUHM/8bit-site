@@ -65,7 +65,7 @@ const Lesson = () => {
                           viewBox="0 0 16 16"
                         >
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
                           />
                         </svg>{" "}
@@ -79,7 +79,7 @@ const Lesson = () => {
                         <li className="page-item">
                           <a
                             className="page-link"
-                            href={`/learning/lessons/${lesson.name}/${
+                            href={`/learning/lessons/${lesson.slug}/${
                               section.page - 1
                             }`}
                           >
@@ -94,7 +94,7 @@ const Lesson = () => {
                             <li key={key} className="page-item active">
                               <a
                                 className="page-link"
-                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                                href={`/learning/lessons/${lesson.slug}/${sectionx.page}`}
                               >
                                 {`${sectionx.page}`}
                               </a>
@@ -105,7 +105,7 @@ const Lesson = () => {
                             <li key={key} className="page-item">
                               <a
                                 className="page-link"
-                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                                href={`/learning/lessons/${lesson.slug}/${sectionx.page}`}
                               >
                                 {`${sectionx.page}`}
                               </a>
@@ -117,7 +117,7 @@ const Lesson = () => {
                         <li className="page-item">
                           <a
                             className="page-link"
-                            href={`/learning/lessons/${lesson.name}/${
+                            href={`/learning/lessons/${lesson.slug}/${
                               section.page + 1
                             }`}
                           >
@@ -144,7 +144,7 @@ const Lesson = () => {
                         <li className="page-item">
                           <a
                             className="page-link"
-                            href={`/learning/lessons/${lesson.name}/${
+                            href={`/learning/lessons/${lesson.slug}/${
                               section.page - 1
                             }`}
                           >
@@ -159,7 +159,7 @@ const Lesson = () => {
                             <li key={key} className="page-item active">
                               <a
                                 className="page-link"
-                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                                href={`/learning/lessons/${lesson.slug}/${sectionx.page}`}
                               >
                                 {`${sectionx.page}`}
                               </a>
@@ -170,7 +170,7 @@ const Lesson = () => {
                             <li key={key} className="page-item">
                               <a
                                 className="page-link"
-                                href={`/learning/lessons/${lesson.name}/${sectionx.page}`}
+                                href={`/learning/lessons/${lesson.slug}/${sectionx.page}`}
                               >
                                 {`${sectionx.page}`}
                               </a>
@@ -182,7 +182,7 @@ const Lesson = () => {
                         <li className="page-item">
                           <a
                             className="page-link"
-                            href={`/learning/lessons/${lesson.name}/${
+                            href={`/learning/lessons/${lesson.slug}/${
                               section.page + 1
                             }`}
                           >

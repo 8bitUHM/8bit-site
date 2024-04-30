@@ -5,12 +5,19 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LoadingImage from "../components/LoadingImage";
 
+interface Tag {
+  tag_name: string;
+}
+interface Section {}
+
 interface Lesson {
   name: string;
   skills: string;
   image: string;
   description: string;
   slug: string;
+  tags: Tag[];
+  sections: Section[];
 }
 
 const Index = () => {
@@ -48,34 +55,45 @@ const Index = () => {
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
-                  {lessonData.map((lesson, key) => (
-                    <div key={key} className="col-lg-6 my-3">
-                      <div className="rounded shadow">
-                        <div>
-                          <a href={`/learning/lessons/${lesson.slug}/1`}>
-                            <LoadingImage
-                              imageUri={lesson.image}
-                              className="img-fluid float-left rounded-top"
-                            />
-                          </a>
-                        </div>
+                  {lessonData.map((lesson, key) => {
+                    if (lesson.sections.length > 0) {
+                      return (
+                        <div key={key} className="col-lg-6 my-3">
+                          <div className="rounded shadow">
+                            <div>
+                              <a href={`/learning/lessons/${lesson.slug}/1`}>
+                                <LoadingImage
+                                  imageUri={lesson.image}
+                                  className="img-fluid float-left rounded-top"
+                                />
+                              </a>
+                            </div>
 
-                        <div className="p-3">
-                          <a
-                            href={`/learning/lessons/${lesson.slug}/1`}
-                            className="card-title title-link fw-bold"
-                          >
-                            {lesson.name}
-                          </a>
-                          <p className="card-text">
-                            <b>Skills:</b> {lesson.skills}
-                            <br></br>
-                            {lesson.description}
-                          </p>
+                            <div className="p-3">
+                              <a
+                                href={`/learning/lessons/${lesson.slug}/1`}
+                                className="card-title title-link fw-bold"
+                              >
+                                {lesson.name}
+                              </a>
+                              <p className="card-text">
+                                {lesson.tags.map((tag, key) => (
+                                  <span
+                                    key={key}
+                                    className="badge bg-success me-1"
+                                  >
+                                    {tag.tag_name}
+                                  </span>
+                                ))}
+                                <br></br>
+                                {lesson.description}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                      );
+                    }
+                  })}
                 </div>
               </>
             ) : (
