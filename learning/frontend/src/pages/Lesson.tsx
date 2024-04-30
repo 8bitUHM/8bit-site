@@ -48,13 +48,8 @@ const Lesson = () => {
           <>
             {canMap ? (
               <>
-                <div
-                  className="row"
-                  data-aos="fade-up"
-                  data-aos-duration="1000"
-                >
-                  <h1>{lesson.name}</h1>
-                  <nav aria-label="Page navigation example">
+                <div className="row">
+                  <nav aria-label="Page navigation example" className="pt-2">
                     <ul className="pagination">
                       {section.page == 1 ? null : (
                         <li className="page-item">
@@ -93,7 +88,9 @@ const Lesson = () => {
                       )}
                     </ul>
                   </nav>
-                  <div>
+
+                  <div data-aos="fade-up" data-aos-duration="1000">
+                    <h1>{lesson.name}</h1>
                     <h3>
                       {`Section ${section.page} : `}
                       {section.title}
@@ -103,7 +100,7 @@ const Lesson = () => {
                     />
                   </div>
                 </div>
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Page navigation example" className="pt-2">
                   <ul className="pagination">
                     {section.page == 1 ? null : (
                       <li className="page-item">
