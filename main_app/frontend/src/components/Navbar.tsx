@@ -13,7 +13,10 @@ const Navbar: FC = () => {
             <div className="row">
               <div className="col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
                 <a href="./" className="ms-md-2">
-                  <img src="/static/assets/8bit-long-logo.png" height={35} />
+                  <img
+                    src="/static/main_app/assets/8bit-long-logo.png"
+                    height={35}
+                  />
                 </a>
               </div>
 
@@ -96,6 +99,16 @@ const Navbar: FC = () => {
                     style={{ color: "#3d8581" }}
                   >
                     Services
+                  </a>
+                </li>
+
+                <li className="nav-item">
+                  <a
+                    href="/learning"
+                    className="nav-link"
+                    style={{ color: "#3d8581" }}
+                  >
+                    Learning
                   </a>
                 </li>
               </ul>

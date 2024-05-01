@@ -182,7 +182,7 @@ const Members = () => {
                 />
               ) : (
                 <LoadingImage
-                  imageUri={"/static/assets/default-member.png"}
+                  imageUri={"/static/main_app/assets/default-member.png"}
                   className="img-fluid float-left"
                 />
               )}
@@ -217,7 +217,7 @@ const Members = () => {
                 />
               ) : (
                 <LoadingImage
-                  imageUri={"/static/assets/default-member.png"}
+                  imageUri={"/static/main_app/assets/default-member.png"}
                   className="img-fluid float-left"
                 />
               )}
@@ -252,7 +252,7 @@ const Members = () => {
                 />
               ) : (
                 <LoadingImage
-                  imageUri={"/static/assets/default-member.png"}
+                  imageUri={"/static/main_app/assets/default-member.png"}
                   className="img-fluid float-left"
                 />
               )}

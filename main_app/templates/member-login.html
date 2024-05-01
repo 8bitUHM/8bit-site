@@ -28,7 +28,7 @@
                 <div class="col-md-12 col-lg-12 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
                     <div class="pb-1">
-                      <a class="text-black " href="/">Back to site</a>
+                      <a class="text-black" href="/">Back to site</a>
                     </div>
                     <form method="post" action=".">
                       {% csrf_token %}
@@ -60,9 +60,24 @@
                       </div>
                       {% if form.errors %}
                       <p><strong>Error:</strong> {{ form.non_field_errors }}</p>
+                      {% endif %} {% if messages %}
+                      <ul class="messages">
+                        {% for message in messages %}
+                        <li
+                          {%
+                          if
+                          message.tags
+                          %}
+                          class="{{ message.tags }}"
+                          {%
+                          endif
+                          %}
+                        >
+                          {{ message }}
+                        </li>
+                        {% endfor %}
+                      </ul>
                       {% endif %}
-
-
                     </form>
                   </div>
                 </div>
