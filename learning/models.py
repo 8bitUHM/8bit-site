@@ -53,7 +53,7 @@ class Lesson(models.Model):
 class Section(models.Model):
   title = models.CharField(max_length=256)
   page = models.IntegerField(default=0)
-  content = RichTextField(max_length=20000)
+  content = RichTextField(max_length=100000)
   lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE, related_name="sections")
   
   def __str__(self):
