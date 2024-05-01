@@ -25,7 +25,48 @@ const Index = () => {
             </h4>
           </div>
         </div>
-       
+        <div className="row justify-content-center mt-4">
+          <div className="col text-center">
+            <button
+              className="btn btn-outline-success mx-2"
+              type="submit"
+              style={{
+                borderRadius: 45,
+                borderColor: "#3d8581",
+                color: "#FFF",
+                backgroundColor: "#3d8581",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = "#3d8581";
+                e.currentTarget.style.color = "#FFF";
+              }}
+              onMouseOut={(e) => {
+                
+              }}
+            >
+              About Us
+            </button>
+            <button
+              className="btn btn-outline-success mx-2"
+              type="submit"
+              style={{
+                borderRadius: 45,
+                borderColor: "#3d8581",
+                color: "#FFF",
+                backgroundColor: "#3d8581",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = "#3d8581";
+                e.currentTarget.style.color = "#FFF";
+              }}
+              onMouseOut={(e) => {
+                
+              }}
+            >
+              Learn Our Stack
+            </button>
+          </div>
+        </div>
       </div>
       <div style={{ marginTop: 300 }}>
         <Footer />
