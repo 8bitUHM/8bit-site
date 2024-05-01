@@ -40,6 +40,7 @@ class Lesson(models.Model):
   skills = models.CharField(max_length=256, blank=True)
   tags = models.ManyToManyField(Tag, blank=True)
   description = models.TextField(max_length=500)
+  quiz = models.URLField(max_length=1000, blank=True, null=True)
   image = models.ImageField(upload_to='learning.File/bytes/filename/mimetype', null=True, blank=True,help_text="Please compress image, convert type to webp and change size to 700x360 px before uploading. https://imagecompressor.com/, https://cloudconvert.com/webp-converter, https://imageresizer.com/")
 
   def delete(self, *args, **kwargs):

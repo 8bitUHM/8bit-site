@@ -45,6 +45,17 @@ def lesson(request,slug,page):
   
   return render(request, 'lesson.html', {"lesson" : serialized_lesson_data,"section":serialized_section_data,"username":username })
 
+def quiz(request,slug):
+  username = request.user.username
+  lesson = get_object_or_404(Lesson, slug=slug)
+  
+  lesson_data = [lesson]
+  lesson_serializer = LessonSerializer(lesson_data, many=True)
+  serialized_lesson_data = json.dumps(lesson_serializer.data)
+  
+  
+  return render(request, 'quiz.html', {"lesson" : serialized_lesson_data,"username":username })
+
 class LearningLoginView(LoginView):
   template_name = "login.html"
   authentication_form = LoginForm

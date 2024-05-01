@@ -16,6 +16,7 @@ interface Lesson {
   image: string;
   slug: string;
   sections: Section[];
+  quiz: string;
 }
 
 const Lesson = () => {
@@ -30,6 +31,7 @@ const Lesson = () => {
       const sections = (window as any).section_data as any;
       setSectionData(sections[0]);
       setLessonData(lessons[0]);
+      console.log(lessons[0].quiz);
 
       setCanMap(true);
       setPageReady(true);
@@ -113,18 +115,43 @@ const Lesson = () => {
                           );
                         }
                       })}
-                      {section.page == lesson.sections.length ? null : (
-                        <li className="page-item">
+                      {lesson.quiz == null ? null : (
+                        <li className="page-item ">
                           <a
                             className="page-link"
-                            href={`/learning/lessons/${lesson.slug}/${
-                              section.page + 1
-                            }`}
+                            href={`/learning/lessons/${lesson.slug}/quiz`}
                           >
-                            Next
+                            Quiz
                           </a>
                         </li>
                       )}
+
+                      {lesson.quiz != null ||
+                      section.page != lesson.sections.length ? (
+                        <>
+                          {section.page != lesson.sections.length ? (
+                            <li className="page-item ">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.slug}/${
+                                  section.page + 1
+                                }`}
+                              >
+                                Next
+                              </a>
+                            </li>
+                          ) : (
+                            <li className="page-item ">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.slug}/quiz`}
+                              >
+                                Next
+                              </a>
+                            </li>
+                          )}
+                        </>
+                      ) : null}
                     </ul>
                   </nav>
 
@@ -178,18 +205,43 @@ const Lesson = () => {
                           );
                         }
                       })}
-                      {section.page == lesson.sections.length ? null : (
-                        <li className="page-item">
+                      {lesson.quiz == null ? null : (
+                        <li className="page-item ">
                           <a
                             className="page-link"
-                            href={`/learning/lessons/${lesson.slug}/${
-                              section.page + 1
-                            }`}
+                            href={`/learning/lessons/${lesson.slug}/quiz`}
                           >
-                            Next
+                            Quiz
                           </a>
                         </li>
                       )}
+
+                      {lesson.quiz != null ||
+                      section.page != lesson.sections.length ? (
+                        <>
+                          {section.page != lesson.sections.length ? (
+                            <li className="page-item ">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.slug}/${
+                                  section.page + 1
+                                }`}
+                              >
+                                Next
+                              </a>
+                            </li>
+                          ) : (
+                            <li className="page-item ">
+                              <a
+                                className="page-link"
+                                href={`/learning/lessons/${lesson.slug}/quiz`}
+                              >
+                                Next
+                              </a>
+                            </li>
+                          )}
+                        </>
+                      ) : null}
                     </ul>
                   </nav>
                 </div>
