@@ -7,6 +7,7 @@ import LoadingImage from "../components/LoadingImage";
 
 interface Tag {
   tag_name: string;
+  color: string;
 }
 interface Section {}
 
@@ -29,9 +30,9 @@ const Index = () => {
     try {
       const lessons = (window as any).data as any;
       setLessonData(lessons);
-      lessons.forEach((lesson: any) => {
-        console.log(lesson);
-      });
+      // lessons.forEach((lesson: any) => {
+      //   console.log(lesson);
+      // });
 
       setCanMap(true);
       setPageReady(true);
@@ -80,7 +81,7 @@ const Index = () => {
                                 {lesson.tags.map((tag, key) => (
                                   <span
                                     key={key}
-                                    className="badge bg-success me-1"
+                                    className={`badge ${tag.color} me-1`}
                                   >
                                     {tag.tag_name}
                                   </span>

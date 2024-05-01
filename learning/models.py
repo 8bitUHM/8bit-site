@@ -11,10 +11,26 @@ class File(models.Model):
     return self.filename
 
 class Tag(models.Model):
-  tag_name = models.CharField(max_length=255)
-  
-  def __str__(self):
-    return self.tag_name
+    COLOR_CHOICES = (
+        ('bg-danger', 'Required (Red)'),
+        ('bg-success', 'Core (Green)'),
+        ('bg-primary', 'Regular (Blue)'),
+    )
+
+    tag_name = models.CharField(max_length=255)
+    color = models.CharField(max_length=50, choices=COLOR_CHOICES, default='bg-primary')
+
+    def __str__(self):
+        return self.tag_name
+
+    class Meta:
+        ordering = [models.Case(
+            models.When(color='bg-danger', then=1),
+            models.When(color='bg-success', then=2),
+            models.When(color='bg-primary', then=3),
+            default=4,
+            output_field=models.IntegerField(),
+        )]
 
 class Lesson(models.Model):
   name = models.CharField(max_length=256)
