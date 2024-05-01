@@ -48,7 +48,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'api',
-    'client'
+    'client',
+    'learning',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -205,14 +208,14 @@ JAZZMIN_SETTINGS = {
     "site_brand": "8bit Portal",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "assets/8bit-logo.webp",
+    "site_logo": "main_app/assets/8bit-logo.webp",
 
 
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-circle",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": 'assets/8bit-logo.webp',
+    "site_icon": 'main_app/assets/8bit-logo.webp',
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to the library",
@@ -333,3 +336,14 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success"
     }
 }
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+    },
+}
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+

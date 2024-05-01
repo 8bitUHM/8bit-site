@@ -18,7 +18,7 @@ const Index = () => {
             <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
               <div className="col-12 col-lg-6 col-xl-5">
                 <LoadingImage
-                  imageUri="/static/assets/about-us-3.webp"
+                  imageUri="/static/main_app/assets/about-us-3.webp"
                   className="img-fluid rounded"
                 />
               </div>
