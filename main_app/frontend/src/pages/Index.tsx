@@ -12,7 +12,7 @@ const Index = () => {
           src="https://wallpapers.com/images/hd/cyan-background-hbd4i6sgbw7m2unc.jpg" //temporary image
           alt="Background"
           style={{
-            width: "100vw",
+            width: "99vw",
             maxHeight: "100%",
             minHeight: "100%",
             filter: "brightness(0.4)",
@@ -110,6 +110,16 @@ const Index = () => {
         </div>
       </div>
       <div className="mt-5 py-5">
+        <div className="container" data-aos="fade-in" data-aos-duration="2000">
+          <div className="row">
+            <div className="col">
+              Hello
+              <h1>HELKLA;SKDJASD;</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-5 py-5" style={{ backgroundColor: "#F6F6F6" }}>
         <div className="container" data-aos="fade-in" data-aos-duration="2000">
           <div className="row">
             <div className="col">
