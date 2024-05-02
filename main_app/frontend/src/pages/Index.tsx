@@ -95,8 +95,8 @@ const Index = () => {
           data-aos="fade-in"
           data-aos-duration="2000"
         >
-          <div className="row">
-            <div className="col-7">
+          <div className="row align-items-center">
+            <div className="col-6 text-center">
               <div className="ratio ratio-16x9">
                 <iframe
                   className="embed-responsive-item shadow rounded"
@@ -105,7 +105,12 @@ const Index = () => {
                   src="https://panoraven.com/en/embed/aN3ha1BgtK"
                 ></iframe>
               </div>
+              <h6 className="lead fs-6 text-secondary mt-2">
+                Explore our interactive 360 view of our collaborative meetings
+                with our team members.
+              </h6>
             </div>
+            <div className="col-1"></div>
             <div className="col-5">
               <h1>Tailored Solutions</h1>
               <h4 className="lead fs-5 text-secondary">
@@ -127,7 +132,7 @@ const Index = () => {
           data-aos="fade-in"
           data-aos-duration="2000"
         >
-          <div className="row">
+          <div className="row align-items-center">
             <div className="col-5">
               <h1>Innovative Approach</h1>
               <h4 className="lead fs-5 text-secondary">
@@ -139,7 +144,10 @@ const Index = () => {
                 ensure your website stands out in today's digital landscape.
               </h4>
             </div>
-            <div className="col-7"></div>
+            <div className="col-1"></div>
+            <div className="col-6">
+              <img className="img-fluid" src="" alt="Technologies" />
+            </div>
           </div>
         </div>
       </div>
@@ -149,8 +157,11 @@ const Index = () => {
           data-aos="fade-in"
           data-aos-duration="2000"
         >
-          <div className="row">
-            <div className="col-7"></div>
+          <div className="row align-items-center">
+            <div className="col-6">
+              <img className="img-fluid" src="" alt="Dashboard" />
+            </div>
+            <div className="col-1"></div>
             <div className="col-5">
               <h1>Client Dashboard</h1>
               <h4 className="lead fs-5 text-secondary">
@@ -170,7 +181,7 @@ const Index = () => {
           data-aos="fade-in"
           data-aos-duration="2000"
         >
-          <div className="row">
+          <div className="row align-items-center">
             <div className="col text-center">
               <h1>Get Started with 8Bit</h1>
               <h4 className="lead fs-5 text-secondary">
@@ -178,6 +189,7 @@ const Index = () => {
                 your online presence with our tailored web development
                 solutions.
               </h4>
+              <img className="img-fluid" src="" alt="big pic" />
               <h4>Ready to transform your digital presence?</h4>
               <a
                 href="/services"
