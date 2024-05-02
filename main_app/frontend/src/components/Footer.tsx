@@ -4,7 +4,7 @@ import { FC } from "react";
 const Footer: FC = () => {
   return (
     <>
-      <div className=" mt-5" style={{ position: "absolute", width: "100%" }}>
+      <div style={{ position: "absolute", width: "100%" }}>
         <section>
           <footer
             className="text-center text-white"

@@ -63,9 +63,9 @@ const Index = () => {
               >
                 About Us
               </button>
-              <button
+              <a
+                href="/learning"
                 className="btn btn-outline-success mx-2 px-3 py-2"
-                type="submit"
                 style={{
                   borderRadius: 45,
                   borderColor: "#3d8581",
@@ -84,47 +84,124 @@ const Index = () => {
                 }}
               >
                 Learn Our Stack
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
       <div className="mt-5 py-5">
-        <div className="container" data-aos="fade-in" data-aos-duration="2000">
+        <div
+          className="container my-5"
+          data-aos="fade-in"
+          data-aos-duration="2000"
+        >
           <div className="row">
-            <div className="col">
-              Hello
-              <h1>HELKLA;SKDJASD;</h1>
+            <div className="col-7">
+              <div className="ratio ratio-16x9">
+                <iframe
+                  className="embed-responsive-item shadow rounded"
+                  allowFullScreen={true}
+                  allow="accelerometer; magnetometer; gyroscope"
+                  src="https://panoraven.com/en/embed/aN3ha1BgtK"
+                ></iframe>
+              </div>
+            </div>
+            <div className="col-5">
+              <h1>Tailored Solutions</h1>
+              <h4 className="lead fs-5 text-secondary">
+                Our team specializes in providing customized web development
+                services meticulously crafted to align with the distinct needs
+                and objectives of your college department or local business.
+                From personalized design elements to tailored functionality, we
+                ensure that every aspect of your website is thoughtfully
+                tailored to reflect your brand identity and achieve your
+                specific goals.
+              </h4>
             </div>
           </div>
         </div>
       </div>
       <div className="mt-5 py-5" style={{ backgroundColor: "#F6F6F6" }}>
-        <div className="container" data-aos="fade-in" data-aos-duration="2000">
+        <div
+          className="container my-5"
+          data-aos="fade-in"
+          data-aos-duration="2000"
+        >
           <div className="row">
-            <div className="col">
-              Hello
-              <h1>HELKLA;SKDJASD;</h1>
+            <div className="col-5">
+              <h1>Innovative Approach</h1>
+              <h4 className="lead fs-5 text-secondary">
+                Discover our commitment to staying ahead of the curve with
+                forward-thinking solutions. At 8bit, we constantly research and
+                implement the latest technologies and trends in web development.
+                From cutting-edge design techniques to advanced functionality,
+                we leverage innovation to elevate your online presence and
+                ensure your website stands out in today's digital landscape.
+              </h4>
             </div>
+            <div className="col-7"></div>
           </div>
         </div>
       </div>
       <div className="mt-5 py-5">
-        <div className="container" data-aos="fade-in" data-aos-duration="2000">
+        <div
+          className="container my-5"
+          data-aos="fade-in"
+          data-aos-duration="2000"
+        >
           <div className="row">
-            <div className="col">
-              Hello
-              <h1>HELKLA;SKDJASD;</h1>
+            <div className="col-7"></div>
+            <div className="col-5">
+              <h1>Client Dashboard</h1>
+              <h4 className="lead fs-5 text-secondary">
+                Gain easy access to view and manage all your current websites
+                built by 8bit through our intuitive client dashboard. Stay
+                informed about project progress, monitor site performance, and
+                collaborate seamlessly with our team—all in one centralized
+                platform designed for your convenience.{" "}
+              </h4>
             </div>
           </div>
         </div>
       </div>
       <div className="mt-5 py-5" style={{ backgroundColor: "#F6F6F6" }}>
-        <div className="container" data-aos="fade-in" data-aos-duration="2000">
+        <div
+          className="container my-5"
+          data-aos="fade-in"
+          data-aos-duration="2000"
+        >
           <div className="row">
-            <div className="col">
-              Hello
-              <h1>HELKLA;SKDJASD;</h1>
+            <div className="col text-center">
+              <h1>Get Started with 8Bit</h1>
+              <h4 className="lead fs-5 text-secondary">
+                Explore our services and take the first step towards enhancing
+                your online presence with our tailored web development
+                solutions.
+              </h4>
+              <h4>Ready to transform your digital presence?</h4>
+              <a
+                href="/services"
+                className="btn btn-outline-success my-3 px-3 py-2"
+                style={{
+                  borderRadius: 110,
+                  borderColor: "#3d8581",
+                  color: "#FFF",
+                  backgroundColor: "#3d8581",
+                  fontSize: 20,
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.backgroundColor = "#50918d";
+                  e.currentTarget.style.color = "#FFF";
+                  e.currentTarget.style.boxShadow =
+                    "0px 0.5rem 1rem rgba(0,0,0,0.15)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.backgroundColor = "#3d8581";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                Discover our Services
+              </a>
             </div>
           </div>
         </div>
