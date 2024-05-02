@@ -47,6 +47,15 @@ class Lesson(models.Model):
   def __str__(self):
     return self.name
   
+  class Meta:
+    ordering = [models.Case(
+      models.When(required_lesson=True, then=1),
+      models.When(core_lesson=True, then=2),
+      models.When(extension_lesson=True, then=3),
+      default=4,
+      output_field=models.IntegerField(),
+    )]
+  
 class Section(models.Model):
   title = models.CharField(max_length=256)
   page = models.IntegerField(default=0)
