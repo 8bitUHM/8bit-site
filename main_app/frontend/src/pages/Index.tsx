@@ -26,6 +26,7 @@ const Index = () => {
           style={{ paddingTop: 150 }}
           data-aos="fade-up"
           data-aos-duration="2000"
+          data-aos-once="true"
         >
           <div className="row mt-5 justify-content-center">
             <div className="col-lg-10 col-md-12 col-sm-12  text-center">
@@ -94,6 +95,7 @@ const Index = () => {
           className="container my-5"
           data-aos="fade-in"
           data-aos-duration="2000"
+          data-aos-once="true"
         >
           <div className="row align-items-center">
             <div className="col-6 text-center">
@@ -131,6 +133,7 @@ const Index = () => {
           className="container my-5"
           data-aos="fade-in"
           data-aos-duration="2000"
+          data-aos-once="true"
         >
           <div className="row align-items-center">
             <div className="col-5">
@@ -156,6 +159,7 @@ const Index = () => {
           className="container my-5"
           data-aos="fade-in"
           data-aos-duration="2000"
+          data-aos-once="true"
         >
           <div className="row align-items-center">
             <div className="col-6">
@@ -180,6 +184,7 @@ const Index = () => {
           className="container my-5"
           data-aos="fade-in"
           data-aos-duration="2000"
+          data-aos-once="true"
         >
           <div className="row align-items-center">
             <div className="col text-center">
