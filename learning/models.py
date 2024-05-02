@@ -12,8 +12,6 @@ class File(models.Model):
 
 class Tag(models.Model):
     COLOR_CHOICES = (
-      ('bg-danger', 'Required (Red)'),
-      ('bg-success', 'Core (Green)'),
       ('bg-primary', 'Technical Skill (Blue)'),
       ('bg-secondary', 'Technical Concept (Grey)')
     )
@@ -26,10 +24,8 @@ class Tag(models.Model):
 
     class Meta:
       ordering = [models.Case(
-        models.When(color='bg-danger', then=1),
-        models.When(color='bg-success', then=2),
-        models.When(color='bg-primary', then=3),
-        default=4,
+        models.When(color='bg-primary', then=1),
+        default=2,
         output_field=models.IntegerField(),
       )]
 
