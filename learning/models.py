@@ -12,8 +12,6 @@ class File(models.Model):
 
 class Tag(models.Model):
     COLOR_CHOICES = (
-      ('bg-danger', 'Required (Red)'),
-      ('bg-success', 'Core (Green)'),
       ('bg-primary', 'Technical Skill (Blue)'),
       ('bg-secondary', 'Technical Concept (Grey)')
     )
@@ -26,20 +24,19 @@ class Tag(models.Model):
 
     class Meta:
       ordering = [models.Case(
-        models.When(color='bg-danger', then=1),
-        models.When(color='bg-success', then=2),
-        models.When(color='bg-primary', then=3),
-        default=4,
+        models.When(color='bg-primary', then=1),
+        default=2,
         output_field=models.IntegerField(),
       )]
 
 class Lesson(models.Model):
-  
   name = models.CharField(max_length=256)
   slug = models.SlugField(unique=True)
-  skills = models.CharField(max_length=256, blank=True)
   tags = models.ManyToManyField(Tag, blank=True)
   description = models.TextField(max_length=500)
+  required_lesson = models.BooleanField(default=False)
+  core_lesson = models.BooleanField(default=False)
+  extension_lesson = models.BooleanField(default=True)
   quiz = models.URLField(max_length=1000, blank=True, null=True)
   image = models.ImageField(upload_to='learning.File/bytes/filename/mimetype', null=True, blank=True,help_text="Please compress image, convert type to webp and change size to 700x360 px before uploading. https://imagecompressor.com/, https://cloudconvert.com/webp-converter, https://imageresizer.com/")
 

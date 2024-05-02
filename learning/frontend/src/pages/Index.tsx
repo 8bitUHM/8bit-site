@@ -19,6 +19,9 @@ interface Lesson {
   slug: string;
   tags: Tag[];
   sections: Section[];
+  core_lesson: boolean;
+  required_lesson: boolean;
+  extension_lesson: boolean;
 }
 
 const Index = () => {
@@ -78,6 +81,23 @@ const Index = () => {
                                 {lesson.name}
                               </a>
                               <p className="card-text">
+                                {lesson.required_lesson ? (
+                                  <span className={`badge bg-danger me-1`}>
+                                    Required Lesson
+                                  </span>
+                                ) : null}
+                                {lesson.core_lesson ? (
+                                  <span className={`badge bg-success me-1`}>
+                                    Core Lesson
+                                  </span>
+                                ) : null}
+                                {lesson.extension_lesson ? (
+                                  <span
+                                    className={`badge bg-warning text-dark me-1`}
+                                  >
+                                    Extension Lesson
+                                  </span>
+                                ) : null}
                                 {lesson.tags.map((tag, key) => (
                                   <span
                                     key={key}
