@@ -108,8 +108,8 @@ const Index = () => {
                 ></iframe>
               </div>
               <h6 className="lead fs-6 text-secondary mt-2">
-                Explore our interactive 360 view of our collaborative meetings
-                with our team members.
+                Experience an interactive 360 view of collaborative team
+                meetings.
               </h6>
             </div>
             <div className="col-1"></div>
