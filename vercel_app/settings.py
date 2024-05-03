@@ -347,5 +347,5 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
-CSRF_TRUSTED_ORIGINS = ['https://8bituhm.org','https://8bituhm.org/learning/login','https://8bituhm.org/learning/signup','https://www.8bituhm.org/learning/login/?next=/learning','https://www.8bituhm.org/learning/login','https://www.8bituhm.org/learning/signup','https://www.8bituhm.org/learning/login/?next=/learning']
+CSRF_TRUSTED_ORIGINS = ['.8bituhm.org']
 
