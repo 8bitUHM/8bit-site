@@ -172,7 +172,7 @@ const Members = () => {
         return businessMemberData.map((member: Member, index: number) => (
           <div
             key={index}
-            className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mt-4 pt-2"
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
           >
             <div className="team-list position-relative overflow-hidden shadow rounded">
               {member.image != null ? (
@@ -207,7 +207,7 @@ const Members = () => {
         return designMemberData.map((member: Member, index: number) => (
           <div
             key={index}
-            className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mt-4 pt-2"
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
           >
             <div className="team-list position-relative overflow-hidden shadow rounded">
               {member.image != null ? (
@@ -242,7 +242,7 @@ const Members = () => {
         return softwareMemberData.map((member: Member, index: number) => (
           <div
             key={index}
-            className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mt-4 pt-2"
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
           >
             <div className="team-list position-relative overflow-hidden shadow rounded">
               {member.image != null ? (
