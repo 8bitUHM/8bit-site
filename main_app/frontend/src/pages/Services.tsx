@@ -50,7 +50,7 @@ const Services = () => {
                               Static website
                             </h4>
                             <p className="mb-4 text-secondary">
-                              Our static webpage service offers clients a sleek
+                              Our static website service offers clients a sleek
                               and polished online presence that caters to the
                               client's needs. With the help of our organization
                               design team and the use of cutting-edge
@@ -77,7 +77,7 @@ const Services = () => {
                               <path d="M12 1a2 2 0 0 1 2 2 2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2 2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zM2 12V5a2 2 0 0 1 2-2h9a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1m1-4v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8zm12-1V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v2z" />
                             </svg>
                             <h4 className="fw-bold text-uppercase mb-4">
-                              Dynamic web application
+                              Dynamic web-app
                             </h4>
                             <p className="mb-4 text-secondary">
                               Utilizing the latest in web development frameworks
@@ -113,7 +113,7 @@ const Services = () => {
                               Along with the rest of our services, we handle
                               site deployment and hosting on platforms like
                               Vercel or AWS. Whether you're launching a new
-                              static webpage or upgrading to a dynamic web
+                              static website or upgrading to a dynamic web
                               application, we take care of the infrastructure
                               from deployment to domain management, allowing you
                               to focus on what matters most.
