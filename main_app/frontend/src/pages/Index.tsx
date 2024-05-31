@@ -162,8 +162,11 @@ const Index = () => {
           data-aos-once="true"
         >
           <div className="row align-items-center">
-            <div className="col-6">
-              <img className="img-fluid" src="" alt="Dashboard" />
+            <div className="col-6 text-center">
+              <LoadingImage
+                imageUri="/static/main_app/assets/dashboard.webp"
+                className="img-fluid"
+              />
             </div>
             <div className="col-1"></div>
             <div className="col-5">
