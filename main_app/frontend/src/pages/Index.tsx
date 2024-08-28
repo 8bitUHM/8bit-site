@@ -27,18 +27,19 @@ const Index = () => {
                   <div className="col-12 col-xl-11">
                     <h2 className="h1 mb-3">We are 8bit.</h2>
                     <p className="lead fs-4 text-secondary mb-3">
-                      We empower our clients through tailored software services
-                      and our members through immersive multi-team experiences.
+                      We empower our members through immersive multi-team
+                      experiences.
                     </p>
                     <p className="mb-5">
                       8bit is a group of students from the University of Hawaii
                       at Manoa passionate about software development and
                       creating impactful software solutions. Specializing in
                       full-stack website development, we collaborate with
-                      clients to bring their digital visions to life. With
-                      dedicated teams in software development, design, and
-                      business, we offer a holistic experience, fostering
-                      multi-disciplinary collaboration and professional growth.
+                      clients and contribute to open source software, bringing
+                      digital visions to life. With dedicated teams in software
+                      development, design, and business, we offer a holistic
+                      experience, fostering multi-disciplinary collaboration and
+                      professional growth.
                     </p>
                     <div className="row gy-4 gy-md-0 gx-xxl-5X">
                       <div className="col-12 col-md-6">

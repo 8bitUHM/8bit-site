@@ -33,6 +33,8 @@ def members(request):
 def services(request):
   return render(request,'services.html')
 
+
+
 class MemberLoginView(LoginView):
   template_name = "member-login.html"
   authentication_form = LoginForm
@@ -52,3 +54,6 @@ class MemberLogoutView(LogoutView):
 
 def join(request):
   return render(request,'join.html')
+
+def projects(request):
+  return render(request,'projects.html')

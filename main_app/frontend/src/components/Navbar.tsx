@@ -92,14 +92,41 @@ const Navbar: FC = () => {
                   </a>
                 </li>
 
-                <li className="nav-item">
+                <li className="nav-item dropdown">
                   <a
-                    href="/services"
-                    className="nav-link"
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                     style={{ color: "#3d8581" }}
                   >
-                    Services
+                    What We Do
                   </a>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <a
+                        href="/projects"
+                        className="dropdown-item"
+                        style={{ color: "#3d8581" }}
+                      >
+                        Open Source Projects
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/services"
+                        className="dropdown-item"
+                        style={{ color: "#3d8581" }}
+                      >
+                        Services
+                      </a>
+                    </li>
+                  </ul>
                 </li>
 
                 <li className="nav-item">
@@ -116,10 +143,7 @@ const Navbar: FC = () => {
 
             <span className="navbar-text fw-bold d-md-block">
               <a href="/join">
-                <button
-                  className="btn btn-outline-success"
-                  type="submit"
-                >
+                <button className="btn btn-outline-success" type="submit">
                   Join 8bit!
                 </button>
               </a>
