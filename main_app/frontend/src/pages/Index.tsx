@@ -16,7 +16,7 @@ const Index = () => {
         <section className="py-3 py-md-5 py-xl-8">
           <div className="container">
             <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center justify-content-center">
-              <div className="col-12 col-lg-11 col-xl-10">
+              <div className="col-12 col-lg-11">
                 <div className="row justify-content-xl-center">
                   <div>
                     <h2 className="h1 mb-3">We are 8bit.</h2>
@@ -24,7 +24,7 @@ const Index = () => {
                       We empower our members through immersive multi-team
                       experiences.
                     </p>
-                    <p className="mb-5">
+                    <p className="mb-4">
                       8bit is a group of students from the University of Hawaii
                       at Manoa passionate about software development and
                       creating impactful software solutions. Specializing in

@@ -21,17 +21,17 @@ const Join = () => {
             <p>
               8bit, a student group from the University of Hawaii at Manoa, is
               passionate about software development. We specialize in full-stack
-              website creation, working closely with clients to bring their
-              digital ideas to life. With dedicated teams in software, design,
-              and business, we offer a collaborative experience that promotes
-              growth across disciplines.
+              website creation, working closely with organizations to bring
+              their digital ideas to life. With dedicated teams in software,
+              design, and business, we offer a collaborative experience that
+              promotes growth across disciplines.
             </p>
             <p className="lead fs-4 text-secondary mb-1">Mission:</p>
             <p className="mb-4">
               "Empowering innovation and digital transformation, 8bit is
               committed to leveraging our expertise in software development to
               deliver tailored solutions that drive impact and success for our
-              clients."
+              organizations."
             </p>
             <p className="lead fs-4 text-secondary mb-1">Purpose:</p>
             <p className="mb-4">
@@ -41,14 +41,7 @@ const Join = () => {
               challenges."
             </p>
             <p>
-              After completing this form, please send a copy of your resume to
-              Leighton Miguel, The President and Software Team Lead, at{" "}
-              <a href="mailto:lmig4@hawaii.edu">lmig4@hawaii.edu</a>. If you
-              have any questions, comments, or concerns, please feel free to
-              reach out to Leighton at the same email address.
-            </p>
-            <p>
-              Additionally, make sure to join our{" "}
+              Make sure to join our{" "}
               <a href="https://discord.gg/T7Eu75fpAf" target="_blank">
                 Discord
               </a>{" "}
