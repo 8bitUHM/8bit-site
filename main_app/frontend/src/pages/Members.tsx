@@ -375,5 +375,6 @@ const Members = () => {
   );
 };
 
+export default Members;
 const root = document.getElementById("root");
 createRoot(root).render(<Members />);

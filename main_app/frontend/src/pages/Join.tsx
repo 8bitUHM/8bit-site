@@ -67,5 +67,6 @@ const Join = () => {
   );
 };
 
+export default Join;
 const root = document.getElementById("root");
 createRoot(root).render(<Join />);

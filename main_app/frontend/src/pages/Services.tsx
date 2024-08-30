@@ -151,5 +151,6 @@ const Services = () => {
   );
 };
 
+export default Services;
 const root = document.getElementById("root");
 createRoot(root).render(<Services />);
