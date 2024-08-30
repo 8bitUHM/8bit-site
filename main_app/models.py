@@ -1,4 +1,5 @@
 from django.db import models
+from learning.models import Tag
 
 # Create your models here.
 
@@ -48,3 +49,20 @@ class SocialMedia(models.Model):
         ordering = [
             'social_media'
         ]
+        
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to='main_app.File/bytes/filename/mimetype', null=True, blank=True,help_text="Please compress image, convert type to webp and change size to 500x500 px before uploading. https://imagecompressor.com/, https://cloudconvert.com/webp-converter, https://imageresizer.com/")
+    github_link = models.URLField(max_length=1000)
+    tags = models.ManyToManyField(Tag, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+    def delete(self, *args, **kwargs):
+        super(Project, self).delete(*args, **kwargs)
+        File.objects.filter(filename = self.image.name).delete()
+    
+    class Meta:
+        ordering = ['name']
