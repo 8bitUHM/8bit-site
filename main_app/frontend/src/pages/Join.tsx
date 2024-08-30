@@ -1,6 +1,7 @@
 import * as React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { createRoot } from "react-dom/client";
 
 const Join = () => {
   return (
@@ -73,4 +74,5 @@ const Join = () => {
   );
 };
 
-export default Join;
+const root = document.getElementById("root");
+createRoot(root).render(<Join />);

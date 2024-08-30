@@ -1,6 +1,7 @@
 import * as React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { createRoot } from "react-dom/client";
 
 const Projects = () => {
   return (
@@ -150,4 +151,5 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+const root = document.getElementById("root");
+createRoot(root).render(<Projects />);

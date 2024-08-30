@@ -1,7 +1,7 @@
 import * as React from "react";
 import Navbar from "../components/Navbar";
-import LoadingImage from "../components/LoadingImage";
 import Footer from "../components/Footer";
+import { createRoot } from "react-dom/client";
 
 const Index = () => {
   return (
@@ -85,4 +85,5 @@ const Index = () => {
   );
 };
 
-export default Index;
+const root = document.getElementById("root");
+createRoot(root).render(<Index />);
