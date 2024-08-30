@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .forms import LoginForm
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from .serializers import MemberSerializer
+from .serializers import MemberSerializer, ProjectSerializer
 from .models import *
 from django.db.models import Case, When, Value, IntegerField
 import json
@@ -33,6 +33,7 @@ def members(request):
 def services(request):
   return render(request,'services.html')
 
+
 class MemberLoginView(LoginView):
   template_name = "member-login.html"
   authentication_form = LoginForm
@@ -52,3 +53,11 @@ class MemberLogoutView(LogoutView):
 
 def join(request):
   return render(request,'join.html')
+
+def projects(request):
+  queryset = Project.objects.annotate().order_by('name')
+
+  serializer = ProjectSerializer(queryset, many=True)
+  serialized_json_data = json.dumps(serializer.data)
+
+  return render(request, 'projects.html', {'projects': serialized_json_data})

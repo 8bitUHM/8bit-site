@@ -13,6 +13,10 @@ class MemberAdmin(admin.ModelAdmin):
             if "delete_selected" in actions:
                 del actions["delete_selected"]
         return actions
+    
+class ProjectAdmin(admin.ModelAdmin):
+  filter_horizontal = ["tags"]
 
 admin.site.register(SocialMedia)
 admin.site.register(Member,MemberAdmin)
+admin.site.register(Project,ProjectAdmin)

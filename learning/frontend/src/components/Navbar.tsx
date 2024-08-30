@@ -21,7 +21,7 @@ const Navbar: FC = () => {
         style={{ backgroundColor: "#3d8581" }}
       >
         <div className="container justify-content-md-between">
-          <a href="./" className="ms-md-2 d-md-block d-none">
+          <a href="https://8bituhm.org" className="ms-md-2 d-md-block d-none">
             <img src="/static/main_app/assets/8bit-long-logo.png" height={35} />
           </a>
           <button

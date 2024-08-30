@@ -1,6 +1,7 @@
 import * as React from "react";
 import Navbar from "../components/Navbar";
 import LoadingImage from "../components/LoadingImage";
+import { createRoot } from "react-dom/client";
 
 const About = () => {
   return (
@@ -77,4 +78,5 @@ const About = () => {
   );
 };
 
-export default About;
+const root = document.getElementById("root");
+createRoot(root).render(<About />);

@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import LoadingImage from "../components/LoadingImage";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import { createRoot } from "react-dom/client";
 
 interface SocialMedia {
   social_media: string;
@@ -374,4 +375,5 @@ const Members = () => {
   );
 };
 
-export default Members;
+const root = document.getElementById("root");
+createRoot(root).render(<Members />);
