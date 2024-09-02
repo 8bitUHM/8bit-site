@@ -19,7 +19,6 @@ def members(request):
   queryset = Member.objects.annotate(
     custom_order=Case(
       When(is_leader=True, then=Value(1)),
-      When(role="Member, Trainee Developer", then=Value(3)),
       default=Value(2),
       output_field=IntegerField(),
     )

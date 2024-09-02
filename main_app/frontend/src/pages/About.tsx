@@ -78,6 +78,5 @@ const About = () => {
   );
 };
 
-export default About;
 const root = document.getElementById("root");
 createRoot(root).render(<About />);

@@ -168,6 +168,5 @@ const Projects = () => {
   );
 };
 
-export default Projects;
 const root = document.getElementById("root");
 createRoot(root).render(<Projects />);

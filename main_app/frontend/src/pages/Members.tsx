@@ -15,42 +15,41 @@ interface Member {
   name: string;
   team: string;
   is_leader: boolean;
-  role: string;
   image: string;
 }
 
 const Members = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
-  const [designMemberData, setDesignMemberData] = useState<Member[]>([]);
-  const [businessMemberData, setBusinessMemberData] = useState<Member[]>([]);
-  const [softwareMemberData, setSoftwareMemberData] = useState<Member[]>([]);
+  const [members, setMembers] = useState<Member[]>([]);
 
   useEffect(() => {
     try {
       const memberData = (window as any).data as any;
+      const softwareMemberArray: Member[] = [];
+      const businessMemberArray: Member[] = [];
+      const designMemberArray: Member[] = [];
+
       memberData.forEach((member: Member) => {
         switch (member.team) {
-          case "design":
-            setDesignMemberData((prevDesignMemberData) => [
-              ...prevDesignMemberData,
-              member,
-            ]);
+          case "software":
+            softwareMemberArray.push(member);
             break;
           case "business":
-            setBusinessMemberData((prevBusinessMemberData) => [
-              ...prevBusinessMemberData,
-              member,
-            ]);
+            businessMemberArray.push(member);
             break;
-          case "software":
-            setSoftwareMemberData((prevSoftwareMemberData) => [
-              ...prevSoftwareMemberData,
-              member,
-            ]);
+          case "design":
+            designMemberArray.push(member);
             break;
         }
       });
+
+      let retMemberData: Member[] =
+        softwareMemberArray.concat(businessMemberArray);
+
+      retMemberData = retMemberData.concat(designMemberArray);
+      setMembers(retMemberData);
+
       setCanMap(true);
       setPageReady(true);
     } catch (e: any) {
@@ -167,114 +166,52 @@ const Members = () => {
     }
   };
 
-  const mapTeam = (team: string) => {
-    switch (team) {
-      case "business":
-        return businessMemberData.map((member: Member, index: number) => (
-          <div
-            key={index}
-            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
-          >
-            <div className="team-list position-relative overflow-hidden shadow rounded">
-              {member.image != null ? (
-                <LoadingImage
-                  imageUri={member.image}
-                  className="img-fluid float-left"
-                />
-              ) : (
-                <LoadingImage
-                  imageUri={"/static/main_app/assets/default-member.png"}
-                  className="img-fluid float-left"
-                />
-              )}
-              <div className="content float-right p-3">
-                <h5 className="title mb-0">{member.name}</h5>
-                <small className="text-muted">{member.role}</small>
-                <div>
-                  {member.social_medias.map(
-                    (socialMedia: SocialMedia, index: number) =>
-                      renderSocialMedia(
-                        socialMedia.social_media,
-                        socialMedia.social_media_link,
-                        index
-                      )
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        ));
-      case "design":
-        return designMemberData.map((member: Member, index: number) => (
-          <div
-            key={index}
-            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
-          >
-            <div className="team-list position-relative overflow-hidden shadow rounded">
-              {member.image != null ? (
-                <LoadingImage
-                  imageUri={member.image}
-                  className="img-fluid float-left"
-                />
-              ) : (
-                <LoadingImage
-                  imageUri={"/static/main_app/assets/default-member.png"}
-                  className="img-fluid float-left"
-                />
-              )}
-              <div className="content float-right p-3">
-                <h5 className="title mb-0">{member.name}</h5>
-                <small className="text-muted">{member.role}</small>
-                <div>
-                  {member.social_medias.map(
-                    (socialMedia: SocialMedia, index: number) =>
-                      renderSocialMedia(
-                        socialMedia.social_media,
-                        socialMedia.social_media_link,
-                        index
-                      )
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        ));
-      case "software":
-        return softwareMemberData.map((member: Member, index: number) => (
-          <div
-            key={index}
-            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
-          >
-            <div className="team-list position-relative overflow-hidden shadow rounded">
-              {member.image != null ? (
-                <LoadingImage
-                  imageUri={member.image}
-                  className="img-fluid float-left"
-                />
-              ) : (
-                <LoadingImage
-                  imageUri={"/static/main_app/assets/default-member.png"}
-                  className="img-fluid float-left"
-                />
-              )}
-              <div className="content float-right p-3">
-                <h5 className="title mb-0">{member.name}</h5>
-                <small className="text-muted">{member.role}</small>
-                <div>
-                  {member.social_medias.map(
-                    (socialMedia: SocialMedia, index: number) =>
-                      renderSocialMedia(
-                        socialMedia.social_media,
-                        socialMedia.social_media_link,
-                        index
-                      )
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        ));
+  const getMemberRole = (member: Member): string => {
+    if (member.is_leader) {
+      return `${
+        member.team.charAt(0).toUpperCase() + member.team.slice(1)
+      }, Leader`;
     }
+    return `${
+      member.team.charAt(0).toUpperCase() + member.team.slice(1)
+    }, Member`;
+  };
+
+  const mapTeam = () => {
+    return members.map((member: Member, index: number) => (
+      <div
+        key={index}
+        className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
+      >
+        <div className="team-list position-relative overflow-hidden shadow rounded">
+          {member.image != null ? (
+            <LoadingImage
+              imageUri={member.image}
+              className="img-fluid float-left"
+            />
+          ) : (
+            <LoadingImage
+              imageUri={"/static/main_app/assets/default-member.png"}
+              className="img-fluid float-left"
+            />
+          )}
+          <div className="content float-right p-3">
+            <h5 className="title mb-0">{member.name}</h5>
+            <small className="text-muted">{getMemberRole(member)}</small>
+            <div>
+              {member.social_medias.map(
+                (socialMedia: SocialMedia, index: number) =>
+                  renderSocialMedia(
+                    socialMedia.social_media,
+                    socialMedia.social_media_link,
+                    index
+                  )
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    ));
   };
 
   return (
@@ -296,62 +233,19 @@ const Members = () => {
                   <div className="row">
                     <div className="col-12 text-center">
                       <div className="section-title">
-                        <h4 className="title ">Software Team</h4>
+                        <h4 className="title ">The 8bit Team</h4>
                         <p className="text-muted para-desc mx-auto mb-0">
-                          Our software team pioneers innovation, transforming
-                          ideas into robust digital solutions. With expertise in
-                          coding and problem-solving, they craft seamless
-                          experiences that propel our organization forward.
+                          At 8bit, our strength lies in the diverse talents and
+                          collaboration of our members. Our team is divided into
+                          three specialized groups—Software, Business, and
+                          Design—each contributing uniquely to our collective
+                          success.
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="row px-sm-0 px-4">{mapTeam("software")}</div>
-                </div>
-                <hr></hr>
-                <div
-                  className="mb-4"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <div className="row">
-                    <div className="col-12 text-center">
-                      <div className="section-title">
-                        <h4 className="title ">Business Team</h4>
-                        <p className="text-muted para-desc mx-auto mb-0">
-                          The driving force behind client acquisition and member
-                          engagement. With strategic prowess and a passion for
-                          connection, they fuel our organization's growth and
-                          community spirit.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="row px-sm-0 px-4">{mapTeam("business")}</div>
-                </div>
-                <hr></hr>
-                <div
-                  className="mb-4"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <div className="row">
-                    <div className="col-12 text-center">
-                      <div className="section-title">
-                        <h4 className="title ">Design Team</h4>
-                        <p className="text-muted para-desc mx-auto mb-0">
-                          The creative visionaries shaping our brand's identity.
-                          With an eye for aesthetics and a flair for innovation,
-                          they craft captivating visuals that elevate our
-                          message and captivate our audience.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="row px-sm-0 px-4">{mapTeam("design")}</div>
+                  <div className="row px-sm-0 px-4">{mapTeam()}</div>
                 </div>
               </>
             ) : (
@@ -375,6 +269,5 @@ const Members = () => {
   );
 };
 
-export default Members;
 const root = document.getElementById("root");
 createRoot(root).render(<Members />);
