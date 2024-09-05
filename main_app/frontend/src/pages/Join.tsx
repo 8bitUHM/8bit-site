@@ -9,7 +9,7 @@ const Join = () => {
       <Navbar />
       <div
         className="container text-left my-5 my-md-1"
-        style={{ paddingTop: 150 }}
+        style={{ paddingTop: 150, paddingBottom: 300 }}
         data-aos="fade-up"
         data-aos-duration="1500"
       >
@@ -40,25 +40,14 @@ const Join = () => {
               creating meaningful digital experiences that address real-world
               challenges."
             </p>
-            <p>
-              Make sure to join our{" "}
+            <h4>
+              All of the information to join 8bit's software team can be found
+              in our{" "}
               <a href="https://discord.gg/T7Eu75fpAf" target="_blank">
                 Discord
               </a>{" "}
-              for updates, discussions, and to connect with other members of the
-              8bit community.
-            </p>
-          </div>
-        </div>
-        <div className="row mt-5">
-          <div className="col">
-            <div className="ratio ratio-1x1 ">
-              <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdRraEXX34wpI9v9Vh8D1whM8F74kbA8VKiM6ZET0qDNeigig/viewform"
-                className="embed-responsive-item shadow"
-                style={{ borderRadius: 15 }}
-              ></iframe>
-            </div>
+              read-me channel.
+            </h4>
           </div>
         </div>
       </div>
