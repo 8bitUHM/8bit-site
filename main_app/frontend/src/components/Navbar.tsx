@@ -116,7 +116,7 @@ const Navbar: FC = () => {
                         className="dropdown-item"
                         style={{ color: "#3d8581" }}
                       >
-                        Open Source Projects
+                        Projects
                       </a>
                     </li>
                     <li>
