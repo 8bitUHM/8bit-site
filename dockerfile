@@ -1,6 +1,9 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12
 
+# Project secret key define for build argument
+ARG SECRET_KEY
+
 # Set environment variables for Python to run in unbuffered mode
 ENV PYTHONUNBUFFERED=1
 
@@ -13,8 +16,12 @@ COPY requirements.txt /app/
 # Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code into the container
+# Change back to the app directory to copy the rest of the application code
+WORKDIR /app
 COPY . /app/
+
+# Run Tailwind build and collect static files
+RUN python manage.py collectstatic --noinput
 
 # Expose port 8000 for the Django application
 EXPOSE 8000
