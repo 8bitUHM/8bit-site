@@ -28,12 +28,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy package.json and package-lock.json into the container
 COPY main_app/frontend/package.json main_app/frontend/package-lock.json /app/main_app/frontend/
 
-# Change to the theme/static_src directory and install Node.js dependencies
 WORKDIR /app/main_app/frontend
-RUN npm install
-
-# Run build on frontend
-RUN npm run build
+RUN npm install & npm run build
 
 # Change back to the app directory to copy the rest of the application code
 WORKDIR /app
