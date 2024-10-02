@@ -30,6 +30,9 @@ COPY . /app/
 WORKDIR /app/main_app/frontend
 RUN npm install && npm run build
 
+WORKDIR /app/learning/frontend
+RUN npm install && npm run build
+
 # Navigate back to the app directory to run collectstatic
 WORKDIR /app
 RUN python manage.py collectstatic --noinput
