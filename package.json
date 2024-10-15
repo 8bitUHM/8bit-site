@@ -1,0 +1,17 @@
+{
+  "name": "8bit-site-server",
+  "version": "1.0.0",
+  "description": "Django 4.2.8 with Supabase PostgreSQL database and Django Rest Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"python manage.py runserver\" \"npm --prefix main_app/frontend run dev\"",
+    "dev3": "concurrently \"python3 manage.py runserver\" \"npm --prefix main_app/frontend run dev\"",
+    "build": "npm --prefix main_app/frontend run build"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
