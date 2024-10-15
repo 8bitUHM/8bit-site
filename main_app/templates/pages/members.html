@@ -1,0 +1,11 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %} 8bit @ UH Manoa {% endblock %} 
+
+{% block content %}
+<script>
+  window.data = JSON.parse("{{members|escapejs}}");
+</script>
+<div id="page-root"></div>
+<script src="{% static 'main_app/dist/pages/Members.js' %}"></script>
+{% endblock %}

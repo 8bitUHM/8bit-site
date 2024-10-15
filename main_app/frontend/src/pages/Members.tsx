@@ -1,8 +1,6 @@
 import * as React from "react";
-import Navbar from "../components/Navbar";
 import LoadingImage from "../components/LoadingImage";
 import { useEffect, useState } from "react";
-import Footer from "../components/Footer";
 import { createRoot } from "react-dom/client";
 
 interface SocialMedia {
@@ -216,7 +214,6 @@ const Members = () => {
 
   return (
     <>
-      <Navbar />
       <div
         className="container text-left my-5 my-md-1"
         style={{ paddingTop: 150 }}
@@ -264,10 +261,9 @@ const Members = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };
 
-const root = document.getElementById("root");
+const root = document.getElementById("page-root");
 createRoot(root).render(<Members />);

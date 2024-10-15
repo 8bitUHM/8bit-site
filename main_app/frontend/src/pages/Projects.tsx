@@ -1,6 +1,4 @@
 import * as React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 import LoadingImage from "../components/LoadingImage";
@@ -103,7 +101,6 @@ const Projects = () => {
 
   return (
     <>
-      <Navbar />
       <div
         className="container text-left my-5 my-md-1"
         style={{ paddingTop: 125 }}
@@ -146,12 +143,9 @@ const Projects = () => {
           </div>
         )}
       </div>
-      <div style={{ marginTop: 150 }}>
-        <Footer />
-      </div>
     </>
   );
 };
 
-const root = document.getElementById("root");
+const root = document.getElementById("page-root");
 createRoot(root).render(<Projects />);

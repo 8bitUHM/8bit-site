@@ -1,12 +1,9 @@
 import * as React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { createRoot } from "react-dom/client";
 
 const Index = () => {
   return (
     <>
-      <Navbar />
       <div
         className="container text-left my-5 my-md-1"
         style={{ paddingTop: 135 }}
@@ -78,12 +75,9 @@ const Index = () => {
           </div>
         </section>
       </div>
-      <div style={{ marginTop: 125 }}>
-        <Footer />
-      </div>
     </>
   );
 };
 
-const root = document.getElementById("root");
+const root = document.getElementById("page-root");
 createRoot(root).render(<Index />);
