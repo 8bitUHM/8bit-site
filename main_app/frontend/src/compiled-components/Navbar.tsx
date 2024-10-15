@@ -158,6 +158,5 @@ const Navbar: FC = () => {
   );
 };
 
-export default Navbar;
 const root = document.getElementById("navbar-root");
 createRoot(root).render(<Navbar />);
