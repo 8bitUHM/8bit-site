@@ -33,9 +33,13 @@ RUN npm install && npm run build
 WORKDIR /app/learning/frontend
 RUN npm install && npm run build
 
+# Change to the theme/static_src directory and install Node.js dependencies
+WORKDIR /app/theme/static_src
+RUN npm install
+
 # Navigate back to the app directory to run collectstatic
 WORKDIR /app
-RUN python manage.py collectstatic --noinput
+RUN python manage.py tailwind build && python manage.py collectstatic --noinput
 
 # Expose port 8000 for the Django application
 EXPOSE 8000
