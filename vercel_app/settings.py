@@ -52,8 +52,6 @@ INSTALLED_APPS = [
     'learning',
     'ckeditor',
     'ckeditor_uploader',
-    'tailwind',
-    'theme',
 ]
 
 MIDDLEWARE = [
@@ -351,4 +349,3 @@ CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
 CSRF_TRUSTED_ORIGINS = ['https://8bituhm.org', 'https://www.8bituhm.org']
 
-TAILWIND_APP_NAME = 'theme'
