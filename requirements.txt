@@ -7,3 +7,4 @@ python-dotenv==1.0.1
 Pillow==10.3.0
 django-jazzmin==2.6.1
 django-ckeditor==6.7.0
+django-tailwind==2.0.0
