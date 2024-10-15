@@ -2,6 +2,8 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 import LoadingImage from "../components/LoadingImage";
+import { initFlowbite } from "flowbite";
+import "../styles/styles.css";
 
 interface Tag {
   tag_name: string;

@@ -1,6 +1,8 @@
 import * as React from "react";
 import LoadingImage from "../components/LoadingImage";
 import { createRoot } from "react-dom/client";
+import { initFlowbite } from "flowbite";
+import "../styles/styles.css";
 
 const About = () => {
   return (

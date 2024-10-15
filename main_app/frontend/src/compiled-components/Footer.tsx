@@ -1,6 +1,8 @@
 import * as React from "react";
 import { FC } from "react";
 import { createRoot } from "react-dom/client";
+import { initFlowbite } from "flowbite";
+import "../styles/styles.css";
 
 const Footer: FC = () => {
   return (

@@ -1,5 +1,7 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
+import { initFlowbite } from "flowbite";
+import "../styles/styles.css";
 
 const Services = () => {
   return (

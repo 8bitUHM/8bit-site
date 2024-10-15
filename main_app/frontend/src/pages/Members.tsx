@@ -2,6 +2,8 @@ import * as React from "react";
 import LoadingImage from "../components/LoadingImage";
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { initFlowbite } from "flowbite";
+import "../styles/styles.css";
 
 interface SocialMedia {
   social_media: string;
