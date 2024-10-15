@@ -11,26 +11,23 @@
     />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8bit @ UH Manoa</title>
-    <meta name="title" content="8bit @ UH Manoa" />
-    <meta
-      name="description"
-      content="A group of University of Hawai'i students empowering clients through tailored software services and our members through multi-team experiences."
-    />
+    <title>{% block title %}8bit @ UH Manoa{% endblock %}</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link
       rel="icon"
       type="image/x-icon"
       href="{% static 'main_app/assets/8bit-logo.webp' %}"
     />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
+
   <body>
-    <div id="root"></div>
-    <script>
-      window.data = JSON.parse("{{lessons|escapejs}}");
-      window.username = "{{username|safe}}"
-    </script>
-    <script src="{% static 'learning/dist/Index.js' %}"></script>
+    
+    {% include "learning/components/navbar.html" %}
+    <div>
+      {% block content %} 
+      {% endblock %}
+    </div>
+    {% include "learning/components/footer.html" %}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

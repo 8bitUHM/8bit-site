@@ -27,7 +27,7 @@ def index(request):
   queryset = Lesson.objects.all()
   serializer = LessonSerializer(queryset, many=True)
   serialized_json_data = json.dumps(serializer.data)
-  return render(request,'home.html',{"lessons":serialized_json_data,"username":username})
+  return render(request,'learning/pages/home.html',{"lessons":serialized_json_data,"username":username})
 
 @staff_or_group_required('Learning')
 def lesson(request,slug,page):
@@ -43,7 +43,7 @@ def lesson(request,slug,page):
   section_serializer = SectionSerializer(section_data,many=True)
   serialized_section_data = json.dumps(section_serializer.data)
   
-  return render(request, 'lesson.html', {"lesson" : serialized_lesson_data,"section":serialized_section_data,"username":username })
+  return render(request, 'learning/pages/lesson.html', {"lesson" : serialized_lesson_data,"section":serialized_section_data,"username":username })
 
 def quiz(request,slug):
   username = request.user.username
@@ -54,10 +54,10 @@ def quiz(request,slug):
   serialized_lesson_data = json.dumps(lesson_serializer.data)
   
   
-  return render(request, 'quiz.html', {"lesson" : serialized_lesson_data,"username":username })
+  return render(request, 'learning/pages/quiz.html', {"lesson" : serialized_lesson_data,"username":username })
 
 class LearningLoginView(LoginView):
-  template_name = "login.html"
+  template_name = "learning/pages/login.html"
   authentication_form = LoginForm
   
   def form_valid(self, form):
@@ -82,4 +82,4 @@ def signup(request):
       return redirect('learning_login')  
   else:
     form = CustomUserCreationForm()
-  return render(request, 'signup.html', {'form': form})
+  return render(request, 'learning/pages/signup.html', {'form': form})

@@ -1,8 +1,6 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import LoadingImage from "../components/LoadingImage";
 
 interface Tag {
@@ -45,7 +43,6 @@ const Index = () => {
   }, []);
   return (
     <>
-      <Navbar />
       <div
         className="container text-left"
         style={{ marginTop: 80, marginBottom: 80 }}
@@ -133,11 +130,9 @@ const Index = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };
 
-export default Index;
-const root = document.getElementById("root");
+const root = document.getElementById("page-root");
 createRoot(root).render(<Index />);

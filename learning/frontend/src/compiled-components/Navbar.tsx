@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
 
 const Navbar: FC = () => {
   const [username, setUsername] = useState("");
@@ -74,4 +75,5 @@ const Navbar: FC = () => {
   );
 };
 
-export default Navbar;
+const root = document.getElementById("navbar-root");
+createRoot(root).render(<Navbar />);

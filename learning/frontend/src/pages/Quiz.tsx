@@ -1,8 +1,6 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 interface Section {
   page: number;
@@ -37,7 +35,6 @@ const Quiz = () => {
   }, []);
   return (
     <>
-      <Navbar />
       <div
         className="container text-left"
         style={{ marginTop: 80, marginBottom: 80 }}
@@ -108,7 +105,10 @@ const Quiz = () => {
                   <div>
                     <h1>{lesson.name}</h1>
                     <h3>{`${lesson.name} Lesson Quiz`}</h3>
-                    <p>After completing this  quiz, notify Leighton on Discord for lesson and quiz completion.</p>
+                    <p>
+                      After completing this quiz, notify Leighton on Discord for
+                      lesson and quiz completion.
+                    </p>
 
                     <div className="ratio ratio-1x1 mt-3">
                       <iframe
@@ -170,11 +170,9 @@ const Quiz = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };
 
-export default Quiz;
-const root = document.getElementById("root");
+const root = document.getElementById("page-root");
 createRoot(root).render(<Quiz />);
