@@ -10,7 +10,7 @@ import json
 from django.contrib import messages
 
 def index(request):
-  return render(request,'pages/home.html')
+  return render(request,'main_app/pages/home.html')
 
 # def about(request):
 #   return render(request,'about.html')
@@ -27,14 +27,14 @@ def members(request):
   serializer = MemberSerializer(queryset, many=True)
   serialized_json_data = json.dumps(serializer.data)
 
-  return render(request, 'pages/members.html', {'members': serialized_json_data})
+  return render(request, 'main_app/pages/members.html', {'members': serialized_json_data})
 
 def services(request):
-  return render(request,'pages/services.html')
+  return render(request,'main_app/pages/services.html')
 
 
 class MemberLoginView(LoginView):
-  template_name = "pages/member-login.html"
+  template_name = "main_app/pages/member-login.html"
   authentication_form = LoginForm
 
   def form_valid(self, form):
@@ -51,7 +51,7 @@ class MemberLogoutView(LogoutView):
   next_page = '/'
 
 def join(request):
-  return render(request,'pages/join.html')
+  return render(request,'main_app/pages/join.html')
 
 def projects(request):
   queryset = Project.objects.annotate().order_by('name')
@@ -59,4 +59,4 @@ def projects(request):
   serializer = ProjectSerializer(queryset, many=True)
   serialized_json_data = json.dumps(serializer.data)
 
-  return render(request, 'pages/projects.html', {'projects': serialized_json_data})
+  return render(request, 'main_app/pages/projects.html', {'projects': serialized_json_data})
