@@ -34,6 +34,8 @@ const Projects = () => {
     } catch (e: any) {
       setPageReady(true);
     }
+
+    initFlowbite();
   }, []);
 
   const mapProjects = () => {

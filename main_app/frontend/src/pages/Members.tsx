@@ -55,6 +55,8 @@ const Members = () => {
     } catch (e: any) {
       setPageReady(true);
     }
+
+    initFlowbite();
   }, []);
 
   const renderSocialMedia = (
@@ -181,33 +183,33 @@ const Members = () => {
     return members.map((member: Member, index: number) => (
       <div
         key={index}
-        className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-4 pt-2"
+        className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       >
-        <div className="team-list position-relative overflow-hidden shadow rounded">
-          {member.image != null ? (
-            <LoadingImage
-              imageUri={member.image}
-              className="img-fluid float-left"
-            />
-          ) : (
-            <LoadingImage
-              imageUri={"/static/main_app/assets/default-member.png"}
-              className="img-fluid float-left"
-            />
-          )}
-          <div className="content float-right p-3">
-            <h5 className="title mb-0">{member.name}</h5>
-            <small className="text-muted">{getMemberRole(member)}</small>
-            <div>
-              {member.social_medias.map(
-                (socialMedia: SocialMedia, index: number) =>
-                  renderSocialMedia(
-                    socialMedia.social_media,
-                    socialMedia.social_media_link,
-                    index
-                  )
-              )}
-            </div>
+        {member.image != null ? (
+          <LoadingImage imageUri={member.image} className="rounded-t-lg" />
+        ) : (
+          <LoadingImage
+            imageUri={"/static/main_app/assets/default-member.png"}
+            className="rounded-t-lg"
+          />
+        )}
+        <div className="px-5 py-4">
+          <h5 className=" text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+            {member.name}
+          </h5>
+
+          <p className="mb-2 font-normal text-gray-700 dark:text-gray-400">
+            {getMemberRole(member)}
+          </p>
+          <div className="flex ">
+            {member.social_medias.map(
+              (socialMedia: SocialMedia, index: number) =>
+                renderSocialMedia(
+                  socialMedia.social_media,
+                  socialMedia.social_media_link,
+                  index
+                )
+            )}
           </div>
         </div>
       </div>
@@ -217,34 +219,32 @@ const Members = () => {
   return (
     <>
       <div
-        className="container text-left my-5 my-md-1"
-        style={{ paddingTop: 150 }}
+        className="container sm:mx-auto px-5 pb-12 max-w-screen-xl"
+        style={{ paddingTop: 135 }}
+        data-aos="fade-up"
+        data-aos-duration="1500"
       >
         {pageReady ? (
           <>
             {canMap ? (
               <>
-                <div
-                  className="mb-4"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <div className="row">
-                    <div className="col-12 text-center">
-                      <div className="section-title">
-                        <h4 className="title ">The 8bit Team</h4>
-                        <p className="text-muted para-desc mx-auto mb-0">
-                          At 8bit, our strength lies in the diverse talents and
-                          collaboration of our members. Our team is divided into
-                          three specialized groups—Software, Business, and
-                          Design—each contributing uniquely to our collective
-                          success.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="row px-sm-0 px-4">{mapTeam()}</div>
+                <div className="text-center mb-6">
+                  <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white  lg:text-4xl">
+                    The{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+                      8bit
+                    </span>{" "}
+                    Team
+                  </h1>
+                  <p className="text-gray-500">
+                    At 8bit, our strength lies in the diverse talents and
+                    collaboration of our members. Our team is divided into three
+                    specialized groups—Software, Business, and Design—each
+                    contributing uniquely to our collective success.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4  gap-4">
+                  {mapTeam()}
                 </div>
               </>
             ) : (
