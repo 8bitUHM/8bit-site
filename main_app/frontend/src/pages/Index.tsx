@@ -4,78 +4,74 @@ import { initFlowbite } from "flowbite";
 import "../styles/styles.css";
 
 const Index = () => {
+  React.useEffect(() => {
+    initFlowbite();
+  });
+
   return (
     <>
       <div
-        className="container text-left my-5 my-md-1"
+        className="container sm:mx-auto px-5"
         style={{ paddingTop: 135 }}
         data-aos="fade-up"
         data-aos-duration="1500"
       >
-        <section className="py-3 py-md-5 py-xl-8">
-          <div className="container">
-            <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center justify-content-center">
-              <div className="col-12">
-                <div className="row justify-content-xl-center">
-                  <div>
-                    <h2 className="h1 mb-3">We are 8bit.</h2>
-                    <p className="lead fs-4 text-secondary mb-3">
-                      We empower our members through immersive multi-team
-                      experiences.
-                    </p>
-                    <p className="mb-5">
-                      8bit is a group of students from the University of Hawaii
-                      at Manoa passionate about software development and
-                      creating impactful software solutions. Specializing in
-                      full-stack website development, we collaborate with
-                      clients and contribute to open source software, bringing
-                      digital visions to life. With dedicated teams in software
-                      development, design, and business, we offer a holistic
-                      experience, fostering multi-disciplinary collaboration and
-                      professional growth.
-                    </p>
-                    <div className="row gy-4 gy-md-0 gx-xxl-5X">
-                      <div className="col-12 col-md-6">
-                        <div className="d-flex">
-                          <div>
-                            <h4 className="mb-3">Digital Solutions</h4>
-                            <p className="text-secondary mb-0">
-                              We aim to bring the client's vision to life.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <div className="d-flex">
-                          <div>
-                            <h4 className="mb-3">Unique Experience</h4>
-                            <p className="text-secondary mb-0">
-                              We believe in teaching real life career
-                              experience.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <hr></hr>
-                    <div className="ratio ratio-16x9">
-                      <iframe
-                        className="embed-responsive-item shadow rounded"
-                        allowFullScreen={true}
-                        allow="accelerometer; magnetometer; gyroscope"
-                        src="https://panoraven.com/en/embed/aN3ha1BgtK"
-                      ></iframe>
-                    </div>
-                    <h6 className="lead fs-6 text-secondary mt-2">
-                      Experience an interactive 360 view of one of our first
-                      team meetings.
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Top part */}
+        <div>
+          <h1 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+            We are{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+              8bit
+            </span>{" "}
+            @ UH Manoa
+          </h1>
+          <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+            We empower our members through immersive multi-team experiences.
+          </p>
+          <p className="my-4">
+            8bit is a group of students from the University of Hawaii at Manoa
+            passionate about software development and creating impactful
+            software solutions. Specializing in full-stack website development,
+            we collaborate with clients and contribute to open source software,
+            bringing digital visions to life. With dedicated teams in software
+            development, design, and business, we offer a holistic experience,
+            fostering multi-disciplinary collaboration and professional growth.
+          </p>
+        </div>
+
+        {/* Grid part? */}
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="w-full my-2">
+            <h1 className=" text-xl font-bold text-gray-900 dark:text-white md:text-2xl ">
+              Digital Solutions
+            </h1>
+            <p className="text-gray-400">
+              We aim to bring our software to life.
+            </p>
           </div>
-        </section>
+          <div className="w-full my-2">
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl ">
+              Unique Experiences
+            </h1>
+            <p className="text-gray-400">
+              We believe in teaching real life software development experience.
+            </p>
+          </div>
+        </div>
+
+        {/* embed part */}
+        <div className="my-5">
+          <iframe
+            className="w-full aspect-video rounded"
+            allowFullScreen={true}
+            allow="accelerometer; magnetometer; gyroscope"
+            src="https://panoraven.com/en/embed/aN3ha1BgtK"
+          ></iframe>
+          <small>
+            Experience an interactive 360 view of one of our first team
+            meetings.
+          </small>
+        </div>
       </div>
     </>
   );
