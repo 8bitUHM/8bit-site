@@ -67,7 +67,7 @@ const Navbar: FC = () => {
           </div>
         </nav>
         <nav className="bg-white border-b">
-          <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
+          <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-1">
             <a
               href="https://manoa.hawaii.edu/"
               target="_blank"
@@ -75,7 +75,7 @@ const Navbar: FC = () => {
             >
               <img
                 src="/static/main_app/assets/uh-logo.png"
-                className="h-10"
+                className="h-12"
                 alt="Flowbite Logo"
               />
             </a>
