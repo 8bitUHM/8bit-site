@@ -97,10 +97,10 @@ const Services = () => {
 
           <p className="text-gray-500 dark:text-gray-400">
             Along with the rest of our services, we handle site deployment and
-            hosting on platforms like Vercel or AWS. Whether you're launching a
-            new static website or upgrading to a dynamic web application, we
-            take care of the infrastructure from deployment to domain
-            management, allowing you to focus on what matters most.
+            hosting on platforms like AWS or UH-hosted servers. Whether you're
+            launching a new static website or upgrading to a dynamic web
+            application, we take care of the infrastructure from deployment to
+            domain management, allowing you to focus on what matters most.
           </p>
         </div>
       </div>
