@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"python manage.py runserver\" \"npm --prefix main_app/frontend run dev\"",
-    "dev3": "concurrently \"python3 manage.py runserver\" \"npm --prefix main_app/frontend run dev\"",
-    "build": "npm --prefix main_app/frontend run build"
+    "dev": "concurrently \"python manage.py runserver\" \"npm --prefix main_app/frontend run dev\" \"npm --prefix learning/frontend run dev\"",
+    "dev3": "concurrently \"python3 manage.py runserver\" \"npm --prefix main_app/frontend run dev\" \"npm --prefix learning/frontend run dev\"",
+    "build": "concurrently \"npm --prefix main_app/frontend run build\" \"npm --prefix learning/frontend run build\""
   },
   "keywords": [],
   "license": "ISC",
