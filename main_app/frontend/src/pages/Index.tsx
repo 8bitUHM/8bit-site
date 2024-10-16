@@ -11,7 +11,7 @@ const Index = () => {
   return (
     <>
       <div
-        className="container sm:mx-auto px-5"
+        className="container sm:mx-auto px-5 max-w-screen-xl"
         style={{ paddingTop: 135 }}
         data-aos="fade-up"
         data-aos-duration="1500"
