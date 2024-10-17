@@ -62,19 +62,47 @@ const Index = () => {
                           key={key}
                           className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
                         >
-                          <a href={`/learning/lessons/${lesson.slug}/1`}>
+                          <a
+                            href={`/learning/lessons/${lesson.slug}/1`}
+                            className="mb-3"
+                          >
                             <LoadingImage
                               imageUri={lesson.image}
-                              className="img-fluid float-left rounded-t"
+                              className="img-fluid float-left rounded-t mb-3"
                             />
                           </a>
                           <div className="p-5">
                             <a href={`/learning/lessons/${lesson.slug}/1`}>
-                              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:underline">
+                              <h5 className="text-2xl font-bold text-gray-900 dark:text-white hover:underline">
                                 {lesson.name}
                               </h5>
                             </a>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <div className="flex py-2 flex-wrap">
+                              {lesson.required_lesson ? (
+                                <span className="my-1 bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-red-900 dark:text-red-300">
+                                  Required Lesson
+                                </span>
+                              ) : null}
+                              {lesson.core_lesson ? (
+                                <span className="my-1 bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-green-900 dark:text-green-300">
+                                  Core Lesson
+                                </span>
+                              ) : null}
+                              {lesson.tags.map((val, key) => {
+                                return (
+                                  <>
+                                    <span
+                                      key={key}
+                                      className="my-1 bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-blue-900 dark:text-blue-300"
+                                    >
+                                      {val.tag_name}
+                                    </span>
+                                  </>
+                                );
+                              })}
+                            </div>
+
+                            <p className="font-normal text-gray-700 dark:text-gray-400">
                               {lesson.description}
                             </p>
                           </div>
