@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 import LoadingImage from "../components/LoadingImage";
+import "../styles/styles.css";
 
 interface Tag {
   tag_name: string;
@@ -44,69 +45,38 @@ const Index = () => {
   return (
     <>
       <div
-        className="container text-left"
-        style={{ marginTop: 80, marginBottom: 80 }}
+        className="container sm:mx-auto px-5 max-w-screen-xl"
+        style={{ paddingTop: 100, paddingBottom: 100 }}
+        data-aos="fade-up"
+        data-aos-duration="1500"
       >
         {pageReady ? (
           <>
             {canMap ? (
               <>
-                <div
-                  className="row"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {lessonData.map((lesson, key) => {
                     if (lesson.sections.length > 0) {
                       return (
-                        <div key={key} className="col-lg-6 my-3">
-                          <div className="rounded shadow">
-                            <div>
-                              <a href={`/learning/lessons/${lesson.slug}/1`}>
-                                <LoadingImage
-                                  imageUri={lesson.image}
-                                  className="img-fluid float-left rounded-top"
-                                />
-                              </a>
-                            </div>
-
-                            <div className="p-3">
-                              <a
-                                href={`/learning/lessons/${lesson.slug}/1`}
-                                className="card-title title-link fw-bold"
-                              >
+                        <div
+                          key={key}
+                          className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                        >
+                          <a href={`/learning/lessons/${lesson.slug}/1`}>
+                            <LoadingImage
+                              imageUri={lesson.image}
+                              className="img-fluid float-left rounded-t"
+                            />
+                          </a>
+                          <div className="p-5">
+                            <a href={`/learning/lessons/${lesson.slug}/1`}>
+                              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:underline">
                                 {lesson.name}
-                              </a>
-                              <p className="card-text">
-                                {lesson.required_lesson ? (
-                                  <span className={`badge bg-danger me-1`}>
-                                    Required Lesson
-                                  </span>
-                                ) : null}
-                                {lesson.core_lesson ? (
-                                  <span className={`badge bg-success me-1`}>
-                                    Core Lesson
-                                  </span>
-                                ) : null}
-                                {lesson.extension_lesson ? (
-                                  <span
-                                    className={`badge bg-warning text-dark me-1`}
-                                  >
-                                    Extension Lesson
-                                  </span>
-                                ) : null}
-                                {lesson.tags.map((tag, key) => (
-                                  <span
-                                    key={key}
-                                    className={`badge ${tag.color} me-1`}
-                                  >
-                                    {tag.tag_name}
-                                  </span>
-                                ))}
-                                <br></br>
-                                {lesson.description}
-                              </p>
-                            </div>
+                              </h5>
+                            </a>
+                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                              {lesson.description}
+                            </p>
                           </div>
                         </div>
                       );
