@@ -6,15 +6,7 @@ import "../styles/styles.css";
 import { initFlowbite } from "flowbite";
 
 const Navbar: FC = () => {
-  const [username, setUsername] = useState("");
-
   useEffect(() => {
-    try {
-      const username = (window as any).username as any;
-      setUsername(username);
-    } catch (e: any) {
-      console.error(e);
-    }
     initFlowbite();
   }, []);
 
