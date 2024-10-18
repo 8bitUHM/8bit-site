@@ -1,0 +1,8 @@
+{% extends "main_app/base.html" %} 
+{% load static %} 
+{% block title %} 8bit @ UH Manoa {% endblock %} 
+
+{% block content %}
+<div id="page-root"></div>
+<script src="{% static 'main_app/dist/pages/Services.js' %}"></script>
+{% endblock %}

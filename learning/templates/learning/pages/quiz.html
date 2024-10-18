@@ -1,0 +1,14 @@
+{% extends "learning/base.html" %} 
+{% load static %} 
+{% block title %} 8bit @ UH Manoa {% endblock %} 
+
+{% block content %}
+<script>
+  window.lesson_data = JSON.parse("{{lesson|escapejs}}");
+  window.username = "{{username|safe}}"
+</script>
+<div id="page-root"></div>
+<script src="{% static 'learning/dist/pages/Quiz.js' %}"></script>
+{% endblock %}
+
+

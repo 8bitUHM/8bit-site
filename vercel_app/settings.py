@@ -208,7 +208,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "8bit Portal",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "main_app/assets/8bit-logo.webp",
+    "site_logo": "main_app/assets/8bit-logo-small.webp",
 
 
     # CSS classes that are applied to the logo above
@@ -218,7 +218,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": 'main_app/assets/8bit-logo.webp',
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the library",
+    "welcome_sign": "8bit Member Portal",
 
     # Copyright on the footer
     "copyright": "8bit UHM",

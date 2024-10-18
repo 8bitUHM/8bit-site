@@ -1,12 +1,12 @@
 import * as React from "react";
-import Navbar from "../components/Navbar";
 import LoadingImage from "../components/LoadingImage";
 import { createRoot } from "react-dom/client";
+import { initFlowbite } from "flowbite";
+import "../styles/styles.css";
 
 const About = () => {
   return (
     <>
-      <Navbar />
       <div
         className="container text-left my-5 my-md-1"
         style={{ paddingTop: 150 }}
@@ -78,5 +78,5 @@ const About = () => {
   );
 };
 
-const root = document.getElementById("root");
+const root = document.getElementById("page-root");
 createRoot(root).render(<About />);

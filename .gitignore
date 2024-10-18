@@ -18,3 +18,5 @@ local_settings.py
 
 /static/
 !*/static/
+
+node_modules

@@ -1,8 +1,6 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 interface Section {
   page: number;
@@ -41,7 +39,6 @@ const Lesson = () => {
   }, []);
   return (
     <>
-      <Navbar />
       <div
         className="container text-left"
         style={{ marginTop: 80, marginBottom: 80 }}
@@ -262,11 +259,9 @@ const Lesson = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };
 
-export default Lesson;
-const root = document.getElementById("root");
+const root = document.getElementById("page-root");
 createRoot(root).render(<Lesson />);

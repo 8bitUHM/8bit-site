@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'main_app/assets/8bit-logo.webp' %}"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <section class="bg-white py-14">
+      <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+        <div class="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
+          <div class="px-6 space-y-2 sm:p-8 py-6">
+            <a href="/"  class="hover:underline">Back to main site</a>
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+              Login to your 8bit learning account
+            </h1>
+            <form method="post" action="." class="space-y-4" >
+              {% csrf_token %}
+              <div>
+                <label
+                  for="email"
+                  class="block mb-2 text-sm md:text-base font-medium text-gray-900 after:content-['*'] after:text-red-700 after:md:text-lg"
+                >
+                  Your username
+                </label>
+                
+               {{ form.username }}
+              </div>
+              <div>
+                <label
+                  for="password"
+                  class="block mb-2 text-sm md:text-base font-medium text-gray-900 after:content-['*'] after:text-red-700 after:md:text-lg"
+                >
+                  Password
+                </label>
+                {{ form.password}}
+              </div>
+
+          
+
+              <button
+                type="submit"
+                class="w-full text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm md:text-base px-5 py-2.5 text-center"
+              >
+                Login
+              </button>
+
+              <p class="text-sm font-light text-gray-500">
+                Don't have an account? 
+                <a href="/learning/signup" class="font-medium text-primary-600 hover:underline">
+                  Signup here
+                </a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
