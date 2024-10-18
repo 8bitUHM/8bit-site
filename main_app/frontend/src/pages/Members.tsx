@@ -167,7 +167,7 @@ const Members = () => {
         className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       >
         {member.image != null ? (
-          <LoadingImage imageUri={member.image} className="rounded-t-lg" />
+          <LoadingImage imageUri={member.image} className="rounded-t-lg w-full" />
         ) : (
           <LoadingImage
             imageUri={"/static/main_app/assets/default-member.png"}
