@@ -18,7 +18,7 @@ const Navbar: FC = () => {
             href="/learning"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <span className="self-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r to-emerald-300 from-sky-300  ">
+            <span className="self-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r to-emerald-200 from-sky-200">
               8bit Learning
             </span>
           </a>
