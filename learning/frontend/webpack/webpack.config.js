@@ -1,27 +1,31 @@
 const path = require("path");
 const fs = require("fs");
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 
-function getEntryPoints(directory) {
+function getEntryPoints(directories) {
   const entries = {};
-  const files = fs.readdirSync(directory);
-  files.forEach((file) => {
-    const filePath = path.join(directory, file);
-    let fileName = file.split(".")[0];
-    try {
-      entries[fileName] = "./" + filePath;
-    } catch (e) {
-      console.log(e);
-    }
+  directories.forEach((dir) => {
+    const files = fs.readdirSync(dir);
+    files.forEach((file) => {
+      const filePath = path.join(dir, file);
+      const dirName = path.basename(dir);
+      const fileName = file.split(".")[0];
+      const entryName = `${dirName}/${fileName}`;
+      try {
+        entries[entryName] = "./" + filePath;
+      } catch (e) {
+        console.log(e);
+      }
+    });
   });
   return entries;
 }
 
 module.exports = {
-  entry: getEntryPoints("./src/pages"),
+  entry: getEntryPoints(["./src/pages", "./src/compiled-components"]),
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "../../static/learning/dist"),
+    path: path.resolve(__dirname, `../../static/learning/dist`),
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".json"],
@@ -45,9 +49,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
-  plugins: [
-    new Dotenv(),
-  ],
+  plugins: [new Dotenv()],
 };

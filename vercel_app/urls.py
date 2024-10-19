@@ -24,8 +24,6 @@ from main_app.views import MemberLoginView, MemberLogoutView
 
 
 urlpatterns = [
-    path('admin/login/', MemberLoginView.as_view(), name='admin_login'),
-    path('admin/logout/', MemberLogoutView.as_view(), name='admin_logout'),
     path('admin/', admin.site.urls),
     path('', include('main_app.urls')),
     path('api/', include('api.urls')),

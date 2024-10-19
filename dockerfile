@@ -28,13 +28,14 @@ COPY . /app/
 
 # Navigate to the frontend folder, install dependencies and run the build
 WORKDIR /app/main_app/frontend
-RUN npm install && npm run build
+RUN npm install
 
 WORKDIR /app/learning/frontend
-RUN npm install && npm run build
+RUN npm install
 
 # Navigate back to the app directory to run collectstatic
 WORKDIR /app
+RUN npm run build
 RUN python manage.py collectstatic --noinput
 
 # Expose port 8000 for the Django application
