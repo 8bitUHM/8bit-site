@@ -35,6 +35,7 @@ RUN npm install
 
 # Navigate back to the app directory to run collectstatic
 WORKDIR /app
+RUN npm install
 RUN npm run build
 RUN python manage.py collectstatic --noinput
 
