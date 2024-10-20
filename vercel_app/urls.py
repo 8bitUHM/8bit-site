@@ -33,4 +33,5 @@ urlpatterns = [
   url(r'^get/', db_views.get_file, {'add_attachment_headers': False},
      name='db_file_storage.get_file'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
