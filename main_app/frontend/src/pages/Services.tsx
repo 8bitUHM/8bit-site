@@ -103,6 +103,33 @@ const Services = () => {
             domain management, allowing you to focus on what matters most.
           </p>
         </div>
+        <section className="bg-white dark:bg-gray-900 py-5">
+          <div className=" px-4 mx-auto max-w-screen-xl text-center  lg:px-12">
+            <h1 className="mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-3xl dark:text-white">
+              Are you interested in 8bit services?
+            </h1>
+
+            <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+              <a
+                className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                href={`mailto:8bituhmanoa@gmail.com}`}
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="w-4 h-4 mr-2 text-black"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                </svg>
+                Send us an Email
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
