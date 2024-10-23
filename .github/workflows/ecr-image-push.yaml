@@ -42,24 +42,3 @@ jobs:
 
       - name: Push Docker image to ECR
         run: docker push 654654366889.dkr.ecr.us-west-2.amazonaws.com/8bit-site:latest
-
-  deploy-ec2:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: SSH into instance one and run commands
-      uses: appleboy/ssh-action@v0.1.8
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.USER_NAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          sudo docker stop $(sudo docker ps -aq)
-          sudo docker rm $(sudo docker ps -aq)
-          cd apps/8bit-site
-          git pull origin main
-          sudo docker build -t 8bit-site .
-          sudo docker run -d -p 3900:8000 -d 8bit-site
