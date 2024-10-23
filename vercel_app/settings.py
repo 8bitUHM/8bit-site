@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('PROJECT_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'www.8bituhm.org','8bituhm.org','sn3mzkzrp4.us-west-2.awsapprunner.com' '52.12.173.179']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'www.8bituhm.org','8bituhm.org','sn3mzkzrp4.us-west-2.awsapprunner.com', '52.12.173.179']
 
 
 # Application definition
