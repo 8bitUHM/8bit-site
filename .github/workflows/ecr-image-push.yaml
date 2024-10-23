@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - ".github/workflows/ec2-image-push.yaml"
 
 jobs:
   build:
