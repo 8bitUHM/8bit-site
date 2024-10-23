@@ -24,4 +24,5 @@ jobs:
           cd apps/8bit-site
           git pull origin main
           sudo docker build -t 8bit-site .
-          sudo docker run -d -p 3900:8000 -d 8bit-site
+          sudo docker run -d -p 3900:8000 --env-file .env 8bit-site
+          
