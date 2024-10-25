@@ -22,9 +22,11 @@ COPY . /app/
 FROM node:18
 
 # Navigate to the frontend folder, install dependencies and run the build
+COPY main_app/frontend/package.json /app/main_app/frontend
 WORKDIR /app/main_app/frontend
 RUN npm install && npm run build
 
+COPY learning/frontend/package.json /app/learning/frontend
 WORKDIR /app/learning/frontend
 RUN npm install && npm run build
 
