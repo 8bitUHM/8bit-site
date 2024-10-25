@@ -9,6 +9,13 @@ ENV PYTHONUNBUFFERED=1
 # Set the working directory within the container
 WORKDIR /app
 
+# Install Node.js and npm
+RUN apt-get update && apt-get install -y \
+    curl \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file into the container
 COPY requirements.txt /app/
@@ -19,19 +26,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . /app/
 
-FROM node:18
-
 # Navigate to the frontend folder, install dependencies and run the build
-COPY main_app/frontend/package.json /app/main_app/frontend/
 WORKDIR /app/main_app/frontend
-RUN npm install && npm run build
+RUN npm install
 
-COPY learning/frontend/package.json /app/learning/frontend/
 WORKDIR /app/learning/frontend
-RUN npm install && npm run build
+RUN npm install
 
 # Navigate back to the app directory to run collectstatic
 WORKDIR /app
+RUN npm install
+RUN npm run build
 RUN python manage.py collectstatic --noinput
 
 # Expose port 8000 for the Django application
