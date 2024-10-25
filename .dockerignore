@@ -1,2 +1,3 @@
 /vercel_app/.env
 /vercel_app/local_settings.py
+node_modules
