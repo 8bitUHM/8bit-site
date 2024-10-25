@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . /app/
 
-FROM noode:18
+FROM node:18
 
 # Navigate to the frontend folder, install dependencies and run the build
 WORKDIR /app/main_app/frontend
