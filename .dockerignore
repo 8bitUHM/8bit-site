@@ -1,3 +1,5 @@
 /vercel_app/.env
 /vercel_app/local_settings.py
 node_modules
+/main_app/learning/frontend/node_modules
+/main_app/main_app/frontend/node_modules
