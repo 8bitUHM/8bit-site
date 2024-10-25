@@ -1,50 +1,37 @@
-# Base stage for Python dependencies
-FROM python:3.12 AS python-base
+FROM python:3.12
 
 # Project secret key define for build argument
 ARG PROJECT_SECRET
 
-# Set environment variables
+# Set environment variables for Python to run in unbuffered mode
 ENV PYTHONUNBUFFERED=1
+
+# Set the working directory within the container
 WORKDIR /app
 
-# Copy and install Python dependencies
+
+# Copy the requirements file into the container
 COPY requirements.txt /app/
+
+# Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy only the application source code into the base stage
+# Copy the rest of the application code
 COPY . /app/
 
-FROM node:18 AS frontend-build
+FROM noode:18
 
-# Working directories for each frontend folder
-WORKDIR /frontend-main
-COPY main_app/frontend/package*.json ./
+# Navigate to the frontend folder, install dependencies and run the build
+WORKDIR /app/main_app/frontend
 RUN npm install
-COPY main_app/frontend ./
 RUN npm run build
 
-WORKDIR /frontend-learning
-COPY learning/frontend/package*.json ./
+WORKDIR /app/learning/frontend
 RUN npm install
-COPY learning/frontend ./
 RUN npm run build
 
-# Final image
-FROM python:3.12
-
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
+# Navigate back to the app directory to run collectstatic
 WORKDIR /app
-
-# Copy Python dependencies
-COPY --from=python-base /app /app
-
-# Copy built frontend assets from the frontend stage to the final image
-COPY --from=frontend-build /frontend-main/build /app/main_app/frontend/build
-COPY --from=frontend-build /frontend-learning/build /app/learning/frontend/build
-
-# Collect static files
 RUN python manage.py collectstatic --noinput
 
 # Expose port 8000 for the Django application
