@@ -33,7 +33,7 @@ RUN npm run build
 
 WORKDIR /app/learning/frontend
 RUN npm install
-RUN npm run builld
+RUN npm run build
 
 # Navigate back to the app directory to run collectstatic
 WORKDIR /app
