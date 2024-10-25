@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('PROJECT_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'www.8bituhm.org','8bituhm.org','sn3mzkzrp4.us-west-2.awsapprunner.com', '98.83.207.211']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'www.8bituhm.org','8bituhm.org','sn3mzkzrp4.us-west-2.awsapprunner.com', '98.83.207.211', 'staging.8bituhm.org']
 
 
 # Application definition
@@ -349,5 +349,5 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
-CSRF_TRUSTED_ORIGINS = ['https://8bituhm.org', 'https://www.8bituhm.org', 'http://98.83.207.211']
+CSRF_TRUSTED_ORIGINS = ['https://8bituhm.org', 'https://www.8bituhm.org', 'http://98.83.207.211', 'https://staging.8bituhm.org']
 
