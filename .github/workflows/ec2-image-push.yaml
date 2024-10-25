@@ -21,7 +21,7 @@ jobs:
         username: ${{ secrets.USER_NAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          /scripts/8bit_site_redeploy.sh
+          ./scripts/8bit_site_redeploy.sh
           
 
           
