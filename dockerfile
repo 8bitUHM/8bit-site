@@ -1,42 +1,50 @@
-FROM python:3.12
+# Base stage for Python dependencies
+FROM python:3.12 AS python-base
 
 # Project secret key define for build argument
 ARG PROJECT_SECRET
 
-# Set environment variables for Python to run in unbuffered mode
+# Set environment variables
 ENV PYTHONUNBUFFERED=1
-
-# Set the working directory within the container
 WORKDIR /app
 
-# Install Node.js and npm
-RUN apt-get update && apt-get install -y \
-    curl \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy the requirements file into the container
+# Copy and install Python dependencies
 COPY requirements.txt /app/
-
-# Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy only the application source code into the base stage
 COPY . /app/
 
-# Navigate to the frontend folder, install dependencies and run the build
-WORKDIR /app/main_app/frontend
+FROM node:18 AS frontend-build
+
+# Working directories for each frontend folder
+WORKDIR /frontend-main
+COPY main_app/frontend/package*.json ./
 RUN npm install
+COPY main_app/frontend ./
 RUN npm run build
 
-WORKDIR /app/learning/frontend
+WORKDIR /frontend-learning
+COPY learning/frontend/package*.json ./
 RUN npm install
+COPY learning/frontend ./
 RUN npm run build
 
-# Navigate back to the app directory to run collectstatic
+# Final image
+FROM python:3.12
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
 WORKDIR /app
+
+# Copy Python dependencies
+COPY --from=python-base /app /app
+
+# Copy built frontend assets from the frontend stage to the final image
+COPY --from=frontend-build /frontend-main/build /app/main_app/frontend/build
+COPY --from=frontend-build /frontend-learning/build /app/learning/frontend/build
+
+# Collect static files
 RUN python manage.py collectstatic --noinput
 
 # Expose port 8000 for the Django application
