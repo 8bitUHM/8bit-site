@@ -14,13 +14,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: SSH into instance one and run commands
-      uses: appleboy/ssh-action@v0.1.8
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.USER_NAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          cd scripts
-          ./8bit_site_redeploy.sh
+    # - name: SSH into instance one and run commands
+    #   uses: appleboy/ssh-action@v0.1.8
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.USER_NAME }}
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #     script: |
+    #       cd scripts
+    #       ./8bit_site_redeploy.sh
+
           
