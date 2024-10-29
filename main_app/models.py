@@ -54,6 +54,7 @@ class Project(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='main_app.File/bytes/filename/mimetype', null=True, blank=True,help_text="Please compress image, convert type to webp and change size to 500x500 px before uploading. https://imagecompressor.com/, https://cloudconvert.com/webp-converter, https://imageresizer.com/")
     github_link = models.URLField(max_length=1000)
+    deploy_link = models.URLField(max_length=1000, null=True, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):

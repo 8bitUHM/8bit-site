@@ -14,6 +14,7 @@ interface Project {
   name: string;
   description: string;
   github_link: string;
+  deploy_link: string;
   image: string;
   tags: Tag[];
 }
@@ -46,19 +47,43 @@ const Projects = () => {
             className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             key={index}
           >
-            <a href={project.github_link} target="_blank" className="border-b">
-              {project.image != null ? (
-                <LoadingImage
-                  imageUri={project.image}
-                  className="rounded-t-lg"
-                />
-              ) : (
-                <LoadingImage
-                  imageUri={"/static/main_app/assets/default-member.png"}
-                  className="rounded-t-lg"
-                />
-              )}
-            </a>
+            {project.deploy_link ? (
+              <>
+                <a
+                  href={project.deploy_link}
+                  target="_blank"
+                  className="border-b"
+                >
+                  {project.image != null ? (
+                    <LoadingImage
+                      imageUri={project.image}
+                      className="rounded-t-lg"
+                    />
+                  ) : (
+                    <LoadingImage
+                      imageUri={"/static/main_app/assets/default-member.png"}
+                      className="rounded-t-lg"
+                    />
+                  )}
+                </a>
+              </>
+            ) : (
+              <>
+                {" "}
+                {project.image != null ? (
+                  <LoadingImage
+                    imageUri={project.image}
+                    className="rounded-t-lg"
+                  />
+                ) : (
+                  <LoadingImage
+                    imageUri={"/static/main_app/assets/default-member.png"}
+                    className="rounded-t-lg"
+                  />
+                )}
+              </>
+            )}
+
             <div className="p-5">
               <a href={project.github_link} target="_blank">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:underline">
