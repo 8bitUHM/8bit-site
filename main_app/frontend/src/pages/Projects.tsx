@@ -15,6 +15,8 @@ interface Project {
   description: string;
   github_link: string;
   deploy_link: string;
+  client: string;
+  paid_client_project: boolean;
   image: string;
   tags: Tag[];
 }
@@ -103,7 +105,24 @@ const Projects = () => {
               <p className="mb-1 font-normal text-gray-700 dark:text-gray-400">
                 {project.description}
               </p>
-              <div className="flex pb-2 flex-wrap">
+              {project.client ? (
+                <>
+                  <div
+                    className="p-2 mb-1 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                    role="alert"
+                  >
+                    This was a{" "}
+                    {project.paid_client_project ? (
+                      <>
+                        <span className="font-medium">paid</span>
+                      </>
+                    ) : null}{" "}
+                    client project for{" "}
+                    <span className="font-medium">{project.client}</span>!
+                  </div>
+                </>
+              ) : null}
+              <div className="flex pb-3 flex-wrap">
                 {project.tags.map((val, key) => {
                   return (
                     <>
@@ -117,6 +136,7 @@ const Projects = () => {
                   );
                 })}
               </div>
+
               <a
                 href={project.github_link}
                 target="_blank"
