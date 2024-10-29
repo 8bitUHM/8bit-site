@@ -85,21 +85,31 @@ const Projects = () => {
             )}
 
             <div className="p-5">
-              <a href={project.github_link} target="_blank">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:underline">
-                  {project.name}
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {project.deploy_link ? (
+                <>
+                  <a href={project.deploy_link} target="_blank">
+                    <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:underline">
+                      {project.name}
+                    </h5>
+                  </a>
+                </>
+              ) : (
+                <>
+                  <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {project.name}
+                  </h5>
+                </>
+              )}
+              <p className="mb-1 font-normal text-gray-700 dark:text-gray-400">
                 {project.description}
               </p>
-              <div className="flex pb-4">
+              <div className="flex pb-2 flex-wrap">
                 {project.tags.map((val, key) => {
                   return (
                     <>
                       <span
                         key={key}
-                        className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-blue-900 dark:text-blue-300"
+                        className="bg-blue-100 my-1 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-blue-900 dark:text-blue-300"
                       >
                         {val.tag_name}
                       </span>
