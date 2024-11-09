@@ -65,11 +65,11 @@ const Index = () => {
             className="w-full aspect-video rounded"
             allowFullScreen={true}
             allow="accelerometer; magnetometer; gyroscope"
-            src="https://panoraven.com/en/embed/aN3ha1BgtK"
+            src="https://panoraven.com/en/embed/WOfnSPPfuM"
           ></iframe>
           <small>
-            Experience an interactive 360 view of one of our first team
-            meetings.
+            Experience an interactive 360 view of one of 8bit's team meetings
+            with Oppkey.
           </small>
         </div>
       </div>
