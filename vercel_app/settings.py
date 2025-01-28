@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('PROJECT_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'www.8bituhm.org','8bituhm.org','sn3mzkzrp4.us-west-2.awsapprunner.com', '98.83.207.211', 'staging.8bituhm.org', '8bithawaii.org']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app','sn3mzkzrp4.us-west-2.awsapprunner.com', '8bithawaii.org', 'staging.8bithawaii.org']
 
 
 # Application definition
@@ -97,9 +97,9 @@ WSGI_APPLICATION = 'vercel_app.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST' : os.getenv('MOCK_DATABASE_HOST'),
-        'USER': os.getenv('MOCK_DATABASE_USER'),
-        'PASSWORD': os.getenv('MOCK_DATABASE_PASSWORD'),
+        'HOST' : os.getenv('DATABASE_HOST'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'NAME': 'postgres',
         "PORT": "5432",
     }
@@ -349,5 +349,5 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
-CSRF_TRUSTED_ORIGINS = ['https://8bituhm.org', 'https://www.8bituhm.org', 'http://98.83.207.211', 'https://staging.8bituhm.org', 'https://8bithawaii.org']
+CSRF_TRUSTED_ORIGINS = ['https://staging.8bithawaii.org', 'https://8bithawaii.org']
 
