@@ -2,17 +2,34 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 import json
 from .serializers import LessonSerializer, SectionSerializer
+from django.http import HttpResponse
+
+
 
 
 
 # Create your views here.
 
+# def index(request):
+#   username = request.user.username
+#   queryset = Lesson.objects.all()
+#   serializer = LessonSerializer(queryset, many=True)
+#   serialized_json_data = json.dumps(serializer.data)
+#   return render(request,'learning/pages/home.html',{"lessons":serialized_json_data,"username":username})
 def index(request):
-  username = request.user.username
-  queryset = Lesson.objects.all()
-  serializer = LessonSerializer(queryset, many=True)
-  serialized_json_data = json.dumps(serializer.data)
-  return render(request,'learning/pages/home.html',{"lessons":serialized_json_data,"username":username})
+  html_content = """
+  <html>
+    <head>
+      <meta http-equiv="refresh" content="5;url=/">
+    </head>
+    <body>
+      <h2>This part of the site is closed for construction.</h2>
+      <p>You will be redirected back to the home page in 5 seconds...</p>
+    </body>
+  </html>
+  """
+  return HttpResponse(html_content)
+  
 
 def lesson(request,slug,page):
   username = request.user.username
