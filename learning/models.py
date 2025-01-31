@@ -31,7 +31,8 @@ class Tag(models.Model):
 
 class Lesson(models.Model):
   name = models.CharField(max_length=256)
-  slug = models.SlugField(unique=True)
+  slug = models.SlugField(unique=True, blank=True, null=True,)
+  order = models.IntegerField(unique=True, blank=False, null=True)
   tags = models.ManyToManyField(Tag, blank=True)
   description = models.TextField(max_length=500)
   required_lesson = models.BooleanField(default=False)

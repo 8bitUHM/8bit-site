@@ -5,7 +5,7 @@ from .serializers import LessonSerializer, SectionSerializer
 
 def index(request):
   username = request.user.username
-  queryset = Lesson.objects.all()
+  queryset = Lesson.objects.all().order_by('order')
   serializer = LessonSerializer(queryset, many=True)
   serialized_json_data = json.dumps(serializer.data)
   return render(request,'learning/pages/home.html',{"lessons":serialized_json_data,"username":username})
