@@ -8,7 +8,6 @@ interface Tag {
   tag_name: string;
   color: string;
 }
-interface Section {}
 
 interface Lesson {
   name: string;
@@ -17,10 +16,10 @@ interface Lesson {
   description: string;
   slug: string;
   tags: Tag[];
-  sections: Section[];
   core_lesson: boolean;
   required_lesson: boolean;
   extension_lesson: boolean;
+  completion_time: string;
 }
 
 const Index = () => {
@@ -30,7 +29,7 @@ const Index = () => {
 
   useEffect(() => {
     try {
-      const lessons = (window as any).data as any;
+      const lessons = (window as any).data as Lesson[];
       setLessonData(lessons);
       // lessons.forEach((lesson: any) => {
       //   console.log(lesson);
@@ -56,59 +55,60 @@ const Index = () => {
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {lessonData.map((lesson, key) => {
-                    if (lesson.sections.length > 0) {
-                      return (
-                        <div
-                          key={key}
-                          className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                    return (
+                      <div
+                        key={key}
+                        className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                      >
+                        <a
+                          href={`/learning/lessons/${lesson.slug}`}
+                          className="mb-3"
                         >
-                          <a
-                            href={`/learning/lessons/${lesson.slug}/1`}
-                            className="mb-3"
-                          >
-                            <LoadingImage
-                              imageUri={lesson.image}
-                              className="img-fluid float-left rounded-t mb-3"
-                            />
+                          <LoadingImage
+                            imageUri={lesson.image}
+                            className="img-fluid float-left rounded-t mb-3"
+                          />
+                        </a>
+                        <div className="p-5">
+                          <a href={`/learning/lessons/${lesson.slug}`}>
+                            <h5 className="text-2xl font-bold text-gray-900 dark:text-white hover:underline">
+                              {`Lesson ${key + 1} - ${lesson.name}`}
+                            </h5>
                           </a>
-                          <div className="p-5">
-                            <a href={`/learning/lessons/${lesson.slug}/1`}>
-                              <h5 className="text-2xl font-bold text-gray-900 dark:text-white hover:underline">
-                                {lesson.name}
-                              </h5>
-                            </a>
-                            <div className="flex py-2 flex-wrap">
-                              {lesson.required_lesson ? (
-                                <span className="my-1 bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-red-900 dark:text-red-300">
-                                  Required Lesson
-                                </span>
-                              ) : null}
-                              {lesson.core_lesson ? (
-                                <span className="my-1 bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-green-900 dark:text-green-300">
-                                  Core Lesson
-                                </span>
-                              ) : null}
-                              {lesson.tags.map((val, key) => {
-                                return (
-                                  <>
-                                    <span
-                                      key={key}
-                                      className="my-1 bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-blue-900 dark:text-blue-300"
-                                    >
-                                      {val.tag_name}
-                                    </span>
-                                  </>
-                                );
-                              })}
-                            </div>
-
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                              {lesson.description}
-                            </p>
+                          <span className="my-1 bg-red-600 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-blue-900 dark:text-blue-300">
+                            {`Est. Time: ${lesson.completion_time}`}
+                          </span>
+                          <div className="flex py-1 flex-wrap">
+                            {lesson.required_lesson ? (
+                              <span className="my-1 bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-red-900 dark:text-red-300">
+                                Required Lesson
+                              </span>
+                            ) : null}
+                            {lesson.core_lesson ? (
+                              <span className="my-1 bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-green-900 dark:text-green-300">
+                                Core Lesson
+                              </span>
+                            ) : null}
+                            {lesson.tags.map((val, key) => {
+                              return (
+                                <>
+                                  <span
+                                    key={key}
+                                    className="my-1 bg-blue-600 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-blue-900 dark:text-blue-300"
+                                  >
+                                    {val.tag_name}
+                                  </span>
+                                </>
+                              );
+                            })}
                           </div>
+
+                          <p className="font-normal text-gray-700 dark:text-gray-400">
+                            {lesson.description}
+                          </p>
                         </div>
-                      );
-                    }
+                      </div>
+                    );
                   })}
                 </div>
               </>

@@ -2,121 +2,85 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 
-interface Section {
-  page: number;
-  title: string;
-  content: string;
-}
-
 interface Lesson {
   name: string;
   skills: string;
   image: string;
   slug: string;
-  sections: Section[];
-  quiz: string;
+  lesson_videos: Video[];
+  description: string;
+}
+
+interface Video {
+  title: string;
+  video_embed_link: string;
+  short_description: string;
+  type: "follow_along" | "concept";
 }
 
 const Lesson = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
   const [lesson, setLessonData] = useState<Lesson>();
-  const [section, setSectionData] = useState<Section>();
 
   useEffect(() => {
     try {
-      const lessons = (window as any).lesson_data as any;
-      const sections = (window as any).section_data as any;
-      setSectionData(sections[0]);
+      const lessons = (window as any).lesson_data as Lesson[];
+      console.log(lessons);
       setLessonData(lessons[0]);
-      console.log(lessons[0].quiz);
 
       setCanMap(true);
+
       setPageReady(true);
     } catch (e: any) {
       setPageReady(true);
     }
   }, []);
 
-  const pagination = () => {
+  const backToLessonsButton = () => {
     return (
-      <nav aria-label="Page navigation example" className="py-3">
-        <ul className="inline-flex -space-x-px text-sm">
-          {section.page == 1 ? null : (
-            <li className="page-item">
-              <a
-                className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                href={`/learning/lessons/${lesson.slug}/${section.page - 1}`}
-              >
-                Previous
-              </a>
-            </li>
-          )}
-
-          {lesson.sections.map((sectionx, key) => {
-            if (sectionx.page == section.page) {
-              return (
-                <li key={key} className="page-item">
-                  <a
-                    className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                    href={`/learning/lessons/${lesson.slug}/${sectionx.page}`}
-                  >
-                    {`${sectionx.page}`}
-                  </a>
-                </li>
-              );
-            } else {
-              return (
-                <li key={key} className="page-item">
-                  <a
-                    className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    href={`/learning/lessons/${lesson.slug}/${sectionx.page}`}
-                  >
-                    {`${sectionx.page}`}
-                  </a>
-                </li>
-              );
-            }
-          })}
-          {lesson.quiz == null ? null : (
-            <li className="page-item ">
-              <a
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                href={`/learning/lessons/${lesson.slug}/quiz`}
-              >
-                Quiz
-              </a>
-            </li>
-          )}
-
-          {lesson.quiz != null || section.page != lesson.sections.length ? (
-            <>
-              {section.page != lesson.sections.length ? (
-                <li className="page-item ">
-                  <a
-                    className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    href={`/learning/lessons/${lesson.slug}/${
-                      section.page + 1
-                    }`}
-                  >
-                    Next
-                  </a>
-                </li>
-              ) : (
-                <li className="page-item ">
-                  <a
-                    className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    href={`/learning/lessons/${lesson.slug}/quiz`}
-                  >
-                    Next
-                  </a>
-                </li>
-              )}
-            </>
-          ) : null}
-        </ul>
-      </nav>
+      <div className="flex items-center hover:underline mb-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-4 mr-1"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
+        <a href="/learning"> Back to lessons</a>
+      </div>
     );
+  };
+
+  const getVideoTypeBadge = (vid: Video): React.JSX.Element => {
+    let ret = <></>;
+    switch (vid.type) {
+      case "concept":
+        ret = (
+          <span className="bg-purple-100 mb-2 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-purple-900 dark:text-purple-300">
+            Concept video
+          </span>
+        );
+        break;
+
+      case "follow_along":
+        ret = (
+          <span className="bg-pink-100 text-pink-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-pink-900 dark:text-pink-300">
+            Follow along video
+          </span>
+        );
+        break;
+      default:
+        ret = <></>;
+    }
+    return ret;
   };
 
   return (
@@ -131,42 +95,66 @@ const Lesson = () => {
           <>
             {canMap ? (
               <>
-                <div>
-                  <div className="flex items-center hover:underline mb-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="size-4 mr-1"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-                      />
-                    </svg>
-                    <a href="/learning"> Back to lessons</a>
-                  </div>
-                  <h1 className="text-3xl font-bold">{lesson.name}</h1>
-                  <h3 className="text-xl">
-                    {`Section ${section.page} : `}
-                    {section.title}
-                  </h3>
-                  {pagination()}
-                  <div
-                    dangerouslySetInnerHTML={{ __html: section.content }}
-                    className="py-2"
-                  />
-                  {pagination()}
-                </div>
+                {lesson.lesson_videos.length > 0 ? (
+                  <>
+                    <div className="flex items-center hover:underline mb-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-4 mr-1"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                        />
+                      </svg>
+                      <a href="/learning"> Back to lessons</a>
+                    </div>
+                    <h1 className="text-3xl font-bold">{lesson.name}</h1>
+                    <p>{lesson.description}</p>
+                    {lesson.lesson_videos.map((vid, key) => (
+                      <>
+                        <div className="my-5">
+                          {getVideoTypeBadge(vid)}
+                          <h1 className="text-2xl font-semibold ">
+                            {`Section ${key + 1} - ${vid.title}`}
+                          </h1>
+                          {vid.short_description.length > 0 && (
+                            <p>{vid.short_description}</p>
+                          )}
+                          <iframe
+                            className="w-full aspect-video rounded mt-1"
+                            allowFullScreen={true}
+                            allow="accelerometer; magnetometer; gyroscope"
+                            src={`${vid.video_embed_link}`}
+                          ></iframe>
+                        </div>
+                        <hr className="h-px my-8 border-0 bg-gray-500 dark:bg-gray-500"></hr>
+                      </>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    {backToLessonsButton()}
+                    <div style={{ marginBottom: 700 }}>
+                      Uh oh! There is currently no content for this lesson.
+                      Please try again later!
+                    </div>
+                  </>
+                )}
               </>
             ) : (
-              <div style={{ marginBottom: 700 }}>
-                Uh oh! Something went wrong with our request for data. Please
-                refresh and try again!
-              </div>
+              <>
+                {backToLessonsButton()}
+                <div style={{ marginBottom: 700 }}>
+                  Uh oh! Something went wrong with our request for data. Please
+                  refresh and try again!
+                </div>
+              </>
             )}
           </>
         ) : (
