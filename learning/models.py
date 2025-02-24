@@ -22,22 +22,13 @@ class Tag(models.Model):
     def __str__(self):
       return self.tag_name
 
-    class Meta:
-      ordering = [models.Case(
-        models.When(color='bg-primary', then=1),
-        default=2,
-        output_field=models.IntegerField(),
-      )]
-
 class Lesson(models.Model):
   name = models.CharField(max_length=256)
-  slug = models.SlugField(unique=True)
+  slug = models.SlugField(unique=True, blank=True, null=True,)
+  order = models.IntegerField(unique=True, blank=False, null=True)
+  completion_time = models.CharField(max_length=50)
   tags = models.ManyToManyField(Tag, blank=True)
   description = models.TextField(max_length=500)
-  required_lesson = models.BooleanField(default=False)
-  core_lesson = models.BooleanField(default=False)
-  extension_lesson = models.BooleanField(default=True)
-  quiz = models.URLField(max_length=1000, blank=True, null=True)
   image = models.ImageField(upload_to='learning.File/bytes/filename/mimetype', null=True, blank=True,help_text="Please compress image, convert type to webp and change size to 700x360 px before uploading. https://imagecompressor.com/, https://cloudconvert.com/webp-converter, https://imageresizer.com/")
 
   def delete(self, *args, **kwargs):
@@ -47,25 +38,18 @@ class Lesson(models.Model):
   def __str__(self):
     return self.name
   
-  class Meta:
-    ordering = [models.Case(
-      models.When(required_lesson=True, then=1),
-      models.When(core_lesson=True, then=2),
-      models.When(extension_lesson=True, then=3),
-      default=4,
-      output_field=models.IntegerField(),
-    )]
+class LessonVideo(models.Model):
   
-class Section(models.Model):
+  VIDEO_TYPE_CHOICES = (
+    ('concept','Concept'),
+    ('follow_along', 'Follow along'),
+)
+  
   title = models.CharField(max_length=256)
-  page = models.IntegerField(default=0)
-  content = RichTextField(max_length=100000)
-  lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE, related_name="sections")
+  short_description = models.TextField(max_length=500, blank=True, null=True)
+  type = models.CharField(max_length=15, choices=VIDEO_TYPE_CHOICES, default="follow_along")
+  video_embed_link = models.URLField()
+  lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE, related_name="lesson_videos")
   
   def __str__(self):
     return self.title
-  
-  class Meta:
-    ordering = [
-      'page'
-    ]
