@@ -10,18 +10,38 @@ const Footer: FC = () => {
   }, []);
   return (
     <>
-      <footer className="fixed bottom-0 left-0 z-20 w-full p-2 bg-teal-800 border-t border-gray-200 shadow flex items-center justify-between  dark:bg-gray-800 dark:border-gray-600 flex-wrap">
-        <span className="text-sm text-white  ">
-          © 2024{" "}
-          <a href="/" className="hover:underline">
-            8bit UHM
-          </a>
-          . All Rights Reserved.
-        </span>
+      <footer className="fixed bottom-0 left-0 z-20 w-full backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-t border-gray-200/20 dark:border-gray-700/20 shadow-soft">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row items-center justify-between">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                © 2024{" "}
+                <a 
+                  href="/" 
+                  className="font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200"
+                >
+                  8bit UHM
+                </a>
+                . All Rights Reserved.
+              </span>
+            </div>
 
-        <span className="flex flex-wrap items-center  text-sm font-medium text-white sm:mt-0">
-          Learning portal made with ❤️ by Leighton M.
-        </span>
+            <div className="flex items-center">
+              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">
+                Learning portal made with{" "}
+                <span className="inline-flex items-center">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-red-500 animate-pulse-soft" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                  </svg>
+                </span>{" "}
+                by{" "}
+                <span className="font-medium text-accent-600 dark:text-accent-400">
+                  Leighton M.
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
       </footer>
     </>
   );

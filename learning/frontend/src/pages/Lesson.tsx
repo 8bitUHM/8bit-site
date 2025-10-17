@@ -39,14 +39,17 @@ const Lesson = () => {
 
   const backToLessonsButton = () => {
     return (
-      <div className="flex items-center hover:underline mb-2">
+      <a 
+        href="/learning" 
+        className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200 group mb-8"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="size-4 mr-1"
+          className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform duration-200"
         >
           <path
             strokeLinecap="round"
@@ -54,8 +57,8 @@ const Lesson = () => {
             d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
           />
         </svg>
-        <a href="/learning"> Back to lessons</a>
-      </div>
+        Back to lessons
+      </a>
     );
   };
 
@@ -64,16 +67,22 @@ const Lesson = () => {
     switch (vid.type) {
       case "concept":
         ret = (
-          <span className="bg-purple-100 mb-2 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-purple-900 dark:text-purple-300">
-            Concept video
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 mb-3">
+            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+            Concept Video
           </span>
         );
         break;
 
       case "follow_along":
         ret = (
-          <span className="bg-pink-100 text-pink-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-pink-900 dark:text-pink-300">
-            Follow along video
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300 mb-3">
+            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+            </svg>
+            Follow Along
           </span>
         );
         break;
@@ -86,7 +95,7 @@ const Lesson = () => {
   return (
     <>
       <div
-        className="container sm:mx-auto px-5 max-w-screen-xl"
+        className="container sm:mx-auto px-4 sm:px-6 max-w-screen-xl"
         style={{ paddingTop: 100, paddingBottom: 100 }}
         data-aos="fade-up"
         data-aos-duration="1500"
@@ -97,52 +106,93 @@ const Lesson = () => {
               <>
                 {lesson.lesson_videos.length > 0 ? (
                   <>
-                    <div className="flex items-center hover:underline mb-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-4 mr-1"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-                        />
-                      </svg>
-                      <a href="/learning"> Back to lessons</a>
+                    {backToLessonsButton()}
+                    
+                    {/* Lesson Header */}
+                    <div className="mb-8 sm:mb-12 animate-fade-in">
+                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 px-2">
+                        {lesson.name}
+                      </h1>
+                      <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-4xl px-2">
+                        {lesson.description}
+                      </p>
                     </div>
-                    <h1 className="text-3xl font-bold">{lesson.name}</h1>
-                    <p>{lesson.description}</p>
-                    {lesson.lesson_videos.map((vid, key) => (
-                      <>
-                        <div className="my-5">
-                          {getVideoTypeBadge(vid)}
-                          <h1 className="text-2xl font-semibold ">
-                            {`Section ${key + 1} - ${vid.title}`}
-                          </h1>
-                          {vid.short_description.length > 0 && (
-                            <p>{vid.short_description}</p>
-                          )}
-                          <iframe
-                            className="w-full aspect-video rounded mt-1"
-                            allowFullScreen={true}
-                            allow="accelerometer; magnetometer; gyroscope"
-                            src={`${vid.video_embed_link}`}
-                          ></iframe>
+
+                    {/* Video Sections */}
+                    <div className="space-y-12 sm:space-y-16">
+                      {lesson.lesson_videos
+                        .sort((a, b) => {
+                          // Sort concept videos first, then follow-along videos
+                          if (a.type === 'concept' && b.type === 'follow_along') return -1;
+                          if (a.type === 'follow_along' && b.type === 'concept') return 1;
+                          return 0;
+                        })
+                        .map((vid, key) => (
+                        <div key={key} className="animate-slide-up" style={{ animationDelay: `${key * 200}ms` }}>
+                          <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 overflow-hidden">
+                            {/* Video Header */}
+                            <div className="p-4 sm:p-6 border-b border-gray-100 dark:border-gray-700">
+                              {getVideoTypeBadge(vid)}
+                              <h2 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                                Section {key + 1}: {vid.title}
+                              </h2>
+                              {vid.short_description.length > 0 && (
+                                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                                  {vid.short_description}
+                                </p>
+                              )}
+                            </div>
+
+                            {/* Video Container */}
+                            <div className="relative bg-gray-900">
+                              <div className="aspect-video">
+                                <iframe
+                                  className="w-full h-full"
+                                  allowFullScreen={true}
+                                  allow="accelerometer; magnetometer; gyroscope"
+                                  src={`${vid.video_embed_link}`}
+                                  title={`${vid.title} - Section ${key + 1}`}
+                                ></iframe>
+                              </div>
+                              
+                              {/* Video Overlay Effects */}
+                              <div className="absolute inset-0 pointer-events-none">
+                                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-black/50 backdrop-blur-sm rounded-md sm:rounded-lg px-2 sm:px-3 py-1 text-white text-xs sm:text-sm font-medium">
+                                  Section {key + 1}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <hr className="h-px my-8 border-0 bg-gray-500 dark:bg-gray-500"></hr>
-                      </>
-                    ))}
+                      ))}
+                    </div>
+
+                    {/* Navigation Footer */}
+                    <div className="mt-12 sm:mt-16 text-center">
+                      <a
+                        href="/learning"
+                        className="inline-flex items-center px-4 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg sm:rounded-xl hover:from-primary-600 hover:to-accent-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 shadow-medium hover:shadow-glow"
+                      >
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                        </svg>
+                        Back to All Lessons
+                      </a>
+                    </div>
                   </>
                 ) : (
                   <>
                     {backToLessonsButton()}
-                    <div style={{ marginBottom: 700 }}>
-                      Uh oh! There is currently no content for this lesson.
-                      Please try again later!
+                    <div className="text-center py-16 sm:py-20">
+                      <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 max-w-md mx-4 sm:mx-auto">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                          <svg className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                          </svg>
+                        </div>
+                        <h3 className="text-base sm:text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-2">Content Coming Soon</h3>
+                        <p className="text-sm sm:text-base text-yellow-600 dark:text-yellow-400">This lesson is currently being prepared. Please check back later!</p>
+                      </div>
                     </div>
                   </>
                 )}
@@ -150,33 +200,37 @@ const Lesson = () => {
             ) : (
               <>
                 {backToLessonsButton()}
-                <div style={{ marginBottom: 700 }}>
-                  Uh oh! Something went wrong with our request for data. Please
-                  refresh and try again!
+                <div className="text-center py-16 sm:py-20">
+                  <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 max-w-md mx-4 sm:mx-auto">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <svg className="w-6 h-6 sm:w-8 sm:h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-semibold text-red-800 dark:text-red-200 mb-2">Oops! Something went wrong</h3>
+                    <p className="text-sm sm:text-base text-red-600 dark:text-red-400 mb-4">We couldn't load the lesson content. Please refresh and try again.</p>
+                    <button 
+                      onClick={() => window.location.reload()} 
+                      className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+                    >
+                      Refresh Page
+                    </button>
+                  </div>
                 </div>
               </>
             )}
           </>
         ) : (
-          <div className="flex justify-center py-12">
-            <div role="status">
-              <svg
-                aria-hidden="true"
-                className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"
-                viewBox="0 0 100 101"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                  fill="currentFill"
-                />
-              </svg>
-              <span className="sr-only">Loading...</span>
+          <div className="flex flex-col items-center justify-center py-16 sm:py-20">
+            <div className="relative">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin"></div>
+              <div className="absolute inset-0 w-12 h-12 sm:w-16 sm:h-16 border-4 border-transparent border-t-accent-500 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
+            </div>
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg font-medium text-gray-600 dark:text-gray-400">Loading lesson content...</p>
+            <div className="mt-2 flex space-x-1">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
             </div>
           </div>
         )}
