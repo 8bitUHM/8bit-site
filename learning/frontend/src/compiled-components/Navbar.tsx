@@ -12,26 +12,35 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <nav className="bg-teal-600 border-gray-200 dark:border-gray-600 dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+      <nav className="fixed w-full z-20 top-0 start-0 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/20 dark:border-gray-700/20 shadow-soft">
+        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 sm:px-6 py-3 sm:py-4">
           <a
             href="/learning"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
+            className="flex items-center space-x-2 sm:space-x-3 rtl:space-x-reverse group"
           >
-            <span className="self-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r to-emerald-200 from-sky-200">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-accent-400 rounded-lg sm:rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div className="relative bg-gradient-to-r from-primary-500 to-accent-500 p-1.5 sm:p-2 rounded-lg sm:rounded-xl">
+                <svg className="w-4 h-4 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <span className="self-center text-lg sm:text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600 group-hover:from-primary-500 group-hover:to-accent-500 transition-all duration-300">
               8bit Learning
             </span>
           </a>
+          
           <button
             data-collapse-toggle="mega-menu-full"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 w-10 h-10 sm:p-3 sm:w-11 sm:h-11 justify-center text-sm text-gray-700 dark:text-gray-300 rounded-lg sm:rounded-xl md:hidden hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-800 transition-all duration-200"
             aria-controls="mega-menu-full"
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>
             <svg
-              className="w-5 h-5"
+              className="w-4 h-4 sm:w-5 sm:h-5"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -46,27 +55,38 @@ const Navbar: FC = () => {
               />
             </svg>
           </button>
+          
           <div
             id="mega-menu-full"
             className="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
           >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col p-3 sm:p-4 md:p-0 mt-3 sm:mt-4 border border-gray-200/20 dark:border-gray-700/20 rounded-xl sm:rounded-2xl md:space-x-2 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-white/50 dark:bg-gray-800/50 md:bg-transparent md:dark:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
               <li>
                 <a
                   href="/learning"
-                  className="block py-2 px-3 text-white rounded hover:bg-teal-400 md:hover:bg-transparent md:hover:text-teal-300 md:p-0 dark:text-white md:dark:hover:text-teal-500 dark:hover:bg-gray-700 dark:hover:text-teal-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2.5 sm:py-3 px-3 sm:px-4 text-sm sm:text-base text-gray-700 dark:text-gray-300 rounded-lg sm:rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 md:hover:bg-transparent md:hover:text-primary-600 md:p-0 dark:hover:text-primary-400 transition-all duration-200 font-medium"
                   aria-current="page"
                 >
-                  Lessons
+                  <span className="flex items-center space-x-2">
+                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                    </svg>
+                    <span>Lessons</span>
+                  </span>
                 </a>
               </li>
 
               <li>
                 <a
                   href="/"
-                  className="block py-2 px-3 text-white rounded hover:bg-teal-400 md:hover:bg-transparent md:hover:text-teal-300 md:p-0 dark:text-white md:dark:hover:text-teal-500 dark:hover:bg-gray-700 dark:hover:text-teal-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2.5 sm:py-3 px-3 sm:px-4 text-sm sm:text-base text-gray-700 dark:text-gray-300 rounded-lg sm:rounded-xl hover:bg-accent-50 dark:hover:bg-accent-900/20 md:hover:bg-transparent md:hover:text-accent-600 md:p-0 dark:hover:text-accent-400 transition-all duration-200 font-medium"
                 >
-                  Main Site
+                  <span className="flex items-center space-x-2">
+                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                    </svg>
+                    <span>Main Site</span>
+                  </span>
                 </a>
               </li>
             </ul>

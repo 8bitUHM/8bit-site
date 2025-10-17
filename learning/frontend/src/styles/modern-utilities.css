@@ -1,0 +1,457 @@
+/* Modern UI Utilities for 8bit Learning Portal */
+
+/* Line clamp utilities for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0d9488, #0284c7);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0f766e, #0369a1);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #115e59, #075985);
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Loading animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .shimmer {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200px 100%;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Button animations */
+.btn-animate {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-animate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-animate:hover::before {
+  left: 100%;
+}
+
+/* Pulse animation for interactive elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(20, 184, 166, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Responsive text sizing */
+.text-responsive {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.text-responsive-lg {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.text-responsive-xl {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+/* Custom selection colors */
+::selection {
+  background-color: rgba(20, 184, 166, 0.2);
+  color: #0d9488;
+}
+
+.dark ::selection {
+  background-color: rgba(14, 165, 233, 0.2);
+  color: #38bdf8;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card-hover:hover {
+    border: 2px solid #000;
+  }
+  
+  .dark .card-hover:hover {
+    border: 2px solid #fff;
+  }
+}
+
+/* Mobile-specific utilities */
+@media (max-width: 640px) {
+  /* Touch-friendly button sizing */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-optimized spacing */
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-margin {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  /* Mobile text sizing */
+  .mobile-text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .mobile-text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  /* Mobile card adjustments */
+  .mobile-card {
+    border-radius: 0.75rem;
+    padding: 1rem;
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-nav-item {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Mobile form elements */
+  .mobile-input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  /* Mobile video container */
+  .mobile-video {
+    border-radius: 0.5rem;
+    margin: 0 -1rem;
+  }
+  
+  /* Mobile grid adjustments */
+  .mobile-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* Mobile modal adjustments */
+  .mobile-modal {
+    margin: 1rem;
+    border-radius: 1rem;
+  }
+  
+  /* Mobile loading states */
+  .mobile-loading {
+    padding: 2rem 1rem;
+  }
+  
+  /* Mobile button groups */
+  .mobile-button-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .mobile-button-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Tablet-specific utilities */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tablet-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Mobile-first responsive utilities */
+.mobile-first {
+  /* Base mobile styles */
+  font-size: 0.875rem;
+  padding: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .mobile-first {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-first {
+    font-size: 1.125rem;
+    padding: 1.25rem;
+  }
+}
+
+/* Mobile gesture support */
+.touch-action-pan-x {
+  touch-action: pan-x;
+}
+
+.touch-action-pan-y {
+  touch-action: pan-y;
+}
+
+.touch-action-manipulation {
+  touch-action: manipulation;
+}
+
+/* Mobile scroll improvements */
+.mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Mobile focus improvements */
+.mobile-focus {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+/* Mobile safe area support */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Mobile viewport height fixes */
+.mobile-vh {
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+}
+
+.mobile-min-vh {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Mobile typography improvements */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  p {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+  }
+  
+  /* Improve readability on mobile */
+  .mobile-readable {
+    line-height: 1.6;
+    letter-spacing: 0.025em;
+  }
+}
+
+/* Mobile animation optimizations */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-animate {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .mobile-animate:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Mobile dark mode improvements */
+@media (max-width: 640px) {
+  .dark .mobile-card {
+    background-color: rgba(31, 41, 55, 0.95);
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+  
+  .dark .mobile-nav-item {
+    color: rgba(209, 213, 219, 0.9);
+  }
+  
+  .dark .mobile-nav-item:hover {
+    background-color: rgba(55, 65, 81, 0.5);
+  }
+}
