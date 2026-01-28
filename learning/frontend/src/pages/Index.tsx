@@ -69,7 +69,7 @@ const Index = () => {
                     return (
                       <div
                         key={key}
-                        className="group bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-soft hover:shadow-large transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-primary-200 dark:hover:border-primary-700 animate-slide-up"
+                        className="group bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-soft hover:shadow-large transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-primary-200 dark:hover:border-primary-700 animate-slide-up flex flex-col"
                         style={{ animationDelay: `${key * 100}ms` }}
                       >
                         {/* Image Container */}
@@ -96,7 +96,7 @@ const Index = () => {
                         </div>
 
                         {/* Content */}
-                        <div className="p-4 sm:p-6">
+                        <div className="p-4 sm:p-6 flex flex-col flex-1">
                           <a href={`/learning/lessons/${lesson.slug}`}>
                             <h3 className="text-lg sm:text-xl font-display font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200 line-clamp-2">
                               {lesson.name}
@@ -140,7 +140,7 @@ const Index = () => {
                           {/* Action Button */}
                           <a
                             href={`/learning/lessons/${lesson.slug}`}
-                            className="inline-flex items-center justify-center w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg sm:rounded-xl hover:from-primary-600 hover:to-accent-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 group-hover:shadow-glow"
+                            className="inline-flex items-center justify-center w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg sm:rounded-xl hover:from-primary-600 hover:to-accent-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 group-hover:shadow-glow mt-auto"
                           >
                             <span>Start Learning</span>
                             <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5 sm:ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -60,15 +60,15 @@ const Navbar: FC = () => {
             id="mega-menu-full"
             className="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
           >
-            <ul className="flex flex-col p-3 sm:p-4 md:p-0 mt-3 sm:mt-4 border border-gray-200/20 dark:border-gray-700/20 rounded-xl sm:rounded-2xl md:space-x-2 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-white/50 dark:bg-gray-800/50 md:bg-transparent md:dark:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
+            <ul className="flex flex-col p-3 sm:p-4 md:p-0 mt-3 sm:mt-4 border border-gray-200/20 dark:border-gray-700/20 rounded-xl sm:rounded-2xl gap-2 md:gap-4 md:space-x-0 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-white/50 dark:bg-gray-800/50 md:bg-transparent md:dark:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
               <li>
                 <a
                   href="/learning"
-                  className="block py-2.5 sm:py-3 px-3 sm:px-4 text-sm sm:text-base text-gray-700 dark:text-gray-300 rounded-lg sm:rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 md:hover:bg-transparent md:hover:text-primary-600 md:p-0 dark:hover:text-primary-400 transition-all duration-200 font-medium"
+                  className="block py-2.5 sm:py-3 px-3 sm:px-4 text-sm sm:text-base rounded-lg sm:rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 md:hover:bg-transparent md:p-0 transition-all duration-200 font-medium group"
                   aria-current="page"
                 >
-                  <span className="flex items-center space-x-2">
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <span className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 md:group-hover:text-transparent md:group-hover:bg-clip-text md:group-hover:bg-gradient-to-r md:group-hover:from-primary-600 md:group-hover:to-accent-600 transition-all duration-200">
+                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-500 dark:text-primary-400 md:group-hover:text-primary-600 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                     </svg>
                     <span>Lessons</span>
@@ -79,13 +79,13 @@ const Navbar: FC = () => {
               <li>
                 <a
                   href="/"
-                  className="block py-2.5 sm:py-3 px-3 sm:px-4 text-sm sm:text-base text-gray-700 dark:text-gray-300 rounded-lg sm:rounded-xl hover:bg-accent-50 dark:hover:bg-accent-900/20 md:hover:bg-transparent md:hover:text-accent-600 md:p-0 dark:hover:text-accent-400 transition-all duration-200 font-medium"
+                  className="block py-2.5 sm:py-3 px-3 sm:px-4 text-sm sm:text-base rounded-lg sm:rounded-xl hover:bg-accent-50 dark:hover:bg-accent-900/20 md:hover:bg-transparent md:p-0 transition-all duration-200 font-medium group"
                 >
-                  <span className="flex items-center space-x-2">
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                  <span className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 md:group-hover:text-transparent md:group-hover:bg-clip-text md:group-hover:bg-gradient-to-r md:group-hover:from-accent-600 md:group-hover:to-primary-600 transition-all duration-200">
+                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent-500 dark:text-accent-400 md:group-hover:text-accent-600 transition-transform duration-200 md:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
-                    <span>Main Site</span>
+                    <span>Back to Main Site</span>
                   </span>
                 </a>
               </li>
