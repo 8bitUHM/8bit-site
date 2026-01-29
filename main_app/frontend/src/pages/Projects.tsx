@@ -17,6 +17,7 @@ interface Project {
   deploy_link: string;
   client: string;
   paid_client_project: boolean;
+  in_development: boolean;
   image: string;
   tags: Tag[];
 }
@@ -56,12 +57,12 @@ const Projects = () => {
                   {project.image != null ? (
                     <LoadingImage
                       imageUri={project.image}
-                      className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-72 sm:h-80 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <LoadingImage
                       imageUri={"/static/main_app/assets/default-member.png"}
-                      className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-72 sm:h-80 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   )}
                 </a>
@@ -70,12 +71,12 @@ const Projects = () => {
                   {project.image != null ? (
                     <LoadingImage
                       imageUri={project.image}
-                      className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-72 sm:h-80 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <LoadingImage
                       imageUri={"/static/main_app/assets/default-member.png"}
-                      className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-72 sm:h-80 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   )}
                 </>
@@ -91,6 +92,16 @@ const Projects = () => {
                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                   </svg>
                   {project.paid_client_project ? "Paid Client" : "Client"}
+                </div>
+              )}
+
+              {/* In Development Badge */}
+              {project.in_development && (
+                <div className="absolute top-3 right-3 bg-amber-500/95 dark:bg-amber-500/90 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg">
+                  <svg className="w-3 h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                  </svg>
+                  In Development
                 </div>
               )}
             </div>
@@ -207,7 +218,7 @@ const Projects = () => {
                   </p>
                 </div>
 
-                {/* Projects Grid */}
+                {/* Projects Grid - 2 projects per row on large screens */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                   {mapProjects()}
                 </div>

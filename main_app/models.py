@@ -57,6 +57,7 @@ class Project(models.Model):
     deploy_link = models.URLField(max_length=1000, null=True, blank=True)
     client = models.CharField(max_length=255, null=True, blank=True)
     paid_client_project = models.BooleanField(default=False)
+    in_development = models.BooleanField(default=False, help_text="Toggle if this project is ongoing/in development")
     tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):

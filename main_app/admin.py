@@ -15,6 +15,8 @@ class MemberAdmin(admin.ModelAdmin):
         return actions
     
 class ProjectAdmin(admin.ModelAdmin):
+  list_display = ["name", "client", "in_development", "paid_client_project"]
+  list_editable = ["in_development"]
   filter_horizontal = ["tags"]
 
 admin.site.register(SocialMedia)
