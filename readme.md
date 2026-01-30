@@ -15,7 +15,7 @@ The project is organized into several components:
   - **db_file_storage/**: File storage systems that allows us to store files by raw bytes and mimetype in database.
 
   - **vercel_app/**: Main or 'host' app
-    - **settings.py**: Configuration settings for the project, including database settings, middleware, installed apps, and other project-specific configurations. Models are defined here.
+    - **settings.py**: Configuration settings for the project, including database settings, middleware, installed apps, and other project-specific configurations. Models are defined here
     - **urls.py**: URL configuration for the project, mapping URLs to views.
   - **main_app/**: main app
     - **frontend/**: Folder that holds react project src files
