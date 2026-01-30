@@ -114,6 +114,8 @@ const Quiz = () => {
                     <iframe
                       src={`${lesson.quiz}`}
                       className="w-full aspect-square rounded-xl"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
                     ></iframe>
                   </div>
                   {pagination()}

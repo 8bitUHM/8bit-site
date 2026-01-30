@@ -18,6 +18,45 @@ interface Video {
   type: "follow_along" | "concept";
 }
 
+function getYouTubeEmbedSrc(embedLink: string): string {
+  try {
+    const url = embedLink.trim();
+    let videoId: string | null = null;
+    let existingParams = "";
+
+    // Match youtube.com/embed/VIDEO_ID or youtube-nocookie.com/embed/VIDEO_ID
+    const embedMatch = url.match(/(?:youtube\.com|youtube-nocookie\.com)\/embed\/([a-zA-Z0-9_-]+)(\?[^#]*)?/);
+    if (embedMatch) {
+      videoId = embedMatch[1];
+      existingParams = (embedMatch[2] || "").replace(/^\?/, "");
+    }
+
+    // Match youtube.com/watch?v=VIDEO_ID
+    if (!videoId) {
+      const watchMatch = url.match(/(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]+)/);
+      if (watchMatch) videoId = watchMatch[1];
+    }
+
+    // Match youtu.be/VIDEO_ID
+    if (!videoId) {
+      const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+      if (shortMatch) videoId = shortMatch[1];
+    }
+
+    if (!videoId) return embedLink;
+
+    const base = "https://www.youtube-nocookie.com/embed/" + videoId;
+    const params = new URLSearchParams(existingParams);
+    if (typeof window !== "undefined" && window.location?.origin) {
+      params.set("origin", window.location.origin);
+    }
+    const query = params.toString();
+    return query ? `${base}?${query}` : base;
+  } catch {
+    return embedLink;
+  }
+}
+
 const Lesson = () => {
   const [pageReady, setPageReady] = useState<boolean>(false);
   const [canMap, setCanMap] = useState<boolean>(false);
@@ -149,8 +188,9 @@ const Lesson = () => {
                                 <iframe
                                   className="w-full h-full"
                                   allowFullScreen={true}
-                                  allow="accelerometer; magnetometer; gyroscope"
-                                  src={`${vid.video_embed_link}`}
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  referrerPolicy="strict-origin-when-cross-origin"
+                                  src={getYouTubeEmbedSrc(vid.video_embed_link)}
                                   title={`${vid.title} - Section ${key + 1}`}
                                 ></iframe>
                               </div>
