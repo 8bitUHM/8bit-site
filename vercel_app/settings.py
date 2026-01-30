@@ -30,7 +30,17 @@ SECRET_KEY = os.getenv('PROJECT_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app','sn3mzkzrp4.us-west-2.awsapprunner.com', '8bithawaii.org', 'staging.8bithawaii.org']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    '.vercel.app',
+    'sn3mzkzrp4.us-west-2.awsapprunner.com',
+    '8bithawaii.org',
+    'staging.8bithawaii.org',
+]
+# Extra hosts from env (comma-separated), e.g. droplet IP or other domains. Set in deploy.
+_allowed_extra = os.getenv('ALLOWED_HOSTS_EXTRA')
+if _allowed_extra:
+    ALLOWED_HOSTS.extend(h.strip() for h in _allowed_extra.split(',') if h.strip())
 
 
 # Application definition

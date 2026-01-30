@@ -53,6 +53,7 @@ jobs:
             -e DATABASE_HOST="${{ secrets.DATABASE_HOST }}" \
             -e DATABASE_USER="${{ secrets.DATABASE_USER }}" \
             -e DATABASE_PASSWORD="${{ secrets.DATABASE_PASSWORD }}" \
+            -e ALLOWED_HOSTS_EXTRA="${{ secrets.PROD_SSH_HOST }}" \
             8bit-site && \
             sudo docker builder prune --force && \
             sudo docker image prune --force && \
