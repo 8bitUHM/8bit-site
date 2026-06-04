@@ -1,7 +1,7 @@
 {
   "name": "8bit-site-server",
   "version": "1.0.0",
-  "description": "Django 4.2.8 with Supabase PostgreSQL database and Django Rest Framework",
+  "description": "Django 4.2 with containerized PostgreSQL and Django Rest Framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

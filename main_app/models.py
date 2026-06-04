@@ -12,14 +12,17 @@ class File(models.Model):
     return self.filename
 
 class Member(models.Model):
-    TEAM_CHOICES = (
-        ('business', 'Business Team'),
-        ('design', 'Design Team'),
-        ('software', 'Software Team'),
+    ROLE_CHOICES = (
+        ('president', 'President'),
+        ('vice_president', 'Vice President'),
+        ('treasurer', 'Treasurer'),
+        ('officer', 'Officer'),
     )
     name = models.CharField(max_length=255,help_text="Member full name")
-    team = models.CharField(max_length=255,choices=TEAM_CHOICES)
-    is_leader = models.BooleanField(default=False)
+    role = models.CharField(
+        max_length=50, choices=ROLE_CHOICES, null=True, blank=True,
+        help_text="Leadership role. Leave blank for a regular Software team member.",
+    )
     image = models.ImageField(upload_to='main_app.File/bytes/filename/mimetype', null=True, blank=True,help_text="Please compress image, convert type to webp and change size to 500x500 px before uploading. https://imagecompressor.com/, https://cloudconvert.com/webp-converter, https://imageresizer.com/")
 
     def delete(self, *args, **kwargs):

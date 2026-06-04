@@ -20,3 +20,6 @@ local_settings.py
 !*/static/
 
 node_modules
+backups/
+supabase_backup.dump
+db_cluster-*.backup

@@ -7,6 +7,7 @@ class SocialMediaStackedInline(admin.StackedInline):
 
 class MemberAdmin(admin.ModelAdmin):
     inlines=[SocialMediaStackedInline]
+    list_display = ["name", "role"]
     def get_actions(self, request):
         actions = super().get_actions(request)
         if request.user.username[0].upper() != "J":

@@ -11,14 +11,15 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env
-load_dotenv()
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables (.env at project root, then vercel_app/.env overrides)
+load_dotenv(BASE_DIR / ".env")
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,6 +33,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'localhost',
     '.vercel.app',
     'sn3mzkzrp4.us-west-2.awsapprunner.com',
     '8bithawaii.org',
@@ -62,14 +64,12 @@ INSTALLED_APPS = [
     'learning',
     'ckeditor',
     'ckeditor_uploader',
-    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "corsheaders.middleware.CorsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -107,11 +107,11 @@ WSGI_APPLICATION = 'vercel_app.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST' : os.getenv('DATABASE_HOST'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'NAME': 'postgres',
-        "PORT": "5432",
+        'HOST': os.getenv('DATABASE_HOST', 'db'),
+        'USER': os.getenv('DATABASE_USER', '8bit'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
+        'NAME': os.getenv('DATABASE_NAME', '8bit'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
 
@@ -186,7 +186,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'db_file_storage.storage.DatabaseFileStorage'
 
 try:
-    from .local_settings import * 
+    from .local_settings import *
     print('Local settings imported')
 except ImportError:
     print('Local settings were not imported')
@@ -203,6 +203,10 @@ except ImportError:
             'rest_framework.permissions.IsAuthenticated',
         ]
     }
+
+if DEBUG:
+    INSTALLED_APPS.append("django_browser_reload")
+    MIDDLEWARE.insert(3, "django_browser_reload.middleware.BrowserReloadMiddleware")
     
 CORS_ORIGIN_ALLOW_ALL = True
 

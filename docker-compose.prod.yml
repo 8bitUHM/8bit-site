@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-8bit}
+      POSTGRES_USER: ${POSTGRES_USER:-8bit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-8bit} -d ${POSTGRES_DB:-8bit}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8010:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: ${POSTGRES_DB:-8bit}
+      DATABASE_USER: ${POSTGRES_USER:-8bit}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      ALLOWED_HOSTS_EXTRA: ${ALLOWED_HOSTS_EXTRA:-}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

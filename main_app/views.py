@@ -18,8 +18,11 @@ def index(request):
 def members(request):
   queryset = Member.objects.annotate(
     custom_order=Case(
-      When(is_leader=True, then=Value(1)),
-      default=Value(2),
+      When(role='president', then=Value(1)),
+      When(role='vice_president', then=Value(2)),
+      When(role='treasurer', then=Value(3)),
+      When(role='officer', then=Value(4)),
+      default=Value(5),
       output_field=IntegerField(),
     )
   ).order_by('custom_order', 'name')

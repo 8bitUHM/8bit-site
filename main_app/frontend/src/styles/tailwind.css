@@ -1,3 +1,115 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .bg-page {
+    @apply bg-white dark:bg-gray-950;
+  }
+
+  .page-shell {
+    @apply container mx-auto px-4 sm:px-6 max-w-screen-xl pt-28 pb-24;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-accent-500 to-violet-500;
+  }
+
+  .section-band {
+    @apply w-full relative overflow-hidden;
+  }
+
+  .section-band--white {
+    @apply bg-white dark:bg-gray-900;
+  }
+
+  .section-band--mint {
+    @apply bg-primary-500 text-white;
+  }
+
+  .section-band--sky {
+    @apply bg-accent-500 text-white;
+  }
+
+  .section-band--violet {
+    @apply bg-violet-500 text-white;
+  }
+
+  .section-band--hero {
+    @apply bg-gradient-hero text-white;
+  }
+
+  .section-band--warm {
+    @apply bg-gradient-warm text-white;
+  }
+
+  .section-band--cool {
+    @apply bg-gradient-cool text-white;
+  }
+
+  .section-band--soft {
+    @apply bg-primary-50 dark:bg-gray-900;
+  }
+
+  .section-inner {
+    @apply relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-inner--hero {
+    @apply pt-32 sm:pt-36 pb-20 sm:pb-28;
+  }
+
+  .pill {
+    @apply inline-flex items-center justify-center rounded-full font-semibold;
+  }
+
+  .section-label {
+    @apply inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5;
+  }
+
+  .section-label--light {
+    @apply section-label bg-white/25 text-white backdrop-blur-sm;
+  }
+
+  .section-label--primary {
+    @apply section-label bg-primary-500 text-white;
+  }
+
+  .section-label--accent {
+    @apply section-label bg-accent-500 text-white;
+  }
+
+  .section-label--violet {
+    @apply section-label bg-violet-500 text-white;
+  }
+
+  .card-pop {
+    @apply bg-white dark:bg-gray-800 rounded-3xl shadow-pop transition-all duration-300;
+  }
+
+  .card-pop-hover {
+    @apply hover:-translate-y-1.5 hover:shadow-pop-primary;
+  }
+
+  .blob {
+    @apply absolute rounded-full blur-3xl pointer-events-none;
+  }
+
+  .icon-blob {
+    @apply inline-flex items-center justify-center w-14 h-14 rounded-2xl text-white shadow-pop;
+  }
+
+  .glass-nav {
+    @apply bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-soft;
+  }
+
+  .service-panel {
+    @apply flex flex-col md:flex-row gap-8 items-center p-8 sm:p-10 lg:p-12 rounded-3xl;
+  }
+}

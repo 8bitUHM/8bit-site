@@ -20,42 +20,55 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
-      - name: Build Docker Image
+      - name: Create production .env
         run: |
-          docker build --build-arg PROJECT_SECRET="${{ secrets.PROJECT_SECRET }}" -t 8bit-site .
+          {
+            echo "PROJECT_SECRET=${{ secrets.PROJECT_SECRET }}"
+            echo "POSTGRES_DB=8bit"
+            echo "POSTGRES_USER=8bit"
+            echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
+            echo "DATABASE_HOST=db"
+            echo "DATABASE_NAME=8bit"
+            echo "DATABASE_USER=8bit"
+            echo "DATABASE_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
+            echo "ALLOWED_HOSTS_EXTRA=${{ secrets.PROD_SSH_HOST }},8bithawaii.org,staging.8bithawaii.org"
+          } > .env
 
-      - name: Save Docker Image
-        run: |
-          docker save 8bit-site:latest -o 8bit-site.tar
-      
-      - name: Copy Docker Image to Server
+      - name: Copy project to server
         env:
           SSH_KEY: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           SERVER_USER: ${{ secrets.PROD_SSH_USER }}
           SERVER_HOST: ${{ secrets.PROD_SSH_HOST }}
         run: |
           echo "$SSH_KEY" > ssh_key
-          chmod 700 ssh_key
-          scp -i ssh_key -o StrictHostKeyChecking=no 8bit-site.tar $SERVER_USER@$SERVER_HOST:~/
-          rm -r ./*
+          chmod 600 ssh_key
+          ssh -i ssh_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "mkdir -p ~/8bit-site"
+          scp -i ssh_key -o StrictHostKeyChecking=no -r \
+            docker-compose.prod.yml \
+            dockerfile \
+            .dockerignore \
+            .env \
+            requirements.txt \
+            manage.py \
+            scripts \
+            vercel_app \
+            main_app \
+            learning \
+            api \
+            client \
+            db_file_storage \
+            $SERVER_USER@$SERVER_HOST:~/8bit-site/
 
-      - name: SSH into instance and run commands
+      - name: Deploy with Docker Compose
         env:
           SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
           SSH_USER: ${{ secrets.PROD_SSH_USER }}
         run: |
           ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
-            sudo docker stop 8bit-site-container || true && \
-            sudo docker rm 8bit-site-container || true && \
-            sudo docker load -i ~/8bit-site.tar && \
-            sudo docker run -d -p 8010:8000 --name 8bit-site-container \
-            -e PROJECT_SECRET="${{ secrets.PROJECT_SECRET }}" \
-            -e DATABASE_HOST="${{ secrets.DATABASE_HOST }}" \
-            -e DATABASE_USER="${{ secrets.DATABASE_USER }}" \
-            -e DATABASE_PASSWORD="${{ secrets.DATABASE_PASSWORD }}" \
-            -e ALLOWED_HOSTS_EXTRA="${{ secrets.PROD_SSH_HOST }}" \
-            8bit-site && \
-            sudo docker builder prune --force && \
-            sudo docker image prune --force && \
+            cd ~/8bit-site
+            sudo docker compose -f docker-compose.prod.yml up -d --build
+            sudo docker compose -f docker-compose.prod.yml ps
+            sudo docker builder prune --force
+            sudo docker image prune --force
             echo "Deployment complete"
           EOF

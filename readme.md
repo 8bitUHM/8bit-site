@@ -1,10 +1,13 @@
 # 8bit Website
 
-Django 4.2.8 with Supabase PostgreSQL database and Django Rest Framework
+Django 4.2 with containerized PostgreSQL and Django Rest Framework.
 
 1. [Project Structure](#project-structure)
-2. [Getting the app running](#getting-the-app-running)
+2. [Getting the app running (Docker)](#getting-the-app-running-docker)
 3. [Development](#development)
+4. [Production deployment](#production-deployment)
+5. [Database backup](#database-backup)
+6. [Migrating from Supabase](#migrating-from-supabase)
 
 ## Project Structure
 
@@ -12,49 +15,189 @@ The project is organized into several components:
 
 - **8bit-site**: The main Django project directory.
 
-  - **db_file_storage/**: File storage systems that allows us to store files by raw bytes and mimetype in database.
+  - **db_file_storage/**: File storage that stores files as raw bytes in the database.
 
   - **vercel_app/**: Main or 'host' app
-    - **settings.py**: Configuration settings for the project, including database settings, middleware, installed apps, and other project-specific configurations. Models are defined here.
-    - **urls.py**: URL configuration for the project, mapping URLs to views.
+    - **settings.py**: Configuration settings for the project.
+    - **urls.py**: URL configuration for the project.
   - **main_app/**: main app
-    - **frontend/**: Folder that holds react project src files
+    - **frontend/**: React project source files
     - **migrations/**: Database migration files.
     - **static/**: Static files (CSS, JavaScript, images).
     - **templates/**: HTML templates.
-    - **admin.py**: Admin interface configuration.
-    - **forms.py**: HTML forms. Forms define how data is input and validated by the user.
-    - **models.py**: Data models. Models define the structure of the database and interact with data.
-    - **serializers.py**: Serializers for converting complex data types, such as querysets and model instances, to native Python datatypes that can then be easily rendered into JSON, XML, or other content types.
-    - **tests.py**: Unit tests.
-    - **urls.py**: URL configuration for the portal app, mapping URLs to views.
-    - **views.py**: View functions or classes. Views handle HTTP requests and return HTTP responses.
 
-  - **manage.py**: Django's command-line utility for administrative tasks.
-  - **requirements.txt**: Txt file that holds all of the projects dependencies.
+  - **learning/**: Learning portal app with its own frontend.
 
-## Getting the server running
+  - **manage.py**: Django's command-line utility.
+  - **requirements.txt**: Python dependencies.
+  - **docker-compose.yml**: Local dev stack (web + Postgres).
+  - **docker-compose.prod.yml**: Production stack for the VPS.
 
+## Getting the app running (Docker)
 
-1. In a new terminal run `pip install -r requirements.txt `
-2. in ./vercel_app folder, create a new file called local_settings.py and add
+### Prerequisites
 
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (includes Docker Compose)
+- Python 3.12 (optional, for native dev without containerizing the web app)
+
+### Setup
+
+1. Copy environment variables:
+
+   ```bash
+   cp .env.example vercel_app/.env
+   ```
+
+   Edit `vercel_app/.env` and set:
+   - `PROJECT_SECRET` — Django secret key
+   - `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` — for the Postgres container
+   - `DATABASE_PASSWORD` — same value as `POSTGRES_PASSWORD`
+   - `DATABASE_NAME`, `DATABASE_USER` — should match the `POSTGRES_*` values
+
+2. For local Django settings (admin UI builder, debug toolbar), create `vercel_app/local_settings.py`:
+
+   ```python
+   DEBUG = True
+   ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+   ```
+
+3. Start the full stack:
+
+   ```bash
+   docker compose up --build
+   ```
+
+   The app runs at http://localhost:8000
+
+4. Create an admin user (first run only):
+
+   ```bash
+   docker compose exec web python manage.py createsuperuser
+   ```
+
+## Development
+
+### Option A: Full Docker stack
+
+```bash
+docker compose up --build
 ```
-from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+Frontends are built into the image at build time. Rebuild after frontend changes:
 
-DEBUG=True
+```bash
+docker compose up --build web
 ```
-3. In ./vercel_app folder, create a new file called .env and add the environment variables from our project discord channel 8bit-ste
 
-4. Start the app by running `python manage.py runserver` in terminal, the app should be running locally on port 8000, http://localhost:8000
+### Option B: Postgres in Docker, app + frontends on the host
 
-## Frontend development
-1. Have three terminals open; one for  the server, npm related commands and one for running __python manage.py collectstatic__
-2. In your first terminal, start the server with __python manage.py runserver__
-3. In your second terminal, cd into the frontend with __cd main_app/frontend__ then run npm run dev
-This will render out the JavaScript files into the static/dist folder
-4. In your third terminal, everytime you make a change to frontend src files, run __python manage.py collectstatic__ to apply the changes.
+Useful for faster frontend hot reload.
 
+1. Start only Postgres:
 
+   ```bash
+   docker compose up -d db
+   ```
+
+2. In `vercel_app/.env`, set `DATABASE_HOST=localhost`.
+
+3. Install Python deps and run Django:
+
+   ```bash
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1   # Windows
+   pip install -r requirements.txt
+   python manage.py runserver
+   ```
+
+4. In separate terminals, run frontend watchers:
+
+   ```bash
+   npm --prefix main_app/frontend run dev
+   npm --prefix learning/frontend run dev
+   ```
+
+5. After frontend changes, collect static files:
+
+   ```bash
+   python manage.py collectstatic --noinput
+   ```
+
+## Production deployment
+
+Production runs on the VPS via GitHub Actions (`.github/workflows/server-deploy.yaml`).
+
+On push to `main`, the workflow copies the project to `~/8bit-site` on the VPS and runs:
+
+```bash
+docker compose -f docker-compose.prod.yml up -d --build
+```
+
+The web app is exposed on port **8010** (mapped to Gunicorn on 8000 inside the container). Postgres is internal-only with a persistent Docker volume.
+
+### Required GitHub secrets
+
+| Secret | Description |
+|--------|-------------|
+| `PROJECT_SECRET` | Django secret key |
+| `POSTGRES_PASSWORD` | Postgres password (used by db + web services) |
+| `PROD_SSH_PRIVATE_KEY` | SSH key for VPS |
+| `PROD_SSH_USER` | SSH username |
+| `PROD_SSH_HOST` | VPS hostname or IP |
+
+Remove legacy Supabase secrets (`DATABASE_HOST`, `DATABASE_USER`, `DATABASE_PASSWORD`) after migration.
+
+## Database backup
+
+Backups use `pg_dump` from the running Postgres container:
+
+```bash
+./scripts/backup_db.sh
+```
+
+Production (on VPS):
+
+```bash
+cd ~/8bit-site
+./scripts/backup_db.sh docker-compose.prod.yml
+```
+
+### Recommended cron job (VPS)
+
+Run daily at 2 AM, keep backups outside the container:
+
+```cron
+0 2 * * * cd /home/YOUR_USER/8bit-site && ./scripts/backup_db.sh docker-compose.prod.yml >> /var/log/8bit-backup.log 2>&1
+```
+
+Ensure `~/8bit-site/backups/` has enough disk space.
+
+## Migrating from Supabase
+
+### Restore from a `.backup` file (recommended)
+
+If you have a Supabase cluster SQL backup (e.g. `db_cluster-20-11-2025@09-00-53.backup`):
+
+1. Ensure Docker Desktop is running.
+2. Copy `.env.example` to `vercel_app/.env` and set `POSTGRES_PASSWORD` / `DATABASE_PASSWORD`.
+3. Run the restore script (imports all app data; **skips users** — you create a fresh superuser):
+
+   ```bash
+   python scripts/restore_from_backup.py db_cluster-20-11-2025@09-00-53.backup
+   ```
+
+4. Create your admin account:
+
+   ```bash
+   docker compose exec web python manage.py createsuperuser
+   ```
+
+The script restores members, projects, learning content, uploaded files (`db_file_storage`), client portal data, and auth groups/permissions. It excludes `auth_user`, sessions, and admin logs.
+
+### Live Supabase dump (legacy)
+
+If Supabase credentials still work:
+
+```bash
+./scripts/migrate_from_supabase.sh
+```

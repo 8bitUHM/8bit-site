@@ -8,3 +8,4 @@ Pillow==12.1.0
 django-jazzmin==2.6.1
 django-ckeditor==6.7.0
 django-browser-reload==1.15.0
+gunicorn==23.0.0

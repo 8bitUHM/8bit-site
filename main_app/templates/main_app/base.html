@@ -6,26 +6,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}8bit @ UH Manoa{% endblock %}</title>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       rel="icon"
       type="image/x-icon"
       href="{% static 'main_app/assets/8bit-logo.webp' %}"
     />
-    <link rel="stylesheet" href="{% static '.css' %}" />
   </head>
 
-  <body>
-    
+  <body class="min-h-screen bg-white dark:bg-gray-950 font-sans antialiased text-gray-900 dark:text-gray-100">
     {% include "main_app/components/navbar.html" %}
-    <div>
-      {% block content %} 
+    <main>
+      {% block content %}
       {% endblock %}
-    </div>
+    </main>
     {% include "main_app/components/footer.html" %}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init();
+      AOS.init({ once: true, offset: 40, duration: 700 });
     </script>
   </body>
 </html>
