@@ -20,8 +20,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from db_file_storage.compat import url
 from db_file_storage import views as db_views
-from main_app.views import MemberLoginView, MemberLogoutView
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),

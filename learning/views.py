@@ -22,14 +22,3 @@ def lesson(request,slug):
   # serialized_section_data = json.dumps(section_serializer.data)
   
   return render(request, 'learning/pages/lesson.html', {"lesson" : serialized_lesson_data})
-
-def quiz(request,slug):
-  username = request.user.username
-  lesson = get_object_or_404(Lesson, slug=slug)
-  
-  lesson_data = [lesson]
-  lesson_serializer = LessonSerializer(lesson_data, many=True)
-  serialized_lesson_data = json.dumps(lesson_serializer.data)
-  
-  
-  return render(request, 'learning/pages/quiz.html', {"lesson" : serialized_lesson_data,"username":username })

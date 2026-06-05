@@ -1,0 +1,11 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block title %}Events — 8bit @ UH Mānoa{% endblock %}
+
+{% block content %}
+<script>
+  window.events_data = JSON.parse("{{events|escapejs}}");
+</script>
+<div id="page-root"></div>
+<script src="{% static 'main_app/dist/pages/Events.js' %}"></script>
+{% endblock %}

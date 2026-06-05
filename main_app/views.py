@@ -1,19 +1,12 @@
 # example/views.py
-from django.contrib.auth.views import LoginView, LogoutView
-from .forms import LoginForm
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from .serializers import MemberSerializer, ProjectSerializer
+from django.shortcuts import render, get_object_or_404
+from .serializers import MemberSerializer, ProjectSerializer, EventSerializer
 from .models import *
 from django.db.models import Case, When, Value, IntegerField
 import json
-from django.contrib import messages
 
 def index(request):
   return render(request,'main_app/pages/home.html')
-
-# def about(request):
-#   return render(request,'about.html')
 
 def members(request):
   queryset = Member.objects.annotate(
@@ -35,24 +28,6 @@ def members(request):
 def services(request):
   return render(request,'main_app/pages/services.html')
 
-
-class MemberLoginView(LoginView):
-  template_name = "main_app/pages/member-login.html"
-  authentication_form = LoginForm
-
-  def form_valid(self, form):
-    user = form.get_user()
-    if not user.is_staff:
-      messages.error(self.request, "Only staff members can login.")
-      return self.form_invalid(form)
-    return super().form_valid(form)
-
-  def get_success_url(self):
-    return reverse_lazy('admin:index')
-  
-class MemberLogoutView(LogoutView):
-  next_page = '/'
-
 def join(request):
   return render(request,'main_app/pages/join.html')
 
@@ -63,3 +38,18 @@ def projects(request):
   serialized_json_data = json.dumps(serializer.data)
 
   return render(request, 'main_app/pages/projects.html', {'projects': serialized_json_data})
+
+def events(request):
+  queryset = Event.objects.filter(is_published=True).prefetch_related('cancellations').order_by('start_datetime')
+  serializer = EventSerializer(queryset, many=True)
+  serialized_json_data = json.dumps(serializer.data)
+  return render(request, 'main_app/pages/events.html', {'events': serialized_json_data})
+
+def event_detail(request, slug):
+  event = get_object_or_404(Event, slug=slug, is_published=True)
+  serializer = EventSerializer(event)
+  serialized_json_data = json.dumps(serializer.data)
+  return render(request, 'main_app/pages/event-detail.html', {
+    'event': serialized_json_data,
+    'event_title': event.title,
+  })

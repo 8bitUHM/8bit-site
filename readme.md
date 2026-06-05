@@ -67,7 +67,7 @@ The project is organized into several components:
    docker compose up --build
    ```
 
-   The app runs at http://localhost:8000
+   The app runs at http://localhost:8010 (port 8010 avoids conflicting with a local `runserver` on 8000)
 
 4. Create an admin user (first run only):
 

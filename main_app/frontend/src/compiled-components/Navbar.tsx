@@ -31,6 +31,7 @@ const CloseIcon = () => (
 const NAV_ITEMS = [
   { label: "team", href: "/members/" },
   { label: "work", href: "/projects/" },
+  { label: "events", href: "/events/" },
   { label: "join", href: "/join/" },
   { label: "services", href: "/services/" },
   { label: "learning", href: "/learning" },
