@@ -1,188 +1,161 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { initFlowbite } from "flowbite";
-import SectionBand from "../components/layout/SectionBand";
-import SectionDivider from "../components/layout/SectionDivider";
-import SectionLabel from "../components/layout/SectionLabel";
-import SplitHero from "../components/layout/SplitHero";
-import BentoTile from "../components/layout/BentoTile";
-import Button from "../components/Button";
-import "../styles/styles.css";
+import "../styles/v2-tokens.css";
+import "../styles/v2-kit.css";
 
-const Index = () => {
-  React.useEffect(() => {
-    initFlowbite();
-  }, []);
+const ArrowRight = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="100%" height="100%">
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
 
-  return (
-    <>
-      <SectionBand variant="hero" hero blobs>
-        <SplitHero
-          title={
-            <>
-              We are <span className="text-white underline decoration-wavy decoration-white/60 underline-offset-8">8bit</span> @ UH Manoa
-            </>
-          }
-          subtitle="We empower our members through immersive, hands-on software development."
-          stats={[
-            { label: "Campus", value: "UHM" },
-            { label: "Focus", value: "Software" },
-            { label: "Services", value: "Free" },
-          ]}
-        >
-          <Button href="/members" variant="white">Meet the Team</Button>
-          <Button href="/projects" variant="ghost">View Projects</Button>
-          <Button href="/learning" variant="ghost">Learning Portal</Button>
-        </SplitHero>
-      </SectionBand>
+const GithubIcon = () => (
+  <svg viewBox="0 0 16 16" fill="currentColor" width="100%" height="100%">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+  </svg>
+);
 
-      <SectionDivider from="hero" to="white" />
+const DiscordIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="100%" height="100%">
+    <path d="M18.942 5.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.586 11.586 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3 17.392 17.392 0 0 0-2.868 11.662 15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.638 10.638 0 0 1-1.706-.83c.143-.106.283-.217.418-.331a11.664 11.664 0 0 0 10.118 0c.137.114.277.225.418.331-.544.328-1.116.606-1.71.832a12.58 12.58 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM8.678 14.813a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.929 1.929 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
+  </svg>
+);
 
-      <SectionBand variant="white">
-        <SectionLabel accent="primary">What we do</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-10">
-          Build, learn, and ship together
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-          <BentoTile
-            title="Digital Solutions"
-            description="We bring software to life through innovative development and creative problem-solving."
-            variant="mint"
-            delay={0}
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            }
-          />
-          <BentoTile
-            title="Unique Experiences"
-            description="Real-life software development through hands-on projects and mentorship."
-            variant="sky"
-            delay={100}
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            }
-          />
-          <BentoTile
-            title="Learning Portal"
-            description="Level up with our in-house tutorials and guided lessons — from your first commit to shipping full-stack apps."
-            variant="violet"
-            size="wide"
-            delay={200}
-            href="/learning"
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              </svg>
-            }
-          />
-          <BentoTile
-            title="Client & Open Source"
-            description="From paid client work to open source contributions — we build for impact."
-            variant="warm"
-            delay={300}
-            href="/projects"
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
-            }
-          />
+const LinkedInIcon = () => (
+  <svg viewBox="0 0 16 16" fill="currentColor" width="100%" height="100%">
+    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <svg viewBox="0 0 16 16" fill="currentColor" width="100%" height="100%">
+    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.203.166 1.485.276.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+  </svg>
+);
+
+const SOCIALS = [
+  { name: "Discord", icon: <DiscordIcon />, url: "https://discord.gg/T7Eu75fpAf" },
+  { name: "GitHub", icon: <GithubIcon />, url: "https://github.com/8bituhm" },
+  { name: "LinkedIn", icon: <LinkedInIcon />, url: "https://www.linkedin.com/company/8bituhm" },
+  { name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/8bituhmanoa" },
+];
+
+const PROJECTS_PREVIEW = [
+  { n: "01", name: "8bit Site", tags: "react · django · postgres", year: "2025" },
+  { n: "02", name: "UH Mānoa Apps", tags: "react · node · aws", year: "2024" },
+  { n: "03", name: "Client Portal", tags: "next.js · typescript", year: "2024" },
+  { n: "04", name: "Open Source Tools", tags: "python · docker", year: "2023" },
+];
+
+const Home = () => (
+  <div className="page">
+    <section className="hero wrap">
+      <div className="cmd">
+        <span className="pr">8bit ~ %</span>{" "}
+        <span className="fl">./build</span> --for "UH &amp; local clients" --cost 0
+      </div>
+      <h1>We build real software, in the open.<span className="cur" /></h1>
+      <p className="sub">
+        A student-led software studio at the University of Hawaiʻi at Mānoa. We design, build, and ship production web apps for the university and local clients — hands-on, collaborative, free of charge.
+      </p>
+      <div className="hero-cta">
+        <a className="btn btn-acc" href="/services/">
+          start a project <ArrowRight />
+        </a>
+        <a className="btn btn-outline" href="/projects/">view work</a>
+      </div>
+    </section>
+
+    <div className="wrap">
+      <div className="meta">
+        <div><div className="k">based</div><div className="v">UH Mānoa</div></div>
+        <div><div className="k">discipline</div><div className="v">Full-stack</div></div>
+        <div><div className="k">cost to clients</div><div className="v">$0</div></div>
+      </div>
+    </div>
+
+    <section className="section wrap">
+      <div className="sec-h">
+        <div className="t">
+          <span className="path-label">~/work</span>
+          <h2>Selected work</h2>
         </div>
-      </SectionBand>
+        <a className="btn btn-ghost" href="/projects/">all projects →</a>
+      </div>
+      <div className="index">
+        {PROJECTS_PREVIEW.map((p) => (
+          <a key={p.n} className="idx-row" href="/projects/" style={{ textDecoration: "none", color: "inherit" }}>
+            <span className="n">{p.n}</span>
+            <span className="nm">{p.name}</span>
+            <span className="tg">{p.tags}</span>
+            <span className="yr">{p.year}</span>
+            <span className="ar">→</span>
+          </a>
+        ))}
+      </div>
+    </section>
 
-      <SectionDivider from="white" to="warm" />
+    <section className="section wrap">
+      <div className="sec-h">
+        <div className="t">
+          <span className="path-label">~/services</span>
+          <h2>What we build</h2>
+        </div>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--t-mono)", color: "var(--dim)" }}>free for clients</span>
+      </div>
+      <div className="svc">
+        <div className="cell">
+          <span className="ci">01</span>
+          <h3>Static Website</h3>
+          <p>A sleek, polished presence built with modern tooling to showcase your brand and message.</p>
+          <span className="ct">// html · css · js</span>
+        </div>
+        <div className="cell">
+          <span className="ci">02</span>
+          <h3>Dynamic Web App</h3>
+          <p>Powerful backends, dynamic content, and an intuitive admin portal for easy management.</p>
+          <span className="ct">// react · django · postgres</span>
+        </div>
+        <div className="cell">
+          <span className="ci">03</span>
+          <h3>Infrastructure</h3>
+          <p>Deployment, hosting, and domain management on AWS or UH-hosted servers, end to end.</p>
+          <span className="ct">// aws · docker · ci/cd</span>
+        </div>
+      </div>
+    </section>
 
-      <SectionBand variant="warm" blobs>
-        <SectionLabel accent="light">About 8bit</SectionLabel>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-5">
-              Students building real software at UH Manoa
-            </h2>
-            <p className="text-white/90 text-lg leading-relaxed mb-4 font-semibold">
-              8bit is a group of students passionate about software development and creating impactful software solutions. We specialize in full-stack website development and collaborate with clients while contributing to open source.
-            </p>
-            <p className="text-white/90 text-lg leading-relaxed font-semibold">
-              Guided by student leadership, our members take on real client work and open source projects, gaining hands-on experience and professional growth along the way.
-            </p>
-          </div>
-          <ul className="space-y-3">
-            {["Full-stack web development", "Client project experience", "Open source contributions", "Student-led mentorship", "Free services for clients"].map((item) => (
-              <li key={item} className="flex items-center gap-3 p-4 rounded-2xl bg-white/20 backdrop-blur-sm">
-                <span className="w-3 h-3 rounded-full bg-white flex-shrink-0" />
-                <span className="text-base font-bold text-white">{item}</span>
-              </li>
+    <section className="section wrap">
+      <div className="sec-h">
+        <div className="t">
+          <span className="path-label">~/join</span>
+          <h2>Get involved</h2>
+        </div>
+      </div>
+      <div className="cta-band">
+        <div className="cta-col">
+          <span className="ci">// for clients</span>
+          <h3>Have a project?</h3>
+          <p>Tell us what you're building. We scope it with you, then design, build, and ship it — at no cost.</p>
+          <a className="btn btn-acc" href="/services/">start a project <ArrowRight /></a>
+        </div>
+        <div className="cta-col">
+          <span className="ci">// for students</span>
+          <h3>Join the team.</h3>
+          <p>Work on real client software with a team of student engineers, designers, and PMs. No experience gatekept.</p>
+          <a className="btn btn-outline" href="/join/">how to join <ArrowRight /></a>
+          <div className="home-socials">
+            {SOCIALS.map((s) => (
+              <a key={s.name} href={s.url} target="_blank" rel="noreferrer" aria-label={s.name}>
+                {s.icon}
+              </a>
             ))}
-          </ul>
-        </div>
-      </SectionBand>
-
-      <SectionDivider from="warm" to="cool" />
-
-      <SectionBand variant="cool" blobs>
-        <SectionLabel accent="light">Experience</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-8">
-          Step inside a team meeting
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-center">
-          <div className="lg:col-span-3">
-            <div className="rounded-3xl overflow-hidden shadow-pop">
-              <iframe
-                className="w-full aspect-video"
-                allowFullScreen
-                allow="accelerometer; magnetometer; gyroscope"
-                src="https://panoraven.com/en/embed/WOfnSPPfuM"
-                title="360° view of 8bit team meeting"
-              />
-            </div>
-          </div>
-          <div className="lg:col-span-2 p-7 sm:p-8 rounded-3xl bg-white dark:bg-gray-800 shadow-pop">
-            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed font-semibold">
-              Experience an interactive 360° view of one of 8bit's team meetings with Oppkey. See how our teams collaborate in real time.
-            </p>
           </div>
         </div>
-      </SectionBand>
-
-      <SectionDivider from="cool" to="white" />
-
-      <SectionBand variant="white">
-        <SectionLabel accent="violet">Join us</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4 text-center">
-          Ready to join our community?
-        </h2>
-        <p className="text-center text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-semibold">
-          Connect on Discord, explore our GitHub, or reach out via email. We're always looking for passionate students who want to grow their skills and make an impact.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
-          <a href="https://discord.gg/T7Eu75fpAf" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-3 p-7 rounded-3xl bg-white shadow-pop hover:-translate-y-1.5 transition-transform duration-300">
-            <svg className="w-10 h-10 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M18.942 5.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.586 11.586 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3 17.392 17.392 0 0 0-2.868 11.662 15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.638 10.638 0 0 1-1.706-.83c.143-.106.283-.217.418-.331a11.664 11.664 0 0 0 10.118 0c.137.114.277.225.418.331-.544.328-1.116.606-1.71.832a12.58 12.58 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM8.678 14.813a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.929 1.929 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
-            </svg>
-            <span className="font-display font-bold text-lg text-gray-900">Join Discord</span>
-          </a>
-          <a href="https://github.com/8bituhm" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-3 p-7 rounded-3xl bg-white shadow-pop hover:-translate-y-1.5 transition-transform duration-300">
-            <svg className="w-10 h-10 text-gray-800" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
-            </svg>
-            <span className="font-display font-bold text-lg text-gray-900">View GitHub</span>
-          </a>
-          <a href="mailto:8bituhmanoa@gmail.com" className="flex flex-col items-center gap-3 p-7 rounded-3xl bg-white shadow-pop hover:-translate-y-1.5 transition-transform duration-300">
-            <svg className="w-10 h-10 text-primary-500" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
-            </svg>
-            <span className="font-display font-bold text-lg text-gray-900">Contact Us</span>
-          </a>
-        </div>
-      </SectionBand>
-    </>
-  );
-};
+      </div>
+    </section>
+  </div>
+);
 
 const root = document.getElementById("page-root");
-createRoot(root).render(<Index />);
+createRoot(root).render(<Home />);

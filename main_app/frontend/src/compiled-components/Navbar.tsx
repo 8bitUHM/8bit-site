@@ -1,67 +1,102 @@
 import * as React from "react";
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { initFlowbite } from "flowbite";
-import "../styles/styles.css";
+import "../styles/v2-tokens.css";
+import "../styles/v2-kit.css";
 
-const normalize = (p: string) =>
-  p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p;
+const SunIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="100%" height="100%">
+    <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+  </svg>
+);
 
-const isActive = (path: string) =>
+const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="100%" height="100%">
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+  </svg>
+);
+
+const MenuIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17 }}>
+    <path d="M3 12h18M3 6h18M3 18h18" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17 }}>
+    <path d="M18 6 6 18M6 6l12 12" />
+  </svg>
+);
+
+const NAV_ITEMS = [
+  { label: "work", href: "/projects/" },
+  { label: "team", href: "/members/" },
+  { label: "services", href: "/services/" },
+  { label: "learning", href: "/learning" },
+  { label: "join", href: "/join/" },
+];
+
+const normalize = (p: string) => (p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p);
+
+const isActive = (href: string) =>
   typeof window !== "undefined" &&
-  normalize(window.location.pathname) === normalize(path);
+  normalize(window.location.pathname) === normalize(href);
 
 const Navbar: FC = () => {
-  React.useEffect(() => {
-    initFlowbite();
-  }, []);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    try {
+      return (localStorage.getItem("8bit-theme") as "light" | "dark") || "light";
+    } catch {
+      return "light";
+    }
+  });
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const linkClass = (path: string) => {
-    const active = isActive(path);
-    return `block py-2 px-4 text-sm sm:text-base font-bold rounded-full transition-all duration-200 ${
-      active
-        ? "text-white bg-primary-500 shadow-pop-primary"
-        : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20"
-    }`;
-  };
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem("8bit-theme", theme);
+    } catch {}
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
   return (
-    <nav className="fixed w-full z-20 top-0 start-0 glass-nav">
-      <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 sm:px-6 py-4 sm:py-5">
-        <a href="/" className="flex items-center space-x-2 sm:space-x-3 group">
-          <img
-            src="/static/main_app/assets/8bit-long-logo.png"
-            className="h-8 sm:h-10 w-auto rounded-lg"
-            alt="8bit Logo"
-          />
-          <span className="self-center text-lg sm:text-xl font-display font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
-            8bit at UH Manoa
-          </span>
+    <nav className="nav">
+      <div className="wrap nav-in">
+        <a href="/" className="brand">
+          <img src="/static/main_app/assets/8bit-logo.webp" alt="8bit" />
+          <b>8bit at UH Mānoa</b>
         </a>
-
-        <button
-          data-collapse-toggle="navbar-menu"
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-gray-700 dark:text-gray-300 rounded-lg md:hidden hover:bg-primary-50 dark:hover:bg-primary-900/20"
-          aria-controls="navbar-menu"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 17 14">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-        </button>
-
-        <div id="navbar-menu" className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-3 md:mt-0 gap-1 md:flex-row md:gap-2 bg-primary-50/80 dark:bg-gray-800/80 md:bg-transparent rounded-2xl md:rounded-none">
-            <li><a href="/" className={linkClass("/")}>Home</a></li>
-            <li><a href="/members/" className={linkClass("/members/")}>Members</a></li>
-            <li><a href="/projects/" className={linkClass("/projects/")}>Projects</a></li>
-            <li><a href="/services/" className={linkClass("/services/")}>Services</a></li>
-            <li><a href="/learning" className={linkClass("/learning")}>Learning Portal</a></li>
-          </ul>
+        <div className="nav-right">
+          <div className="nav-links">
+            {NAV_ITEMS.map(({ label, href }) => (
+              <a key={label} href={href} className={isActive(href) ? "active" : ""}>
+                {label}
+              </a>
+            ))}
+          </div>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+          </button>
+          <button
+            className="theme-toggle nav-mobile-btn"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
         </div>
       </div>
+      {menuOpen && (
+        <div className="nav-mobile-menu">
+          {NAV_ITEMS.map(({ label, href }) => (
+            <a key={label} href={href} className={isActive(href) ? "active" : ""}>
+              {label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };
