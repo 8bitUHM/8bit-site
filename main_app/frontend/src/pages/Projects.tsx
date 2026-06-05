@@ -6,7 +6,6 @@ import "../styles/v2-kit.css";
 
 interface Tag {
   tag_name: string;
-  color: string;
 }
 
 interface Project {
@@ -17,7 +16,6 @@ interface Project {
   client: string;
   paid_client_project: boolean;
   in_development: boolean;
-  image: string;
   tags: Tag[];
 }
 

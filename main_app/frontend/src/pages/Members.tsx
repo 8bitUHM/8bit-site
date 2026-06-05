@@ -70,7 +70,7 @@ const Members = () => {
     <div className="page">
       <div className="wrap page-head">
         <span className="path-label">~/team</span>
-        <h1>The people</h1>
+        <h1>The team</h1>
         <p className="sub">
           Student leaders and a software team who take on real client work and open source together — gaining hands-on experience and shipping things that matter.
         </p>

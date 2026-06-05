@@ -29,11 +29,11 @@ const CloseIcon = () => (
 );
 
 const NAV_ITEMS = [
-  { label: "work", href: "/projects/" },
   { label: "team", href: "/members/" },
+  { label: "work", href: "/projects/" },
+  { label: "join", href: "/join/" },
   { label: "services", href: "/services/" },
   { label: "learning", href: "/learning" },
-  { label: "join", href: "/join/" },
 ];
 
 const normalize = (p: string) => (p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p);

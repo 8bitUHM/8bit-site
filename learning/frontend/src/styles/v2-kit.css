@@ -190,43 +190,34 @@
 .foot-socials a:hover { color: var(--acc); background: var(--surf-2); }
 .foot-socials svg { width: 16px; height: 16px; }
 
-/* ---------------- JOIN: meeting panel ---------------- */
-.meet { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
-.meet > div { padding: 26px 24px; border-right: 1px solid var(--line); background: var(--surf); }
-.meet > div:last-child { border-right: 0; }
-.meet .k { font-family: var(--font-mono); font-size: var(--t-mono-sm); letter-spacing: .06em; color: var(--acc); }
-.meet .v { font-size: 24px; font-weight: 700; letter-spacing: -.02em; margin-top: 10px; color: var(--ink); }
-.meet .vs { font-family: var(--font-mono); font-size: var(--t-mono); color: var(--dim); margin-top: 6px; }
-
-/* ---------------- JOIN: reasons ---------------- */
-.reasons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 26px; }
-.reason { padding: 20px 0 0; border-top: 2px solid var(--ink); }
-.reason .rn { font-family: var(--font-mono); font-size: var(--t-mono); color: var(--acc); }
-.reason h3 { font-size: 22px; font-weight: 700; margin: 14px 0 8px; }
-.reason p { font-size: var(--t-sm); color: var(--dim); line-height: 1.55; font-weight: 500; }
-
 /* ---------------- SOCIAL CARDS ---------------- */
 .soc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .soc-card { display: flex; align-items: center; gap: 18px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surf); padding: 22px 24px; transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease); }
 .soc-card:hover { border-color: var(--acc); transform: translateY(-2px); }
-.soc-card .ico { width: 44px; height: 44px; border-radius: var(--r-sm); background: var(--surf-2); display: flex; align-items: center; justify-content: center; color: var(--ink); flex-shrink: 0; transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
-.soc-card:hover .ico { background: var(--acc); color: var(--bg); }
-.soc-card .ico svg { width: 20px; height: 20px; }
-.soc-card .nm { display: block; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
-.soc-card .hd { display: block; font-family: var(--font-mono); font-size: var(--t-mono); color: var(--dim); margin-top: 4px; }
-.soc-card .ar { margin-left: auto; color: var(--dim); display: inline-flex; transition: color var(--dur) var(--ease); }
-.soc-card .ar svg { width: 18px; height: 18px; }
-.soc-card:hover .ar { color: var(--acc); }
 
 /* ---------------- PAGE FADE ---------------- */
 .page { animation: pf .3s var(--ease) both; padding-bottom: 80px; }
 @keyframes pf { from { transform: translateY(6px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
+/* ---------------- LEARNING: VIDEO CARD ---------------- */
+.video-card { border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; background: var(--surf); margin-bottom: 24px; }
+.video-card .vh { padding: 18px 22px 16px; border-bottom: 1px solid var(--line); }
+.video-card .vtype { font-family: var(--font-mono); font-size: var(--t-mono-sm); color: var(--acc); margin-bottom: 6px; }
+.video-card .vtitle { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px; color: var(--ink); }
+.video-card .vdesc { font-size: var(--t-sm); color: var(--dim); line-height: 1.55; font-weight: 500; }
+.video-card .vid { aspect-ratio: 16 / 9; background: #000; }
+.video-card .vid iframe { width: 100%; height: 100%; display: block; border: 0; }
+
+/* ---------------- LEARNING: TAG PILLS ---------------- */
+.tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+.tag-pill { font-family: var(--font-mono); font-size: var(--t-mono-sm); color: var(--dim); border: 1px solid var(--line-strong); padding: 3px 10px; border-radius: 999px; }
+.tag-pill.acc { color: var(--acc); border-color: var(--acc); }
+.tag-pill.ink { color: var(--ink); border-color: var(--ink-soft); background: var(--surf-2); }
+
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 900px) {
   .site { --pad-x: 24px; }
-  .cards-2, .svc, .process, .cta-band, .foot-main, .reasons, .soc-grid { grid-template-columns: 1fr; }
-  .meet { grid-template-columns: 1fr 1fr; }
+  .cards-2, .svc, .process, .cta-band, .foot-main, .soc-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .meta { grid-template-columns: 1fr; }

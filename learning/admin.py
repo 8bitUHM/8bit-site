@@ -1,14 +1,28 @@
 from django.contrib import admin
 from .models import *
 
-class LessonVideoStackedInline(admin.StackedInline):
-  model=LessonVideo
 
+class LessonVideoTabularInline(admin.TabularInline):
+    model = LessonVideo
+    extra = 1
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ["tag_name"]
+    search_fields = ["tag_name"]
+
+
+@admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-  filter_horizontal = ["tags"]
-  prepopulated_fields = {"slug": ["name"]}
-  inlines=[LessonVideoStackedInline]
-  
-admin.site.register(Tag)
-admin.site.register(Lesson,LessonAdmin)
-admin.site.register(LessonVideo)
+    list_display = ["name", "order", "completion_time"]
+    list_editable = ["order"]
+    ordering = ["order"]
+    filter_horizontal = ["tags"]
+    prepopulated_fields = {"slug": ["name"]}
+    inlines = [LessonVideoTabularInline]
+    fieldsets = (
+        (None, {"fields": ("name", "slug", "order", "completion_time")}),
+        ("Content", {"fields": ("description",)}),
+        ("Tags", {"fields": ("tags",)}),
+    )

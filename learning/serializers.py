@@ -4,18 +4,16 @@ from learning.models import *
 class TagSerializer(serializers.ModelSerializer):
   class Meta:
     model = Tag
-    fields = '__all__'
-    
+    fields = ['tag_name']
+
 class LessonVideoSerializer(serializers.ModelSerializer):
   class Meta:
     model = LessonVideo
-    fields = '__all__'
+    fields = ['title', 'short_description', 'type', 'video_embed_link']
 
 class LessonSerializer(serializers.ModelSerializer):
-  # sections = SectionSerializer(many=True)
-  lesson_videos=LessonVideoSerializer(many=True)
+  lesson_videos = LessonVideoSerializer(many=True)
   tags = TagSerializer(many=True)
   class Meta:
     model = Lesson
-    fields = '__all__'
-    
+    fields = ['name', 'slug', 'order', 'completion_time', 'description', 'tags', 'lesson_videos']

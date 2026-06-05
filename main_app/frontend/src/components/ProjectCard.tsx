@@ -3,7 +3,6 @@ import LoadingImage from "./LoadingImage";
 
 interface Tag {
   tag_name: string;
-  color: string;
 }
 
 export interface ProjectCardProps {
@@ -90,8 +89,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {tags.map((tag, tagKey) => (
               <span
                 key={tagKey}
-                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm"
-                style={{ backgroundColor: tag.color || "#0ea5e9" }}
+                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm bg-primary-600"
               >
                 {tag.tag_name}
               </span>
