@@ -216,7 +216,8 @@
 
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 900px) {
-  .site { --pad-x: 24px; }
+  .site { --pad-x: 20px; }
+  .wrap { padding-left: 16px; padding-right: 16px; }
   .cards-2, .svc, .process, .cta-band, .foot-main, .soc-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
