@@ -51,6 +51,7 @@ jobs:
             requirements.txt \
             manage.py \
             scripts \
+            deploy \
             vercel_app \
             main_app \
             learning \
