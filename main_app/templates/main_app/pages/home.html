@@ -3,6 +3,9 @@
 {% block title %} 8bit @ UH Manoa {% endblock %} 
 
 {% block content %}
+<script>
+  window.data = JSON.parse("{{projects|escapejs}}");
+</script>
 <div id="page-root"></div>
 <script src="{% static 'main_app/dist/pages/Index.js' %}"></script>
 {% endblock %}

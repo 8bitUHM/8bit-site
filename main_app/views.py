@@ -6,7 +6,10 @@ from django.db.models import Case, When, Value, IntegerField
 import json
 
 def index(request):
-  return render(request,'main_app/pages/home.html')
+  queryset = Project.objects.filter(selected_work=True).order_by('name')
+  serializer = ProjectSerializer(queryset, many=True)
+  serialized_json_data = json.dumps(serializer.data)
+  return render(request, 'main_app/pages/home.html', {'projects': serialized_json_data})
 
 def members(request):
   queryset = Member.objects.annotate(

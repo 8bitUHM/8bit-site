@@ -1,7 +1,23 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "../styles/v2-tokens.css";
 import "../styles/v2-kit.css";
+
+interface Tag {
+  tag_name: string;
+}
+interface Project {
+  name: string;
+  description: string;
+  github_link: string;
+  deploy_link: string;
+  client: string;
+  paid_client_project: boolean;
+  in_development: boolean;
+  selected_work: boolean;
+  tags: Tag[];
+}
 
 const ArrowRight = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="100%" height="100%">
@@ -40,14 +56,17 @@ const SOCIALS = [
   { name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/8bituhmanoa" },
 ];
 
-const PROJECTS_PREVIEW = [
-  { n: "01", name: "8bit Site", tags: "react · django · postgres", year: "2025" },
-  { n: "02", name: "UH Mānoa Apps", tags: "react · node · aws", year: "2024" },
-  { n: "03", name: "Client Portal", tags: "next.js · typescript", year: "2024" },
-  { n: "04", name: "Open Source Tools", tags: "python · docker", year: "2023" },
-];
+const Home = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
 
-const Home = () => (
+  useEffect(() => {
+    const data = (window as any).data as Project[];
+    if (data && Array.isArray(data)) setProjects(data);
+  }, []);
+
+  const pad = (n: number) => String(n).padStart(2, "0");
+
+  return (
   <div className="page">
     <section className="hero wrap">
       <div className="cmd">
@@ -82,17 +101,19 @@ const Home = () => (
         </div>
         <a className="btn btn-ghost" href="/projects/">all projects →</a>
       </div>
-      <div className="index">
-        {PROJECTS_PREVIEW.map((p) => (
-          <a key={p.n} className="idx-row" href="/projects/" style={{ textDecoration: "none", color: "inherit" }}>
-            <span className="n">{p.n}</span>
-            <span className="nm">{p.name}</span>
-            <span className="tg">{p.tags}</span>
-            <span className="yr">{p.year}</span>
-            <span className="ar">→</span>
-          </a>
-        ))}
-      </div>
+      {projects.length > 0 && (
+        <div className="index">
+          {projects.map((p, i) => (
+            <a key={p.name} className="idx-row" href="/projects/" style={{ textDecoration: "none", color: "inherit" }}>
+              <span className="n">{pad(i + 1)}</span>
+              <span className="nm">{p.name}</span>
+              <span className="tg">{p.tags.map((t) => t.tag_name).join(" · ")}</span>
+              <span className="yr">{p.in_development ? "in dev" : "live"}</span>
+              <span className="ar">→</span>
+            </a>
+          ))}
+        </div>
+      )}
     </section>
 
     <section className="section wrap">
@@ -155,7 +176,8 @@ const Home = () => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 const root = document.getElementById("page-root");
-createRoot(root).render(<Home />);
+createRoot(root!).render(<Home />);

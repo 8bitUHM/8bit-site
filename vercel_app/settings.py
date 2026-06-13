@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     '.vercel.app',
     'sn3mzkzrp4.us-west-2.awsapprunner.com',
     '8bithawaii.org',
+    'www.8bithawaii.org',
     'staging.8bithawaii.org',
 ]
 # Extra hosts from env (comma-separated), e.g. droplet IP or other domains. Set in deploy.
@@ -363,5 +364,5 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
-CSRF_TRUSTED_ORIGINS = ['https://staging.8bithawaii.org', 'https://8bithawaii.org']
+CSRF_TRUSTED_ORIGINS = ['https://staging.8bithawaii.org', 'https://8bithawaii.org', 'https://www.8bithawaii.org']
 

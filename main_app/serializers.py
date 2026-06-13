@@ -17,7 +17,7 @@ class ProjectSerializer(serializers.ModelSerializer):
   tags = TagSerializer(many=True)
   class Meta:
     model=Project
-    fields = ['name', 'description', 'github_link', 'deploy_link', 'client', 'paid_client_project', 'in_development', 'tags']
+    fields = ['name', 'description', 'github_link', 'deploy_link', 'client', 'paid_client_project', 'in_development', 'selected_work', 'tags']
 
 class EventCancellationSerializer(serializers.ModelSerializer):
   class Meta:

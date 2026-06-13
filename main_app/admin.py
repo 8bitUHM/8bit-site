@@ -28,8 +28,8 @@ class MemberAdmin(admin.ModelAdmin):
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ["name", "client", "in_development", "paid_client_project"]
-    list_editable = ["in_development"]
+    list_display = ["name", "client", "in_development", "paid_client_project", "selected_work"]
+    list_editable = ["in_development", "selected_work"]
     filter_horizontal = ["tags"]
 
 

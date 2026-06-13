@@ -31,7 +31,7 @@ jobs:
             echo "DATABASE_NAME=8bit"
             echo "DATABASE_USER=8bit"
             echo "DATABASE_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
-            echo "ALLOWED_HOSTS_EXTRA=${{ secrets.PROD_SSH_HOST }},8bithawaii.org,staging.8bithawaii.org"
+            echo "ALLOWED_HOSTS_EXTRA=${{ secrets.PROD_SSH_HOST }},8bithawaii.org,www.8bithawaii.org,staging.8bithawaii.org"
           } > .env
 
       - name: Copy project to server

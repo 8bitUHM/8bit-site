@@ -64,6 +64,10 @@ class Project(models.Model):
     client = models.CharField(max_length=255, null=True, blank=True)
     paid_client_project = models.BooleanField(default=False)
     in_development = models.BooleanField(default=False, help_text="Toggle if this project is ongoing/in development")
+    selected_work = models.BooleanField(
+        default=False,
+        help_text="Toggle on to feature this project in the 'Selected work' section on the home page.",
+    )
     tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
