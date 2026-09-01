@@ -3,13 +3,14 @@ FROM python:3.12
 ARG PROJECT_SECRET=build-time-placeholder
 ENV PROJECT_SECRET=${PROJECT_SECRET}
 ENV PYTHONUNBUFFERED=1
+ENV NODE_OPTIONS=--max-old-space-size=768
 
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     curl \
     postgresql-client \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*

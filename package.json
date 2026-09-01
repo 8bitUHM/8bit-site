@@ -12,6 +12,9 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.2.1"
+  },
+  "overrides": {
+    "shell-quote": "^1.8.5"
   }
 }

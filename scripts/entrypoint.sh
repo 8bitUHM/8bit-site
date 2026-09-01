@@ -24,5 +24,5 @@ python manage.py migrate --noinput
 
 exec gunicorn vercel_app.wsgi:app \
   --bind 0.0.0.0:8000 \
-  --workers 3 \
+  --workers 2 \
   --timeout 120

@@ -40,7 +40,7 @@ const SOCIALS = [
   { name: "Instagram", handle: "@8bituhmanoa", icon: <InstagramIcon />, url: "https://www.instagram.com/8bituhmanoa" },
 ];
 
-const MEETING = { day: "Wednesdays", time: "5:00 – 6:30 PM", room: "POST 318", campus: "UH Mānoa" };
+const MEETING = { day: "Thursdays", time: "1:30 – 2:30 PM", room: "POST 318", campus: "UH Mānoa" };
 
 const Join = () => (
   <div className="page">
